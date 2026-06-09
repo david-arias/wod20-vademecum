@@ -1,5 +1,5 @@
 # 📂 ARCHIVO DE MEMORIA: HANDOFF.md
-> Guardián del Handoff — Agente Documentador | Última actualización: **Fase 2.5 — Llenado de Datos W20: Dones completos (5 categorías)**
+> Guardián del Handoff — Agente Documentador | Última actualización: **Fase 2.5 — Llenado de Datos M20: 7 Esferas completas (Bloque 3)**
 
 ---
 
@@ -10,7 +10,7 @@ Líneas de juego: V20 (Vampiro), W20 (Hombre Lobo), M20 (Mago), C20 (Changeling)
 
 ---
 
-## ✅ Estado Actual: FASE 2.5 EN PROGRESO — Bloque 2 (W20) finalizado
+## ✅ Estado Actual: FASE 2.5 EN PROGRESO — Bloque 3 (M20) finalizado
 
 ### ══════════════════════════════════════════════════════
 ### FASE 2.5 — Llenado de Datos
@@ -19,7 +19,7 @@ Líneas de juego: V20 (Vampiro), W20 (Hombre Lobo), M20 (Mago), C20 (Changeling)
 |---|---|---|
 | `src/data/powers/v20Disciplines.ts` | +5 disciplinas completas (Auspex, Fortitud, Potencia, Obtenebración, Vicisitud) | ✅ COMPLETO |
 | `src/data/powers/w20Gifts.ts` | +5 categorías: Ragabash, Philodox, Galliard, Homínido, Lupus — 5 rangos cada una | ✅ COMPLETO |
-| `src/data/powers/m20Spheres.ts` | Esferas completas M20 | ⏳ PENDIENTE |
+| `src/data/powers/m20Spheres.ts` | +5 esferas nuevas (Fuerzas, Vida, Mente, Materia, Tiempo) + Entropía 5/5 niveles | ✅ COMPLETO |
 | `src/data/powers/c20Arts.ts` | Artes + Reinos completos C20 | ⏳ PENDIENTE |
 | `src/data/powers/wr20Arcanos.ts` | Arcanos completos Wr20 | ⏳ PENDIENTE |
 
@@ -54,6 +54,23 @@ Líneas de juego: V20 (Vampiro), W20 (Hombre Lobo), M20 (Mago), C20 (Changeling)
 | **Dones Lupus** | **breed** | **5/5** | **Gnosis / Rabia / Gratis** | **✅ NUEVO** |
 
 **Bloque 2 completo: +5 categorías × 5 rangos = 25 nuevas entradas PowerLevel con sourceType, associatedWith, cost (Gnosis/Rabia), dicePool, systemText completos.**
+
+### Esferas M20 — Estado de cobertura
+
+| Esfera | `rulingConcept` | Niveles | `effectType` | Estado |
+|---|---|---|---|---|
+| Correspondencia | Distancia, Localización y Conexión | 5/5 | coincidental→vulgar | ✅ (previo) |
+| Entropía | Caos, Decadencia, Suerte y Orden | 5/5 | coincidental→vulgar | ✅ COMPLETADO |
+| **Fuerzas** | **Energía, Elementos y Movimiento** | **5/5** | **coincidental/instrumental/vulgar** | **✅ NUEVO** |
+| **Vida** | **Organismos, Biología y Metamorfosis** | **5/5** | **coincidental/instrumental/vulgar** | **✅ NUEVO** |
+| **Mente** | **Consciencia, Psique y Proyección Astral** | **5/5** | **coincidental→vulgar** | **✅ NUEVO** |
+| **Materia** | **Estructuras Moleculares, Transmutación e Inorgánico** | **5/5** | **coincidental/instrumental/vulgar** | **✅ NUEVO** |
+| **Tiempo** | **Dilatación, Profecía y Aceleración** | **5/5** | **coincidental→vulgar** | **✅ NUEVO** |
+
+**Bloque 3 completo: 7 esferas × 5 niveles = 35 `PowerLevel` con `effectType`, `rulingConcept`, `dicePool`, `cost` (Quintaesencia), `systemText` canónico M20 en español.**
+
+> Nota de diseño: el campo `effectType` se mapea a badges de color en `PowersView.tsx`:
+> `coincidental` → badge verde, `instrumental` → badge ámbar, `vulgar` → badge rojo.
 
 ---
 

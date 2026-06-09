@@ -169,9 +169,23 @@ Para iniciar una nueva sesión de desarrollo, copiar el prompt de `.agents/SYSTE
 
 Todos los dones nuevos incluyen `sourceType`, `associatedWith`, recurso `Gnosis`/`Rabia`/`Gratis` y `systemText` canónico en español.
 
-### M20 / C20 / Wr20
+### M20 — Esferas `src/data/powers/m20Spheres.ts`
 
-Esferas (M20), Artes + Reinos (C20) y Arcanos (Wr20) tienen datos base de 3 niveles — expansión completa a 5 pendiente en Bloques 3–4.
+| Esfera | `rulingConcept` | Estado |
+|---|---|---|
+| Correspondencia | Distancia, Localización y Conexión | ✅ |
+| Entropía | Caos, Decadencia, Suerte y Orden | ✅ |
+| Fuerzas | Energía, Elementos y Movimiento | ✅ Fase 2.5 |
+| Vida | Organismos, Biología y Metamorfosis | ✅ Fase 2.5 |
+| Mente | Consciencia, Psique y Proyección Astral | ✅ Fase 2.5 |
+| Materia | Estructuras Moleculares, Transmutación e Inorgánico | ✅ Fase 2.5 |
+| Tiempo | Dilatación, Profecía y Aceleración | ✅ Fase 2.5 |
+
+Cada nivel incluye `effectType` (`coincidental` / `instrumental` / `vulgar`) renderizado como badge coloreado en `PowersView`.
+
+### C20 / Wr20
+
+Artes + Reinos (C20) y Arcanos (Wr20) tienen datos base de 3 niveles — expansión completa a 5 pendiente en Bloque 4.
 
 ---
 
@@ -179,8 +193,8 @@ Esferas (M20), Artes + Reinos (C20) y Arcanos (Wr20) tienen datos base de 3 nive
 
 - [x] **Fase 1** — Dashboard multirraza con selector de juego y grid de módulos
 - [x] **Fase 2** — Motor de Reglas Agnóstico: PowersView, FactionsView, CoreSystemView + colores canónicos
-- [~] **Fase 2.5** — Llenado de datos: V20 completo (50 niveles), W20 Dones completos (5 auspices/razas × 5 rangos)
-- [ ] **Fase 2.5 (resto)** — Esferas M20, Artes C20, Arcanos Wr20 a 5 niveles completos
+- [~] **Fase 2.5** — Llenado de datos: V20 (50 niveles), W20 (25 nuevos), M20 (35 niveles, 7 esferas completas)
+- [ ] **Fase 2.5 (resto)** — Artes C20 + Arcanos Wr20 a 5 niveles completos
 - [ ] **Fase 3** — Ficha de personaje interactiva con atributos y habilidades editables
 - [ ] **Fase 4** — Motor de tiradas (pool de dados, dificultad, especialidades)
 - [ ] **Fase 5** — Búsqueda global cross-game en poderes y facciones
