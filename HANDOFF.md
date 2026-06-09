@@ -280,11 +280,41 @@ type CoreRuleBlock = CoreTextBlock | CoreTableBlock | CoreListBlock | CoreCompar
 
 ---
 
-## 🔜 Próximos Pasos (Fase 3)
+## 🔜 Siguiente Fase: FASE 3 — Expansión Total del Data Layer
+
+### ══════════════════════════════════════════════════════
+### FASE 3 — Inyección de Datos Completa (Manual Básico Canónico)
+
+Objetivo: cubrir al 100% los sistemas de poderes del manual básico de cada línea de juego. ~190 `PowerLevel` adicionales sobre los ≥170 ya existentes.
+
+| Bloque | Sistema | Contenido | PL nuevos | Estado |
+|---|---|---|---|---|
+| **Bloque 6** | V20 | Serpentis, Dementation, Nigromancia, Taumaturgia, Quietud | +25 | [ ] PENDIENTE |
+| **Bloque 7** | W20 | Tribus 1–6: Furias Negras, Roehuesos, Hijos de Gaia, Fianna, Vástagos de Fenris, Caminantes de Cristal | +30 | [ ] PENDIENTE |
+| **Bloque 8** | W20 | Tribus 7–12: Garras Rojas, Señores de la Sombra (completar), Peregrinos Silenciosos, Colmillos de Plata, Observadores, Uktena, Wendigo + raza Metis | +40 | [ ] PENDIENTE |
+| **Bloque 9** | M20 | Espíritu, Primo (2 esferas faltantes del canon) | +10 | [ ] PENDIENTE |
+| **Bloque 10** | C20 | Chronos, Prestidigitación, Nomenclatura, Pirética | +20 | [ ] PENDIENTE |
+| **Bloque 11** | C20 | Adivinación, Ensueño, Primavera | +15 | [ ] PENDIENTE |
+| **Bloque 12** | Wr20 | Argos, Castigate, Fatalismo, Inhabit, Lifeweb | +25 | [ ] PENDIENTE |
+| **Bloque 13** | Wr20 | Mnemósynis, Outrage, Pandemonium, Phantasm, Usury | +25 | [ ] PENDIENTE |
+
+**Total Fase 3: ~190 PL nuevos. Total acumulado al cerrar Fase 3: ≥ 360 PowerLevel.**
+
+### Notas de segmentación Fase 3
+
+- **V20 Bloque 6**: Disciplinas de clan avanzadas — `categoryType: 'discipline'`, sin `associatedWith` (son disciplinas standalone)
+- **W20 Bloques 7–8**: `associatedWith: { type: 'tribe', name: '...' }`, `sourceType: 'tribe'`, recurso `Gnosis`/`Rabia`/`Gratis`
+- **W20 Tribu corregida**: La lista canónica de 13 tribus es: Furias Negras, Roehuesos, Hijos de Gaia, Fianna, Vástagos de Fenris, Caminantes de Cristal, Garras Rojas, Señores de la Sombra, Peregrinos Silenciosos, Colmillos de Plata, Observadores de las Estrellas, Uktena, Wendigo
+- **M20 Bloque 9**: Espíritu y Primo deben incluir `effectType` en cada nivel y `rulingConcept`
+- **C20 Bloques 10–11**: `realmRequired[]` canónico por nivel; `cost.resource: 'Glamour'`
+- **Wr20 Bloques 12–13**: `cost.resource: 'Pathos'` o `'Gratis'`; `dicePool` con atributos Wr20
+
+---
+
+## 🔜 Próximos Pasos (Post Fase 3)
 
 | Tarea | Prioridad | Descripción |
 |---|---|---|
-| Expandir poderes | Alta | Completar los 5 niveles de todas las disciplinas/dones/esferas/artes/arcanos |
 | AttributesView | Media | Vista dedicada con atributos+habilidades de cada juego, sistema de puntos |
 | CombatView | Media | Mecánica de iniciativa, daño, tipos, flujo de combate |
 | SearchGlobal | Alta | Búsqueda cross-game en poderes + facciones usando índice en memoria |

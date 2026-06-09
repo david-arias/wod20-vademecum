@@ -214,6 +214,15 @@ Cada nivel incluye `realmRequired[]` con los Reinos canónicos. Recurso siempre 
 - [x] **Fase 1** — Dashboard multirraza con selector de juego y grid de módulos
 - [x] **Fase 2** — Motor de Reglas Agnóstico: PowersView, FactionsView, CoreSystemView + colores canónicos
 - [x] **Fase 2.5** — Data layer completo: V20 (50), W20 (~35), M20 (35), C20 (25), Wr20 (25) — **≥ 170 PowerLevel**
+- [ ] **Fase 3** — Expansión total del data layer al manual básico canónico (~190 PL adicionales, 8 bloques):
+  - [ ] Bloque 6: V20 disciplinas de clan (Serpentis, Dementation, Nigromancia, Taumaturgia, Quietud)
+  - [ ] Bloque 7: W20 tribus 1–6 (Furias Negras, Roehuesos, Hijos de Gaia, Fianna, Vástagos de Fenris, Caminantes de Cristal)
+  - [ ] Bloque 8: W20 tribus 7–13 + raza Metis
+  - [ ] Bloque 9: M20 esferas restantes (Espíritu, Primo)
+  - [ ] Bloque 10: C20 artes (Chronos, Prestidigitación, Nomenclatura, Pirética)
+  - [ ] Bloque 11: C20 artes (Adivinación, Ensueño, Primavera)
+  - [ ] Bloque 12: Wr20 arcanos (Argos, Castigate, Fatalismo, Inhabit, Lifeweb)
+  - [ ] Bloque 13: Wr20 arcanos (Mnemósynis, Outrage, Pandemonium, Phantasm, Usury)
 - [ ] **Fase 3** — Ficha de personaje interactiva con atributos y habilidades editables
 - [ ] **Fase 4** — Motor de tiradas (pool de dados, dificultad, especialidades)
 - [ ] **Fase 5** — Búsqueda global cross-game en poderes y facciones
