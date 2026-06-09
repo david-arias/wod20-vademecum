@@ -1,5 +1,5 @@
 # 📂 ARCHIVO DE MEMORIA: HANDOFF.md
-> Guardián del Handoff — Agente Documentador | Última actualización: Fase 1.1 — Ajustes de Layout Hero y Grid
+> Guardián del Handoff — Agente Documentador | Última actualización: **Fase 2 — Motor de Reglas Agnóstico (completo)**
 
 ---
 
@@ -10,213 +10,241 @@ Líneas de juego: V20 (Vampiro), W20 (Hombre Lobo), M20 (Mago), C20 (Changeling)
 
 ---
 
-## ✅ Estado Actual: FASE 1.1 COMPLETADA — Ajustes visuales confirmados en browser
+## ✅ Estado Actual: FASE 2 COMPLETADA — Motor de Reglas + 3 Vistas + Colores actualizados
 
-### Archivos nuevos en esta iteración
-
-| Archivo | Descripción |
-|---|---|
-| `README.md` | Documentación pública del proyecto: setup, arquitectura, roadmap, contribución |
-
-### Bugs resueltos en esta iteración
-
-| Bug | Causa raíz | Solución |
-|-----|-----------|---------|
-| Hero text pegado a los bordes | `items-end pb-10` pensado para imagen de fondo inexistente | Cambiado a `py-14 px-12` con layout vertical centrado |
-| Grid sin gutters entre cards | Truco `gap-[1px] bg-[#1E1E1E]` que crea separadores, no espacios | Reemplazado por `gap-6` (24px) y dos filas explícitas: 5-col (3+2) arriba, 3-col abajo |
-| `vite.config.ts` causaba EACCES | Vite escribía cache en `node_modules/.vite/` con permisos del sandbox | Añadido `cacheDir: '.vite-cache'` para mover el cache a la raíz del proyecto |
-
-### Carpeta `.agents/` creada en esta iteración
+### ══════════════════════════════════════════════════════
+### FASE 2 — Nuevos archivos creados
 
 | Archivo | Descripción |
 |---|---|
-| `.agents/AGENTS.md` | Definición del equipo: roles, responsabilidades, protocolo de sesión |
-| `.agents/SYSTEM_PROMPT.md` | Prompt listo para copiar al inicio de cada nueva sesión |
-| `.agents/skills/UX_UI_Expert.md` | Paleta completa, reglas de componentes, checklist de entrega |
-| `.agents/skills/Frontend_Architect.md` | Stack, reglas de código, patrones establecidos |
-| `.agents/skills/Documentador.md` | Protocolo de handoff, estructura del HANDOFF.md |
-| `.agents/templates/HANDOFF_TEMPLATE.md` | Plantilla en blanco para nuevas sesiones |
+| `src/types/powers.ts` | `PowerLevel`, `PowerCategory`, `PowerCategoryType`, `PowersIndex`, `DicePool`, `PowerCost`, `ActionType`, `C20Realm` |
+| `src/types/factions.ts` | `Faction`, `FactionType`, `FactionWeakness`, `FactionTrait`, `FactionsIndex` |
+| `src/types/coreSystem.ts` | `CoreRule`, `CoreModuleId`, `EnergyResourceRow`, `CoreRuleBlock` (union TextBlock \| TableBlock \| ListBlock \| ComparisonBlock) |
+| `src/data/powers/v20Disciplines.ts` | Animalismo, Celeridad, Dominación, Ofuscación, Presencia — 5 niveles cada uno |
+| `src/data/powers/w20Gifts.ts` | Dones Ahroun (5), Theurge (3), Señores de la Sombra (3) con `associatedWith` |
+| `src/data/powers/m20Spheres.ts` | Correspondencia (5), Entropía (3) con `effectType: 'coincidental' \| 'vulgar'` |
+| `src/data/powers/c20Arts.ts` | Chicanería (3), Metamorfosis (3) con `realmRequired[]`, `C20_REALMS_INFO` |
+| `src/data/powers/wr20Arcanos.ts` | Embodiment (3), Flux (3) con Pathos como recurso |
+| `src/data/powers/index.ts` | `ALL_POWERS: PowersIndex` exportado con los 5 sistemas |
+| `src/data/factions/index.ts` | 13 Clanes V20, 5 Tribus W20, 9 Tradiciones M20, 5 Parentelas C20, 5 Gremios Wr20 |
+| `src/data/coreSystem.ts` | 5 `CoreRule`: dice-basics, multiple-actions, energy-resources (tabla comparativa), wound-levels, extended-actions |
+| `src/components/powers/PowersView.tsx` | Tabs horizontales + listado scrollable izquierdo + card expandida derecha |
+| `src/components/factions/FactionsView.tsx` | Grid de tarjetas + Drawer lateral con lore, poderes nativos, bloque de debilidad |
+| `src/components/core/CoreSystemView.tsx` | Grid de cards acordeón + tabla comparativa multi-juego de recursos de energía |
 
-### Componentes creados en esta iteración (Fase 1)
+### Cambios en archivos existentes
 
-| Archivo | Descripción |
+| Archivo | Cambio |
 |---|---|
-| `src/types/gameSystem.ts` | Tipos TypeScript completos: `GameSystemId`, `GameSystemConfig`, `DashboardState`, `VirtueStat`, etc. |
-| `src/data/gameSystems.ts` | Data layer con las 5 líneas de juego totalmente configuradas |
-| `src/components/Dashboard.tsx` | Componente principal monolítico con todos los sub-componentes |
-| `src/index.css` | CSS global con variables CSS dinámicas por juego (`--accent`, `--accent-dim`) |
-| `tailwind.config.ts` | Configuración extendida: colores, fuentes, `borderRadius: 0px` global |
-| `index.html` | HTML base con Google Fonts (EB Garamond, Inter, JetBrains Mono) |
-| `package.json` | Dependencias: React 18, Vite, TypeScript, Tailwind CSS 3 |
-
-### Sub-componentes del Dashboard
-
-| Componente | Descripción |
-|---|---|
-| `<TopBar />` | Barra superior fija: logo, nav, búsqueda, `<GameSelector />` |
-| `<GameSelector />` | Dropdown de cambio de juego con preview de accent color |
-| `<Sidebar />` | Menú vertical fijo, JetBrains Mono ALL-CAPS, active state con keyline izquierdo |
-| `<Hero />` | Hero Section con hero-bg noise, título EB Garamond, dos CTAs |
-| `<AttributesCard />` | Módulo de atributos con grupos coloreados |
-| `<PowersCard />` | Módulo de disciplinas/dones/esferas (label dinámico por juego) |
-| `<CombatCard />` | Módulo de salud con `<PipRow />` de cuadrados 0px |
-| `<VirtuesCard />` | Módulo de virtudes con `<ProgressBar />` planas |
-| `<SystemCard />` | Módulo de sistema básico con CTA secundario |
-| `<PipRow />` | Indicador de puntos: cuadrados `w-[12px] h-[12px]`, 0px radius |
-| `<ProgressBar />` | Barra de progreso plana: `h-[3px]`, sin radius, accent via CSS var |
-| `<Footer />` | Footer mínimo con copyright y links |
+| `src/index.css` | Actualización de acentos: W20→#D4AF37, M20→#8A2BE2, C20→#00FF7F, Wr20→#708090 |
+| `src/data/gameSystems.ts` | Mismos acentos actualizados en objetos `GameSystemConfig`; nav de cada juego recibe `{ id: 'factions', ... }` |
+| `src/components/Dashboard.tsx` | Importa `PowersView`, `FactionsView`, `CoreSystemView`; enruta por `activeSection` |
 
 ---
 
-## 🎨 Tokens de Diseño Activos
+## 🎨 Sistema de Colores de Acento (Canónicos)
 
-### Paleta base (Abyssal Gothic — Fija)
-```
-void:           #0A0A0A   — Fondo absoluto del body
-surface:        #131313   — Superficie primaria (sidebar, cards)
-surface-low:    #1C1B1B   — Contenedores internos
-surface-mid:    #201F1F   — Elevación media
-surface-high:   #2A2A2A   — Elevación alta (hover states)
-cream:          #F5F5F0   — Texto primario
-on-surface:     #E5E2E1   — Texto secundario
-muted:          #6B7280   — Texto apagado / placeholders
-keyline:        #333333   — Bordes estructurales
-```
-
-### Acentos por sistema de juego (CSS Custom Properties)
-```css
-/* Variable global en :root y sobrescrita con html[data-game="ID"] */
---accent         /* Color principal del sistema activo */
---accent-dim     /* rgba del accent al 12% para fondos */
---accent-border  /* rgba del accent al 35% para keylines */
-
-V20  (Vampiro)    → #FF3333  — Blood Red
-W20  (Hombre Lobo)→ #C07800  — Rage Gold/Bronze
-M20  (Mago)       → #1A6EFF  — Quintessence Blue
-C20  (Changeling) → #9333EA  — Dream Violet
-Wr20 (Wraith)     → #6B7280  — Ash Gray
-```
-
-### Tipografía
-```
-font-garamond → EB Garamond — Headlines, Hero title, card titles
-font-inter    → Inter        — Body text, descriptions, párrafos
-font-mono     → JetBrains Mono — Nav labels, badges, pips, metadata
-```
-
-### Geometría
-```
-border-radius: 0px en TODOS los elementos (enforced via Tailwind config + CSS reset)
-No box-shadow en ningún elemento (enforced via CSS reset)
-Pips: cuadrados 12×12px, borde 1px solid #333333 (vacío) / accent fill (activo)
-Progress bars: height 3px, sin radius, fill via --accent
-Keylines: 1px solid #333333 | 1px solid var(--accent) en focus/active
-```
+| Juego | Acento | CSS var activo |
+|---|---|---|
+| V20 — Vampiro | `#FF3333` | `html[data-game="V20"]` |
+| W20 — Hombre Lobo | `#D4AF37` | `html[data-game="W20"]` |
+| M20 — Mago | `#8A2BE2` | `html[data-game="M20"]` |
+| C20 — Changeling | `#00FF7F` | `html[data-game="C20"]` |
+| Wr20 — Wraith | `#708090` | `html[data-game="Wr20"]` |
 
 ---
 
-## 🗂️ Estructura del Estado de Datos (JSON Schema)
+## 🏗️ Arquitectura de Componentes
 
+### Árbol de componentes
+
+```
+Dashboard.tsx
+├── TopBar (GameSelector dropdown)
+├── Sidebar (nav items: home, system, attributes, powers, factions, combat, virtues)
+└── main
+    ├── [home]    → Hero + ModuleGrid + Footer
+    ├── [system]  → CoreSystemView (accordion cards, comparison table)
+    ├── [powers]  → PowersView (tabs + list + expanded card)
+    ├── [factions]→ FactionsView (grid + Drawer lateral)
+    └── [otros]   → "Módulo en construcción"
+```
+
+### Patrón de enrutamiento
+- Sin React Router — enrutamiento por `activeSection: string` en estado de `Dashboard`
+- `Sidebar` emite `onSection(id)` → `setActiveSection(id)`
+- Cada sección renderiza su vista correspondiente
+
+---
+
+## 📦 Esquema de Datos (Data Layer Completo)
+
+### PowersIndex
 ```typescript
-// Unidad raíz de configuración de juego
-interface GameSystemConfig {
-  id:               GameSystemId          // 'V20' | 'W20' | 'M20' | 'C20' | 'Wr20'
-  fullName:         string                // Nombre editorial completo
-  shortName:        string                // Código corto para UI
-  accent:           GameAccent            // { primary, dim, border }
-  nav:              NavSection[]          // Links del sidebar (adaptados por juego)
-  hero:             HeroContent           // { eyebrow, title, description, ctaPrimary, ctaSecondary }
-  attributeGroups:  AttributeGroup[]      // Físicos | Sociales | Mentales (con color)
-  powers:           PowerEntry[]          // Disciplinas / Dones / Esferas / Artes / Arcanos
-  powersLabel:      string                // Label del módulo (dinámico por juego)
-  virtues:          VirtueStat[]          // { name, current, max } para progress bars
-  virtuesLabel:     string                // Label del módulo (dinámico por juego)
-  systemSummary:    string                // Descripción corta del sistema de reglas
-  healthPips:       number                // Máx. niveles de salud (default 7)
-  currentHealth:    number                // Estado de salud del personaje
+type PowersIndex = Record<GameSystemId, PowerCategory[]>
+
+interface PowerCategory {
+  id: string
+  name: string
+  gameSystem: GameSystemId
+  categoryType: PowerCategoryType  // 'discipline' | 'gift' | 'sphere' | 'art' | 'realm' | 'arcano'
+  description?: string
+  rulingConcept?: string           // M20: "Control del Espacio"
+  associatedWith?: { type: 'auspice' | 'tribe', name: string }  // W20
+  levels: PowerLevel[]
 }
 
-// Estado global de la aplicación
-interface DashboardState {
-  activeGame:        GameSystemId         // Juego activo (default 'V20')
-  session:           SessionStatus        // { groupName, label, isActive }
-  sidebarCollapsed:  boolean
+interface PowerLevel {
+  level: number
+  name: string
+  summary: string
+  systemText: string
+  dicePool?: DicePool
+  cost?: PowerCost
+  actionType?: ActionType
+  duration?: string
+  effectType?: 'coincidental' | 'vulgar' | 'instrumental'  // M20
+  realmRequired?: string[]                                   // C20
+  tags?: string[]
 }
 ```
 
-**Mecanismo de theming:** La función `handleGameChange()` actualiza `document.documentElement.setAttribute('data-game', id)`, lo que activa las reglas CSS en `index.css` que sobrescriben las variables `--accent`, `--accent-dim` y `--accent-border`. Todos los componentes consumen el accent exclusivamente via `var(--accent)` — nunca hardcodeado.
+### FactionsIndex
+```typescript
+type FactionsIndex = Record<GameSystemId, Faction[]>
+
+interface Faction {
+  id: string
+  name: string
+  gameSystem: GameSystemId
+  factionType: FactionType
+  archetype: string
+  lore: string
+  nativePowerIds: string[]
+  nativePowerLabel: string
+  weakness: FactionWeakness
+  notableMembers?: string[]
+  startingTraits?: FactionTrait[]
+}
+```
+
+### CoreRule
+```typescript
+interface CoreRule {
+  id: string
+  module: CoreModuleId
+  title: string
+  eyebrow: string
+  summary: string
+  content: CoreRuleBlock[]
+  applicableTo: GameSystemId[] | 'all'
+}
+
+type CoreRuleBlock = CoreTextBlock | CoreTableBlock | CoreListBlock | CoreComparisonBlock
+```
 
 ---
 
-## 🔮 Siguientes Pasos Pendientes (Fase 2+)
+## 🔒 Reglas de Diseño Invariables
 
-### Fase 1.2 — Mejoras inmediatas opcionales
-- [ ] Añadir imagen real de catedral gótica como hero background (reemplazar noise SVG)
-- [ ] Ajustar altura mínima del hero en mobile (actualmente `py-14` puede quedar corto en pantallas pequeñas)
-- [ ] Añadir transición suave de accent al cambiar de juego (actualmente instantáneo)
-
-### Fase 2 — Sistema de Navegación y Router
-- [ ] Instalar `react-router-dom` v6 y configurar rutas por sección
-- [ ] Crear páginas: `SistemaBasico`, `AtributosHabilidades`, `Disciplinas`, `Combate`, `Virtudes`
-- [ ] Implementar transición de página (fade instantáneo, 0ms — sin easing suave)
-- [ ] Conectar el sidebar a las rutas reales
-
-### Fase 3 — Página de Atributos y Habilidades
-- [ ] Grid 3-columnas (Físicos / Sociales / Mentales)
-- [ ] Input con rating dots/squares (1–5) para cada atributo
-- [ ] Sección de Habilidades (Talentos, Técnicas, Conocimientos) con mismo sistema
-- [ ] Lógica de cálculo de dados para tiradas (Atributo + Habilidad)
-
-### Fase 4 — Página de Disciplinas (V20) / Poderes
-- [ ] Acordeón por disciplina con niveles 1–5
-- [ ] Descripción completa de cada poder
-- [ ] Sistema de activación (coste en Sangre/Gnosis/Quintaesencia)
-- [ ] Adaptar labels y poderes para cada game system
-
-### Fase 5 — Ficha de Personaje y Persistencia
-- [ ] Formulario de creación de personaje (Clan/Tribu/Tradición)
-- [ ] Persistencia en `localStorage` con clave por personaje
-- [ ] Exportar/importar ficha en JSON
-- [ ] Modo "Storyteller" (vista de todos los personajes)
-
-### Fase 6 — Motor de Tiradas
-- [ ] Componente `<DicePool />`: selección de dados + dificultad
-- [ ] Visualización de resultado (éxitos, fallos, pifias)
-- [ ] Log de tiradas de sesión
-- [ ] Especialidades que añaden dados
-
-### Deuda técnica a resolver
-- [ ] Extraer sub-componentes de `Dashboard.tsx` a archivos individuales (`/components/`)
-- [ ] Añadir `React.memo()` a tarjetas del grid para evitar re-renders
-- [ ] Implementar `useContext` o Zustand para el estado global del juego activo
-- [ ] Test unitarios con Vitest para los tipos y el data layer
+1. **`border-radius: 0 !important`** en `* { }` — nunca esquinas redondeadas
+2. **`box-shadow: none !important`** — nunca sombras
+3. **Pips cuadrados** — `width: 10px; height: 10px; display: inline-block` con accent fill o border `#333`
+4. **ProgressBar flat** — `height: 3px`, sin radius, accent via CSS var
+5. **Fuentes**: EB Garamond (títulos), Inter (cuerpo), JetBrains Mono (UI/labels/badges)
+6. **Etiquetas ALL-CAPS JetBrains Mono** con `tracking-widest` para todos los meta-labels
+7. **CSS vars `--accent` / `--accent-dim` / `--accent-border`** — nunca hardcoded en componentes salvo data layer
+8. **Border-left activo** en sidebar nav: `2px solid var(--accent)`, `paddingLeft: 18px`
+9. **Drawer de facciones**: `borderLeft: '2px solid var(--accent)'` en contenedor, no modal
+10. **Accent theming**: `document.documentElement.setAttribute('data-game', id)` en `handleGameChange()`
 
 ---
 
-## 🏗️ Arquitectura de Archivos Actual
+## 🐛 Bugs Resueltos (historial)
+
+| Bug | Causa | Solución |
+|---|---|---|
+| Hero text pegado a los bordes | `items-end pb-10` sin imagen de fondo | `py-14 px-12` con layout vertical |
+| Grid sin gutters | `gap-[1px] bg-[#1E1E1E]` crea separadores, no espacios | `gap-6` dos filas explícitas |
+| EACCES en Vite cache | node_modules permisos sandbox vs Mac user | `cacheDir: '.vite-cache'` en `vite.config.ts` |
+
+---
+
+## 🔜 Próximos Pasos (Fase 3)
+
+| Tarea | Prioridad | Descripción |
+|---|---|---|
+| Expandir poderes | Alta | Completar los 5 niveles de todas las disciplinas/dones/esferas/artes/arcanos |
+| AttributesView | Media | Vista dedicada con atributos+habilidades de cada juego, sistema de puntos |
+| CombatView | Media | Mecánica de iniciativa, daño, tipos, flujo de combate |
+| SearchGlobal | Alta | Búsqueda cross-game en poderes + facciones usando índice en memoria |
+| CharacterSheet | Alta | Formulario interactivo de ficha de personaje con campos editables |
+| Persistencia | Media | `localStorage` / exportar JSON de personaje |
+| React Router | Baja | Migrar enrutamiento interno a React Router v6 para URLs navegables |
+| Testing | Media | Vitest + Testing Library para componentes críticos (PowersView, FactionsView) |
+
+---
+
+## 💻 Comandos Útiles
+
+```bash
+# Desarrollo local
+cd "wod20 - Vademecum" && npm run dev
+
+# Build de producción
+npm run build
+
+# Lint
+npm run lint
+
+# Fix permisos (si EACCES reaparece)
+sudo chown -R $(whoami) . && chmod -R u+rw . && rm -rf node_modules && npm install
+```
+
+---
+
+## 📁 Estructura de Archivos Actualizada
 
 ```
 wod20 - Vademecum/
-├── index.html
-├── package.json
+├── src/
+│   ├── types/
+│   │   ├── gameSystem.ts       # GameSystemId, GameSystemConfig, VirtueStat, NavSection...
+│   │   ├── powers.ts           # PowerCategory, PowerLevel, DicePool, ActionType...
+│   │   ├── factions.ts         # Faction, FactionType, FactionWeakness...
+│   │   └── coreSystem.ts       # CoreRule, CoreRuleBlock (union), EnergyResourceRow
+│   ├── data/
+│   │   ├── gameSystems.ts      # Config completa de los 5 sistemas con acentos canónicos
+│   │   ├── coreSystem.ts       # 5 CoreRules con 3 tipos de bloque
+│   │   ├── powers/
+│   │   │   ├── v20Disciplines.ts
+│   │   │   ├── w20Gifts.ts
+│   │   │   ├── m20Spheres.ts
+│   │   │   ├── c20Arts.ts
+│   │   │   ├── wr20Arcanos.ts
+│   │   │   └── index.ts        # ALL_POWERS: PowersIndex
+│   │   └── factions/
+│   │       └── index.ts        # ALL_FACTIONS: FactionsIndex (13+5+9+5+5 facciones)
+│   ├── components/
+│   │   ├── Dashboard.tsx       # Orquestador principal + todos los sub-componentes del home
+│   │   ├── powers/
+│   │   │   └── PowersView.tsx  # Tabs + list + expanded card
+│   │   ├── factions/
+│   │   │   └── FactionsView.tsx # Grid + Drawer lateral
+│   │   └── core/
+│   │       └── CoreSystemView.tsx # Accordion cards + comparison table
+│   ├── index.css               # CSS vars por juego, resets, utility classes
+│   └── App.tsx
+├── .agents/                    # Sistema de 3 agentes
+│   ├── AGENTS.md
+│   ├── SYSTEM_PROMPT.md
+│   ├── skills/
+│   │   ├── UX_UI_Expert.md
+│   │   ├── Frontend_Architect.md
+│   │   └── Documentador.md
+│   └── templates/HANDOFF_TEMPLATE.md
 ├── tailwind.config.ts
-├── tsconfig.json
-├── tsconfig.node.json
 ├── vite.config.ts
-├── postcss.config.js
-└── src/
-    ├── main.tsx
-    ├── App.tsx
-    ├── index.css
-    ├── types/
-    │   └── gameSystem.ts        ← Tipos TypeScript completos
-    ├── data/
-    │   └── gameSystems.ts       ← Data layer: 5 juegos configurados
-    └── components/
-        └── Dashboard.tsx        ← Componente principal (monolítico Fase 1)
+├── HANDOFF.md                  # ← ESTE ARCHIVO
+└── README.md
 ```
-
----
-
-*Generado por el Agente Documentador — El Guardián del Handoff.*
-*Próxima actualización: Fase 2 — Router y páginas de contenido.*

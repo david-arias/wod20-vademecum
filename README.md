@@ -14,11 +14,11 @@
 
 | ID | Juego | Acento | Estado |
 |----|-------|--------|--------|
-| `V20` | Vampiro: La Mascarada | 🔴 `#FF3333` Blood Red | ✅ Fase 1 |
-| `W20` | Hombre Lobo: El Apocalipsis | 🟡 `#C07800` Rage Gold | ✅ Fase 1 |
-| `M20` | Mago: La Ascensión | 🔵 `#1A6EFF` Quint Blue | ✅ Fase 1 |
-| `C20` | Changeling: El Ensueño | 🟣 `#9333EA` Dream Violet | ✅ Fase 1 |
-| `Wr20` | Wraith: El Olvido | ⚫ `#6B7280` Ash Gray | ✅ Fase 1 |
+| `V20` | Vampiro: La Mascarada | 🔴 `#FF3333` Blood Red | ✅ Fase 2 |
+| `W20` | Hombre Lobo: El Apocalipsis | 🟡 `#D4AF37` Dark Gold | ✅ Fase 2 |
+| `M20` | Mago: La Ascensión | 🟣 `#8A2BE2` BlueViolet | ✅ Fase 2 |
+| `C20` | Changeling: El Ensueño | 🟢 `#00FF7F` Spring Green | ✅ Fase 2 |
+| `Wr20` | Wraith: El Olvido | 🩶 `#708090` Slate Gray | ✅ Fase 2 |
 
 ---
 
@@ -114,6 +114,23 @@ interface GameSystemConfig {
 
 **Theming:** Al cambiar de juego, `handleGameChange()` actualiza `html[data-game="ID"]`, activando las CSS vars correspondientes en `index.css`. Todos los componentes consumen `var(--accent)` — nunca un hex hardcodeado.
 
+### Motor de Reglas Agnóstico (Fase 2)
+
+Tres capas de datos adicionales que permiten consultar poderes, facciones y reglas básicas para los 5 sistemas:
+
+```typescript
+// Poderes: Disciplinas / Dones / Esferas / Artes / Arcanos
+const ALL_POWERS: PowersIndex = Record<GameSystemId, PowerCategory[]>
+
+// Facciones: Clanes / Tribus / Tradiciones / Parentelas / Gremios
+const ALL_FACTIONS: FactionsIndex = Record<GameSystemId, Faction[]>
+
+// Reglas básicas compartidas (dice pool, acciones, heridas, recursos)
+const CORE_RULES: CoreRule[]
+```
+
+Cada `PowerLevel` incluye: nombre, resumen, texto de sistema, reserva de dados, coste de recurso, tipo de acción, duración y campos específicos del juego (`effectType` para M20, `realmRequired` para C20, `associatedWith` para W20).
+
 ---
 
 ## Agentes del Proyecto
@@ -133,11 +150,12 @@ Para iniciar una nueva sesión de desarrollo, copiar el prompt de `.agents/SYSTE
 ## Roadmap
 
 - [x] **Fase 1** — Dashboard multirraza con selector de juego y grid de módulos
-- [ ] **Fase 2** — Router + páginas individuales por sección
+- [x] **Fase 2** — Motor de Reglas Agnóstico: PowersView, FactionsView, CoreSystemView + colores canónicos
 - [ ] **Fase 3** — Ficha de personaje interactiva con atributos y habilidades editables
 - [ ] **Fase 4** — Motor de tiradas (pool de dados, dificultad, especialidades)
-- [ ] **Fase 5** — Persistencia local + exportar/importar personajes en JSON
-- [ ] **Fase 6** — Modo Narrador (gestión de múltiples personajes)
+- [ ] **Fase 5** — Búsqueda global cross-game en poderes y facciones
+- [ ] **Fase 6** — Persistencia local + exportar/importar personajes en JSON
+- [ ] **Fase 7** — Modo Narrador (gestión de múltiples personajes)
 
 ---
 

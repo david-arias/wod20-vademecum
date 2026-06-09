@@ -10,11 +10,11 @@
 }
 
 /* Game system accent overrides (applied to <html data-game="..."> ) */
-html[data-game="V20"] { --accent: #FF3333; --accent-dim: rgba(255,51,51,0.12);  --accent-border: rgba(255,51,51,0.35); }
-html[data-game="W20"] { --accent: #C07800; --accent-dim: rgba(192,120,0,0.12);  --accent-border: rgba(192,120,0,0.35); }
-html[data-game="M20"] { --accent: #1A6EFF; --accent-dim: rgba(26,110,255,0.12); --accent-border: rgba(26,110,255,0.35); }
-html[data-game="C20"] { --accent: #9333EA; --accent-dim: rgba(147,51,234,0.12); --accent-border: rgba(147,51,234,0.35); }
-html[data-game="Wr20"]{ --accent: #6B7280; --accent-dim: rgba(107,114,128,0.12);--accent-border: rgba(107,114,128,0.35);}
+html[data-game="V20"] { --accent: #FF3333; --accent-dim: rgba(255,51,51,0.12);   --accent-border: rgba(255,51,51,0.35); }
+html[data-game="W20"] { --accent: #D4AF37; --accent-dim: rgba(212,175,55,0.12);  --accent-border: rgba(212,175,55,0.35); }
+html[data-game="M20"] { --accent: #8A2BE2; --accent-dim: rgba(138,43,226,0.12);  --accent-border: rgba(138,43,226,0.35); }
+html[data-game="C20"] { --accent: #00FF7F; --accent-dim: rgba(0,255,127,0.12);   --accent-border: rgba(0,255,127,0.35); }
+html[data-game="Wr20"]{ --accent: #708090; --accent-dim: rgba(112,128,144,0.12); --accent-border: rgba(112,128,144,0.35);}
 
 /* ─── Base resets ─────────────────────────────────────────────────────── */
 *, *::before, *::after {

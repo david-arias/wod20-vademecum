@@ -1,0 +1,106 @@
+import type { PowerCategory } from '@/types/powers'
+
+export const C20_ARTS: PowerCategory[] = [
+  {
+    id: 'chicaneria',
+    name: 'Chicanería',
+    gameSystem: 'C20',
+    categoryType: 'art',
+    description: 'El Arte del engaño y la ilusión. La Chicanería crea delirios que engañan los sentidos, oculta realidades y hace ver lo que no existe.',
+    levels: [
+      {
+        level: 1,
+        name: 'Cantrip de Prestidigitación',
+        summary: 'Ilusiones menores: sonidos, olores, sensaciones breves.',
+        systemText: 'El Changeling crea una ilusión sensorial menor — un sonido, un olor, o una sensación táctil breve. La ilusión no tiene forma visual. El Reino determina el objetivo. Los mortales pueden resistir con Percepc. + Alerta dif. 7.',
+        dicePool: { formula: 'Manipulación + Subterfugio', difficulty: 6 },
+        cost: { resource: 'Glamour', amount: 1 },
+        actionType: 'instant',
+        realmRequired: ['Actor', 'Fae', 'Naturaleza', 'Prop'],
+        duration: 'escena',
+        tags: ['ilusión', 'sentidos', 'menor'],
+      },
+      {
+        level: 2,
+        name: 'Sonido Fantasmal',
+        summary: 'Ilusiones sonoras complejas que pueden engañar a múltiples personas.',
+        systemText: 'Crea ilusiones sonoras completas: conversaciones, música, explosiones, voces. Puede proyectarse a distancia con el Reino adecuado. Los que desconfíen pueden tirar Percepción + Alerta dif. 7 para detectar la ilusión.',
+        dicePool: { formula: 'Manipulación + Actuación', difficulty: 6 },
+        cost: { resource: 'Glamour', amount: 1 },
+        actionType: 'instant',
+        realmRequired: ['Actor', 'Naturaleza', 'Escena'],
+        duration: 'escena',
+        tags: ['ilusión', 'sonido', 'área'],
+      },
+      {
+        level: 3,
+        name: 'Velo de Glamour',
+        summary: 'Altera la apariencia visual de personas u objetos.',
+        systemText: 'El Changeling puede alterar la apariencia de un objetivo (persona u objeto). La ilusión es completa visualmente pero no resiste el contacto físico o detección sobrenatural. El Reino determina qué puede ser alterado.',
+        dicePool: { formula: 'Manipulación + Subterfugio', difficulty: 7 },
+        cost: { resource: 'Glamour', amount: 2 },
+        actionType: 'extended',
+        realmRequired: ['Actor', 'Fae', 'Prop'],
+        duration: 'escena o hasta interacción física',
+        tags: ['ilusión', 'apariencia', 'disfraz'],
+      },
+    ],
+  },
+
+  {
+    id: 'metamorfosis',
+    name: 'Metamorfosis',
+    gameSystem: 'C20',
+    categoryType: 'art',
+    description: 'El Arte de la transformación. La Metamorfosis altera la forma de objetos, personas y del propio Changeling, reflejando la fluidez de la realidad feérica.',
+    levels: [
+      {
+        level: 1,
+        name: 'Cambio Menor',
+        summary: 'Altera detalles pequeños de la apariencia propia.',
+        systemText: 'El Changeling puede alterar detalles menores de su propio aspecto: color de cabello, color de ojos, pequeñas características faciales. Los cambios son reales (no ilusiones) y duran una escena.',
+        cost: { resource: 'Glamour', amount: 1 },
+        actionType: 'instant',
+        duration: 'escena',
+        tags: ['transformación', 'apariencia', 'propio'],
+      },
+      {
+        level: 2,
+        name: 'Alterar Objeto',
+        summary: 'Transforma las propiedades físicas de objetos inanimados.',
+        systemText: 'Con el Reino Prop activo, puede alterar la forma, tamaño o propiedades de un objeto no mágico. Un cuchillo se vuelve espadón, una cuerda se vuelve cadena de hierro. Los cambios duran una escena.',
+        dicePool: { formula: 'Destreza + Manualidades', difficulty: 7 },
+        cost: { resource: 'Glamour', amount: 2 },
+        actionType: 'instant',
+        realmRequired: ['Prop'],
+        duration: 'escena',
+        tags: ['transformación', 'objeto', 'forma'],
+      },
+      {
+        level: 3,
+        name: 'Cambio Radical',
+        summary: 'Transforma completamente la apariencia de una persona.',
+        systemText: 'El Changeling puede transformar por completo la apariencia de una persona (con su consentimiento o tras superar Voluntad dif. 8). La transformación es física y real, no ilusoria. Puede cambiar género, altura, proporciones básicas.',
+        dicePool: { formula: 'Manipulación + Medicina', difficulty: 7 },
+        cost: { resource: 'Glamour', amount: 3 },
+        actionType: 'extended',
+        realmRequired: ['Actor', 'Fae'],
+        duration: 'escena o más con éxitos adicionales',
+        tags: ['transformación', 'persona', 'físico'],
+      },
+    ],
+  },
+]
+
+// ─── C20 REINOS (Alcance del Arte) ─────────────────────────────────────────
+export const C20_REALMS_INFO = {
+  description: 'Los Reinos determinan el objetivo de un Arte. Sin el Reino adecuado, un Cantrip no puede afectar a ese tipo de cosa.',
+  realms: [
+    { id: 'actor',     name: 'Actor',     description: 'Humanos mortales' },
+    { id: 'fae',       name: 'Fae',       description: 'Changelings y criaturas feéricas' },
+    { id: 'naturaleza',name: 'Naturaleza',description: 'Animales y plantas' },
+    { id: 'prop',      name: 'Prop',      description: 'Objetos inanimados' },
+    { id: 'escena',    name: 'Escena',    description: 'Lugares y entornos' },
+    { id: 'tiempo',    name: 'Tiempo',    description: 'El flujo temporal' },
+  ],
+}

@@ -8,6 +8,9 @@
 import { useState, useEffect, useCallback } from 'react'
 import type { GameSystemId, GameSystemConfig, VirtueStat } from '@/types/gameSystem'
 import { GAME_SYSTEMS, GAME_SYSTEM_ORDER } from '@/data/gameSystems'
+import PowersView from './powers/PowersView'
+import FactionsView from './factions/FactionsView'
+import CoreSystemView from './core/CoreSystemView'
 
 // ─── Inline SVG Icons (zero-dependency, matches design system weight) ────────
 const Icons = {
@@ -629,10 +632,36 @@ export default function Dashboard() {
 
       {/* Main content — offset by sidebar width */}
       <main className="lg:ml-[228px] pt-14 min-h-screen flex flex-col">
-        <Hero game={game} />
-        <ModuleGrid game={game} />
-        <div className="flex-1" />
-        <Footer game={game} />
+        {activeSection === 'home' && (
+          <>
+            <Hero game={game} />
+            <ModuleGrid game={game} />
+            <div className="flex-1" />
+            <Footer game={game} />
+          </>
+        )}
+        {activeSection === 'powers' && (
+          <div className="flex-1 flex flex-col overflow-hidden" style={{ height: 'calc(100vh - 56px)' }}>
+            <PowersView gameSystem={activeGame} />
+          </div>
+        )}
+        {activeSection === 'factions' && (
+          <div className="flex-1 flex flex-col overflow-hidden" style={{ height: 'calc(100vh - 56px)' }}>
+            <FactionsView gameSystem={activeGame} />
+          </div>
+        )}
+        {activeSection === 'system' && (
+          <div className="flex-1 flex flex-col overflow-hidden" style={{ height: 'calc(100vh - 56px)' }}>
+            <CoreSystemView gameSystem={activeGame} />
+          </div>
+        )}
+        {!['home', 'powers', 'factions', 'system'].includes(activeSection) && (
+          <div className="flex-1 flex items-center justify-center">
+            <p className="font-mono text-[11px] tracking-widest text-[#333] uppercase">
+              Módulo en construcción — próximamente
+            </p>
+          </div>
+        )}
       </main>
     </div>
   )
