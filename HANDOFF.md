@@ -1,5 +1,5 @@
 # 📂 ARCHIVO DE MEMORIA: HANDOFF.md
-> Guardián del Handoff — Agente Documentador | Última actualización: **Fase 2 — Motor de Reglas Agnóstico (completo)**
+> Guardián del Handoff — Agente Documentador | Última actualización: **Fase 2.5 — Llenado de Datos V20: 10 Disciplinas completas**
 
 ---
 
@@ -10,7 +10,39 @@ Líneas de juego: V20 (Vampiro), W20 (Hombre Lobo), M20 (Mago), C20 (Changeling)
 
 ---
 
-## ✅ Estado Actual: FASE 2 COMPLETADA — Motor de Reglas + 3 Vistas + Colores actualizados
+## ✅ Estado Actual: FASE 2.5 EN PROGRESO — Llenado de Datos Completo (Bloque 1: V20 finalizado)
+
+### ══════════════════════════════════════════════════════
+### FASE 2.5 — Llenado de Datos (Bloque 1 completo)
+
+| Archivo | Cambio | Estado |
+|---|---|---|
+| `src/data/powers/v20Disciplines.ts` | +5 disciplinas completas (Auspex, Fortitud, Potencia, Obtenebración, Vicisitud) con 5 niveles cada una | ✅ COMPLETO |
+| `src/data/powers/w20Gifts.ts` | Dones completos W20 | ⏳ PENDIENTE |
+| `src/data/powers/m20Spheres.ts` | Esferas completas M20 | ⏳ PENDIENTE |
+| `src/data/powers/c20Arts.ts` | Artes + Reinos completos C20 | ⏳ PENDIENTE |
+| `src/data/powers/wr20Arcanos.ts` | Arcanos completos Wr20 | ⏳ PENDIENTE |
+
+### Disciplinas V20 — Estado de cobertura
+
+| Disciplina | Niveles | Campos | Estado |
+|---|---|---|---|
+| Animalismo | 5/5 | name, summary, systemText, dicePool, cost, actionType, duration, tags | ✅ |
+| Celeridad | 5/5 | name, summary, systemText, dicePool, cost, actionType, duration, tags | ✅ |
+| Dominación | 5/5 | name, summary, systemText, dicePool, cost, actionType, duration, tags | ✅ |
+| Ofuscación | 5/5 | name, summary, systemText, dicePool, cost, actionType, duration, tags | ✅ |
+| Presencia | 5/5 | name, summary, systemText, dicePool, cost, actionType, duration, tags | ✅ |
+| **Auspex** | **5/5** | name, summary, systemText, dicePool, cost, actionType, duration, tags | **✅ NUEVO** |
+| **Fortitud** | **5/5** | name, summary, systemText, dicePool, cost, actionType, duration, tags | **✅ NUEVO** |
+| **Potencia** | **5/5** | name, summary, systemText, dicePool, cost, actionType, duration, tags | **✅ NUEVO** |
+| **Obtenebración** | **5/5** | name, summary, systemText, dicePool, cost, actionType, duration, tags | **✅ NUEVO** |
+| **Vicisitud** | **5/5** | name, summary, systemText, dicePool, cost, actionType, duration, tags | **✅ NUEVO** |
+
+**Total V20: 10 disciplinas × 5 niveles = 50 entradas PowerLevel con todos los campos requeridos.**
+
+---
+
+## ✅ Estado Anterior: FASE 2 COMPLETADA — Motor de Reglas + 3 Vistas + Colores actualizados
 
 ### ══════════════════════════════════════════════════════
 ### FASE 2 — Nuevos archivos creados
