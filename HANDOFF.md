@@ -12,6 +12,12 @@ Líneas de juego: V20 (Vampiro), W20 (Hombre Lobo), M20 (Mago), C20 (Changeling)
 
 ## ✅ Estado Actual: FASE 1.1 COMPLETADA — Ajustes visuales confirmados en browser
 
+### Archivos nuevos en esta iteración
+
+| Archivo | Descripción |
+|---|---|
+| `README.md` | Documentación pública del proyecto: setup, arquitectura, roadmap, contribución |
+
 ### Bugs resueltos en esta iteración
 
 | Bug | Causa raíz | Solución |
