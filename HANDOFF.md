@@ -1,5 +1,5 @@
 # 📂 ARCHIVO DE MEMORIA: HANDOFF.md
-> Guardián del Handoff — Agente Documentador | Última actualización: **Fase 2.5 — Llenado de Datos V20: 10 Disciplinas completas**
+> Guardián del Handoff — Agente Documentador | Última actualización: **Fase 2.5 — Llenado de Datos W20: Dones completos (5 categorías)**
 
 ---
 
@@ -10,35 +10,50 @@ Líneas de juego: V20 (Vampiro), W20 (Hombre Lobo), M20 (Mago), C20 (Changeling)
 
 ---
 
-## ✅ Estado Actual: FASE 2.5 EN PROGRESO — Llenado de Datos Completo (Bloque 1: V20 finalizado)
+## ✅ Estado Actual: FASE 2.5 EN PROGRESO — Bloque 2 (W20) finalizado
 
 ### ══════════════════════════════════════════════════════
-### FASE 2.5 — Llenado de Datos (Bloque 1 completo)
+### FASE 2.5 — Llenado de Datos
 
 | Archivo | Cambio | Estado |
 |---|---|---|
-| `src/data/powers/v20Disciplines.ts` | +5 disciplinas completas (Auspex, Fortitud, Potencia, Obtenebración, Vicisitud) con 5 niveles cada una | ✅ COMPLETO |
-| `src/data/powers/w20Gifts.ts` | Dones completos W20 | ⏳ PENDIENTE |
+| `src/data/powers/v20Disciplines.ts` | +5 disciplinas completas (Auspex, Fortitud, Potencia, Obtenebración, Vicisitud) | ✅ COMPLETO |
+| `src/data/powers/w20Gifts.ts` | +5 categorías: Ragabash, Philodox, Galliard, Homínido, Lupus — 5 rangos cada una | ✅ COMPLETO |
 | `src/data/powers/m20Spheres.ts` | Esferas completas M20 | ⏳ PENDIENTE |
 | `src/data/powers/c20Arts.ts` | Artes + Reinos completos C20 | ⏳ PENDIENTE |
 | `src/data/powers/wr20Arcanos.ts` | Arcanos completos Wr20 | ⏳ PENDIENTE |
 
 ### Disciplinas V20 — Estado de cobertura
 
-| Disciplina | Niveles | Campos | Estado |
-|---|---|---|---|
-| Animalismo | 5/5 | name, summary, systemText, dicePool, cost, actionType, duration, tags | ✅ |
-| Celeridad | 5/5 | name, summary, systemText, dicePool, cost, actionType, duration, tags | ✅ |
-| Dominación | 5/5 | name, summary, systemText, dicePool, cost, actionType, duration, tags | ✅ |
-| Ofuscación | 5/5 | name, summary, systemText, dicePool, cost, actionType, duration, tags | ✅ |
-| Presencia | 5/5 | name, summary, systemText, dicePool, cost, actionType, duration, tags | ✅ |
-| **Auspex** | **5/5** | name, summary, systemText, dicePool, cost, actionType, duration, tags | **✅ NUEVO** |
-| **Fortitud** | **5/5** | name, summary, systemText, dicePool, cost, actionType, duration, tags | **✅ NUEVO** |
-| **Potencia** | **5/5** | name, summary, systemText, dicePool, cost, actionType, duration, tags | **✅ NUEVO** |
-| **Obtenebración** | **5/5** | name, summary, systemText, dicePool, cost, actionType, duration, tags | **✅ NUEVO** |
-| **Vicisitud** | **5/5** | name, summary, systemText, dicePool, cost, actionType, duration, tags | **✅ NUEVO** |
+| Disciplina | Niveles | Estado |
+|---|---|---|
+| Animalismo | 5/5 | ✅ |
+| Celeridad | 5/5 | ✅ |
+| Dominación | 5/5 | ✅ |
+| Ofuscación | 5/5 | ✅ |
+| Presencia | 5/5 | ✅ |
+| Auspex | 5/5 | ✅ |
+| Fortitud | 5/5 | ✅ |
+| Potencia | 5/5 | ✅ |
+| Obtenebración | 5/5 | ✅ |
+| Vicisitud | 5/5 | ✅ |
 
-**Total V20: 10 disciplinas × 5 niveles = 50 entradas PowerLevel con todos los campos requeridos.**
+**Total V20: 10 disciplinas × 5 niveles = 50 PowerLevel.**
+
+### Dones W20 — Estado de cobertura
+
+| Categoría | Tipo | Rangos | Recurso | Estado |
+|---|---|---|---|---|
+| Dones Ahroun | auspice | 6 entradas | Rabia | ✅ (previo) |
+| Dones Theurge | auspice | 3 entradas | Gnosis | ✅ (previo, pendiente ampliar) |
+| Dones Señores de la Sombra | tribe | 3 entradas | Gnosis | ✅ (previo, pendiente ampliar) |
+| **Dones Ragabash** | **auspice** | **5/5** | **Gnosis** | **✅ NUEVO** |
+| **Dones Philodox** | **auspice** | **5/5** | **Gnosis / Rabia** | **✅ NUEVO** |
+| **Dones Galliard** | **auspice** | **5/5** | **Gnosis** | **✅ NUEVO** |
+| **Dones Homínido** | **breed** | **5/5** | **Gnosis** | **✅ NUEVO** |
+| **Dones Lupus** | **breed** | **5/5** | **Gnosis / Rabia / Gratis** | **✅ NUEVO** |
+
+**Bloque 2 completo: +5 categorías × 5 rangos = 25 nuevas entradas PowerLevel con sourceType, associatedWith, cost (Gnosis/Rabia), dicePool, systemText completos.**
 
 ---
 

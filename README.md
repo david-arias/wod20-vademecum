@@ -147,10 +147,40 @@ Para iniciar una nueva sesión de desarrollo, copiar el prompt de `.agents/SYSTE
 
 ---
 
+## Estado del Data Layer (Fase 2.5)
+
+### V20 — Disciplinas `src/data/powers/v20Disciplines.ts`
+
+| Grupo | Disciplinas | Niveles | Estado |
+|---|---|---|---|
+| Base | Animalismo, Celeridad, Dominación, Ofuscación, Presencia | 5/5 c/u | ✅ |
+| Ampliado | Auspex, Fortitud, Potencia, Obtenebración, Vicisitud | 5/5 c/u | ✅ |
+
+10 disciplinas × 5 niveles = **50 `PowerLevel`** con `systemText`, `dicePool`, `cost`, `actionType`, `duration`, `tags`.
+
+### W20 — Dones `src/data/powers/w20Gifts.ts`
+
+| Categoría | Tipo | Rangos | Estado |
+|---|---|---|---|
+| Ahroun, Theurge | auspice | base | ✅ |
+| Señores de la Sombra | tribe | base | ✅ |
+| Ragabash, Philodox, Galliard | auspice | 5/5 c/u | ✅ Fase 2.5 |
+| Homínido, Lupus | breed | 5/5 c/u | ✅ Fase 2.5 |
+
+Todos los dones nuevos incluyen `sourceType`, `associatedWith`, recurso `Gnosis`/`Rabia`/`Gratis` y `systemText` canónico en español.
+
+### M20 / C20 / Wr20
+
+Esferas (M20), Artes + Reinos (C20) y Arcanos (Wr20) tienen datos base de 3 niveles — expansión completa a 5 pendiente en Bloques 3–4.
+
+---
+
 ## Roadmap
 
 - [x] **Fase 1** — Dashboard multirraza con selector de juego y grid de módulos
 - [x] **Fase 2** — Motor de Reglas Agnóstico: PowersView, FactionsView, CoreSystemView + colores canónicos
+- [~] **Fase 2.5** — Llenado de datos: V20 completo (50 niveles), W20 Dones completos (5 auspices/razas × 5 rangos)
+- [ ] **Fase 2.5 (resto)** — Esferas M20, Artes C20, Arcanos Wr20 a 5 niveles completos
 - [ ] **Fase 3** — Ficha de personaje interactiva con atributos y habilidades editables
 - [ ] **Fase 4** — Motor de tiradas (pool de dados, dificultad, especialidades)
 - [ ] **Fase 5** — Búsqueda global cross-game en poderes y facciones
