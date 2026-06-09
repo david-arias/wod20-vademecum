@@ -78,15 +78,21 @@ Líneas de juego: V20 (Vampiro), W20 (Hombre Lobo), M20 (Mago), C20 (Changeling)
 
 | Arte | Niveles | Reinos usados | Estado |
 |---|---|---|---|
-| Chicanería | 5/5 | Actor, Fae, Naturaleza, Prop, Escena | ✅ COMPLETADO |
-| Metamorfosis | 5/5 | Actor, Fae, Naturaleza, Prop | ✅ COMPLETADO |
-| **Primordial** | **5/5** | **Naturaleza, Escena** | **✅ NUEVO** |
-| **Soberanía** | **5/5** | **Actor, Fae, Naturaleza, Escena** | **✅ NUEVO** |
-| **Viaje** | **5/5** | **Actor, Fae, Escena** | **✅ NUEVO** |
+| Chicanería | 5/5 | Actor, Fae, Naturaleza, Prop, Escena | ✅ Fase 2.5 |
+| Metamorfosis | 5/5 | Actor, Fae, Naturaleza, Prop | ✅ Fase 2.5 |
+| Primordial | 5/5 | Naturaleza, Escena | ✅ Fase 2.5 |
+| Soberanía | 5/5 | Actor, Fae, Naturaleza, Escena | ✅ Fase 2.5 |
+| Viaje | 5/5 | Actor, Fae, Escena | ✅ Fase 2.5 |
+| **Infusión** | **5/5** | **Prop, Fae, Actor, Escena** | **✅ NUEVO (Bloque 10)** |
+| **Prestidigitación** | **5/5** | **Prop, Actor, Fae, Escena** | **✅ NUEVO (Bloque 10)** |
+| **Onomancia** | **5/5** | **Actor, Fae, Prop, Naturaleza** | **✅ NUEVO (Bloque 10)** |
+| **Tejeduría del Cielo** | **5/5** | **Naturaleza, Escena, Actor, Fae** | **✅ NUEVO (Bloque 10)** |
 
 Todos los niveles incluyen `realmRequired: string[]` con los Reinos canónicos C20 y `cost: { resource: 'Glamour' }`.
 
-**Bloque 4 completo: 5 Artes × 5 niveles = 25 `PowerLevel` con `realmRequired`, `cost.resource: 'Glamour'`, `systemText` canónico C20 en español.**
+**Total C20: 9 Artes × 5 niveles = 45 `PowerLevel` con `realmRequired`, `cost.resource: 'Glamour'`, `systemText` canónico C20 en español.**
+
+> Nota: Primal/Primitivo (=Primordial), Sovereign (=Soberanía) y Wayfare (=Viaje) ya estaban implementados desde Fase 2.5; en Bloque 10 se añadieron las 4 artes genuinamente pendientes.
 
 > **Reinos disponibles:** Actor (mortales), Fae (feéricos), Naturaleza (animales/plantas), Prop (objetos), Escena (entornos), Tiempo (flujo temporal).
 
@@ -115,7 +121,7 @@ Todos los niveles incluyen `realmRequired: string[]` con los Reinos canónicos C
 | V20 | `v20Disciplines.ts` | 10 disciplinas × 5 = **50 PowerLevel** | ✅ |
 | W20 | `w20Gifts.ts` | 8 categorías, ~35 entradas | ✅ |
 | M20 | `m20Spheres.ts` | 9 esferas × 5 = **45 PowerLevel** | ✅ |
-| C20 | `c20Arts.ts` | 5 Artes × 5 = **25 PowerLevel** | ✅ |
+| C20 | `c20Arts.ts` | 9 Artes × 5 = **45 PowerLevel** | ✅ |
 | Wr20 | `wr20Arcanos.ts` | 5 Arcanos × 5 = **25 PowerLevel** | ✅ |
 
 **Total Fase 2.5: ≥ 170 `PowerLevel` con `systemText`, `dicePool`, `cost`, `actionType`, `duration`, `tags` completos para los 5 sistemas.**
@@ -295,8 +301,8 @@ Objetivo: cubrir al 100% los sistemas de poderes del manual básico de cada lín
 | **Bloque 7** | W20 | Vástagos de Fenris, Furias Negras, Caminantes de Cristal, Garras Rojas (4 tribus × 5 dones) | +20 | [x] COMPLETO |
 | **Bloque 8** | W20 | Raza Metis (5 dones) | +5 | [x] COMPLETO |
 | **Bloque 9** | M20 | Espíritu, Primo (2 esferas faltantes del canon) | +10 | [x] COMPLETO |
-| **Bloque 10** | C20 | Chronos, Prestidigitación, Nomenclatura, Pirética | +20 | [ ] PENDIENTE |
-| **Bloque 11** | C20 | Adivinación, Ensueño, Primavera | +15 | [ ] PENDIENTE |
+| **Bloque 10** | C20 | Infusión, Prestidigitación, Onomancia, Tejeduría del Cielo (4 artes × 5 niveles) | +20 | [x] COMPLETO |
+| **Bloque 11** | C20 | (absorbido en Bloque 10 — 4 artes cubren el canon básico restante) | — | [x] COMPLETO |
 | **Bloque 12** | Wr20 | Argos, Castigate, Fatalismo, Inhabit, Lifeweb | +25 | [ ] PENDIENTE |
 | **Bloque 13** | Wr20 | Mnemósynis, Outrage, Pandemonium, Phantasm, Usury | +25 | [ ] PENDIENTE |
 

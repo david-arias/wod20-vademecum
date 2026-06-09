@@ -198,6 +198,10 @@ Cada nivel incluye `effectType` (`coincidental` / `instrumental` / `vulgar`) ren
 | Primordial | Naturaleza, Escena | ✅ Fase 2.5 |
 | Soberanía | Actor, Fae, Naturaleza, Escena | ✅ Fase 2.5 |
 | Viaje | Actor, Fae, Escena | ✅ Fase 2.5 |
+| **Infusión** | **Prop, Fae, Actor, Escena** | **✅ Fase 3 Bloque 10** |
+| **Prestidigitación** | **Prop, Actor, Fae, Escena** | **✅ Fase 3 Bloque 10** |
+| **Onomancia** | **Actor, Fae, Prop, Naturaleza** | **✅ Fase 3 Bloque 10** |
+| **Tejeduría del Cielo** | **Naturaleza, Escena, Actor, Fae** | **✅ Fase 3 Bloque 10** |
 
 Cada nivel incluye `realmRequired[]` con los Reinos canónicos. Recurso siempre `Glamour`.
 
@@ -225,8 +229,8 @@ Cada nivel incluye `realmRequired[]` con los Reinos canónicos. Recurso siempre 
   - [x] Bloque 7: W20 tribus (Vástagos de Fenris, Furias Negras, Caminantes de Cristal, Garras Rojas) — **+20 PL**
   - [x] Bloque 8: W20 raza Metis — **+5 PL**
   - [x] Bloque 9: M20 esferas restantes (Espíritu, Primo) — **+10 PL**
-  - [ ] Bloque 10: C20 artes (Chronos, Prestidigitación, Nomenclatura, Pirética)
-  - [ ] Bloque 11: C20 artes (Adivinación, Ensueño, Primavera)
+  - [x] Bloque 10: C20 artes (Infusión, Prestidigitación, Onomancia, Tejeduría del Cielo) — **+20 PL**
+  - [x] Bloque 11: C20 (absorbido en Bloque 10)
   - [ ] Bloque 12: Wr20 arcanos (Argos, Castigate, Fatalismo, Inhabit, Lifeweb)
   - [ ] Bloque 13: Wr20 arcanos (Mnemósynis, Outrage, Pandemonium, Phantasm, Usury)
 - [ ] **Fase 3** — Ficha de personaje interactiva con atributos y habilidades editables
