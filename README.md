@@ -155,8 +155,9 @@ Para iniciar una nueva sesión de desarrollo, copiar el prompt de `.agents/SYSTE
 |---|---|---|---|
 | Base | Animalismo, Celeridad, Dominación, Ofuscación, Presencia | 5/5 c/u | ✅ |
 | Ampliado | Auspex, Fortitud, Potencia, Obtenebración, Vicisitud | 5/5 c/u | ✅ |
+| Clan (Fase 3 Bloque 6) | Serpentis, Dementación, Nigromancia (Senda Sepulcro), Taumaturgia (Senda Sangre), Quietud | 5/5 c/u | ✅ |
 
-10 disciplinas × 5 niveles = **50 `PowerLevel`** con `systemText`, `dicePool`, `cost`, `actionType`, `duration`, `tags`.
+15 disciplinas × 5 niveles = **75 `PowerLevel`** con `systemText`, `dicePool`, `cost`, `actionType`, `duration`, `tags`.
 
 ### W20 — Dones `src/data/powers/w20Gifts.ts`
 
@@ -215,7 +216,7 @@ Cada nivel incluye `realmRequired[]` con los Reinos canónicos. Recurso siempre 
 - [x] **Fase 2** — Motor de Reglas Agnóstico: PowersView, FactionsView, CoreSystemView + colores canónicos
 - [x] **Fase 2.5** — Data layer completo: V20 (50), W20 (~35), M20 (35), C20 (25), Wr20 (25) — **≥ 170 PowerLevel**
 - [ ] **Fase 3** — Expansión total del data layer al manual básico canónico (~190 PL adicionales, 8 bloques):
-  - [ ] Bloque 6: V20 disciplinas de clan (Serpentis, Dementation, Nigromancia, Taumaturgia, Quietud)
+  - [x] Bloque 6: V20 disciplinas de clan (Serpentis, Dementación, Nigromancia, Taumaturgia, Quietud) — **+25 PL**
   - [ ] Bloque 7: W20 tribus 1–6 (Furias Negras, Roehuesos, Hijos de Gaia, Fianna, Vástagos de Fenris, Caminantes de Cristal)
   - [ ] Bloque 8: W20 tribus 7–13 + raza Metis
   - [ ] Bloque 9: M20 esferas restantes (Espíritu, Primo)

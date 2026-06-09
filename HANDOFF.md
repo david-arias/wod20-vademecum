@@ -289,7 +289,7 @@ Objetivo: cubrir al 100% los sistemas de poderes del manual básico de cada lín
 
 | Bloque | Sistema | Contenido | PL nuevos | Estado |
 |---|---|---|---|---|
-| **Bloque 6** | V20 | Serpentis, Dementation, Nigromancia, Taumaturgia, Quietud | +25 | [ ] PENDIENTE |
+| **Bloque 6** | V20 | Serpentis, Dementación, Nigromancia (Senda del Sepulcro), Taumaturgia (Senda de la Sangre), Quietud | +25 | [x] COMPLETO |
 | **Bloque 7** | W20 | Tribus 1–6: Furias Negras, Roehuesos, Hijos de Gaia, Fianna, Vástagos de Fenris, Caminantes de Cristal | +30 | [ ] PENDIENTE |
 | **Bloque 8** | W20 | Tribus 7–12: Garras Rojas, Señores de la Sombra (completar), Peregrinos Silenciosos, Colmillos de Plata, Observadores, Uktena, Wendigo + raza Metis | +40 | [ ] PENDIENTE |
 | **Bloque 9** | M20 | Espíritu, Primo (2 esferas faltantes del canon) | +10 | [ ] PENDIENTE |
@@ -299,6 +299,28 @@ Objetivo: cubrir al 100% los sistemas de poderes del manual básico de cada lín
 | **Bloque 13** | Wr20 | Mnemósynis, Outrage, Pandemonium, Phantasm, Usury | +25 | [ ] PENDIENTE |
 
 **Total Fase 3: ~190 PL nuevos. Total acumulado al cerrar Fase 3: ≥ 360 PowerLevel.**
+
+### V20 — Cobertura completa de disciplinas (Bloque 6)
+
+| Disciplina | Clan | Niveles | Estado |
+|---|---|---|---|
+| Animalismo | Gangrel, Nosferatu | 5/5 | ✅ (Fase 2.5) |
+| Celeridad | Assamita, Brujah, Toreador | 5/5 | ✅ (Fase 2.5) |
+| Dominación | Lasombra, Malkavian, Tremere, Ventrue | 5/5 | ✅ (Fase 2.5) |
+| Ofuscación | Assamita, Malkavian, Nosferatu | 5/5 | ✅ (Fase 2.5) |
+| Presencia | Brujah, Followers of Set, Toreador, Ventrue | 5/5 | ✅ (Fase 2.5) |
+| Auspex | Malkavian, Toreador, Tremere, Ventrue | 5/5 | ✅ (Fase 2.5) |
+| Fortitud | Gangrel, Ravnos, Ventrue | 5/5 | ✅ (Fase 2.5) |
+| Potencia | Brujah, Giovanni, Lasombra, Nosferatu | 5/5 | ✅ (Fase 2.5) |
+| Obtenebración | Lasombra | 5/5 | ✅ (Fase 2.5) |
+| Vicisitud | Tzimisce | 5/5 | ✅ (Fase 2.5) |
+| **Serpentis** | **Followers of Set** | **5/5** | **✅ NUEVO** |
+| **Dementación** | **Malkavian** | **5/5** | **✅ NUEVO** |
+| **Nigromancia (Senda del Sepulcro)** | **Giovanni** | **5/5** | **✅ NUEVO** |
+| **Taumaturgia (Senda de la Sangre)** | **Tremere** | **5/5** | **✅ NUEVO** |
+| **Quietud** | **Assamita** | **5/5** | **✅ NUEVO** |
+
+**Total V20: 15 disciplinas × 5 niveles = 75 PowerLevel.**
 
 ### Notas de segmentación Fase 3
 
