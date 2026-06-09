@@ -66,8 +66,10 @@ Líneas de juego: V20 (Vampiro), W20 (Hombre Lobo), M20 (Mago), C20 (Changeling)
 | **Mente** | **Consciencia, Psique y Proyección Astral** | **5/5** | **coincidental→vulgar** | **✅ NUEVO** |
 | **Materia** | **Estructuras Moleculares, Transmutación e Inorgánico** | **5/5** | **coincidental/instrumental/vulgar** | **✅ NUEVO** |
 | **Tiempo** | **Dilatación, Profecía y Aceleración** | **5/5** | **coincidental→vulgar** | **✅ NUEVO** |
+| **Espíritu** | **El Velo, los Efímeros y las Dimensiones de la Umbra** | **5/5** | **coincidental/instrumental/vulgar** | **✅ NUEVO (Bloque 9)** |
+| **Primo** | **La Quintaesencia, las Líneas Ley y la Creación de la Realidad** | **5/5** | **coincidental/instrumental/vulgar** | **✅ NUEVO (Bloque 9)** |
 
-**Bloque 3 completo: 7 esferas × 5 niveles = 35 `PowerLevel` con `effectType`, `rulingConcept`, `dicePool`, `cost` (Quintaesencia), `systemText` canónico M20 en español.**
+**Bloque 9 completo: 9 esferas × 5 niveles = 45 `PowerLevel` con `effectType`, `rulingConcept`, `dicePool`, `cost` (Quintaesencia), `systemText` canónico M20 en español.**
 
 > Nota de diseño: el campo `effectType` se mapea a badges de color en `PowersView.tsx`:
 > `coincidental` → badge verde, `instrumental` → badge ámbar, `vulgar` → badge rojo.
@@ -112,7 +114,7 @@ Todos los niveles incluyen `realmRequired: string[]` con los Reinos canónicos C
 |---|---|---|---|
 | V20 | `v20Disciplines.ts` | 10 disciplinas × 5 = **50 PowerLevel** | ✅ |
 | W20 | `w20Gifts.ts` | 8 categorías, ~35 entradas | ✅ |
-| M20 | `m20Spheres.ts` | 7 esferas × 5 = **35 PowerLevel** | ✅ |
+| M20 | `m20Spheres.ts` | 9 esferas × 5 = **45 PowerLevel** | ✅ |
 | C20 | `c20Arts.ts` | 5 Artes × 5 = **25 PowerLevel** | ✅ |
 | Wr20 | `wr20Arcanos.ts` | 5 Arcanos × 5 = **25 PowerLevel** | ✅ |
 
@@ -292,7 +294,7 @@ Objetivo: cubrir al 100% los sistemas de poderes del manual básico de cada lín
 | **Bloque 6** | V20 | Serpentis, Dementación, Nigromancia (Senda del Sepulcro), Taumaturgia (Senda de la Sangre), Quietud | +25 | [x] COMPLETO |
 | **Bloque 7** | W20 | Vástagos de Fenris, Furias Negras, Caminantes de Cristal, Garras Rojas (4 tribus × 5 dones) | +20 | [x] COMPLETO |
 | **Bloque 8** | W20 | Raza Metis (5 dones) | +5 | [x] COMPLETO |
-| **Bloque 9** | M20 | Espíritu, Primo (2 esferas faltantes del canon) | +10 | [ ] PENDIENTE |
+| **Bloque 9** | M20 | Espíritu, Primo (2 esferas faltantes del canon) | +10 | [x] COMPLETO |
 | **Bloque 10** | C20 | Chronos, Prestidigitación, Nomenclatura, Pirética | +20 | [ ] PENDIENTE |
 | **Bloque 11** | C20 | Adivinación, Ensueño, Primavera | +15 | [ ] PENDIENTE |
 | **Bloque 12** | Wr20 | Argos, Castigate, Fatalismo, Inhabit, Lifeweb | +25 | [ ] PENDIENTE |

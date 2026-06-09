@@ -184,6 +184,8 @@ Todos los dones nuevos incluyen `sourceType`, `associatedWith`, recurso `Gnosis`
 | Mente | Consciencia, Psique y Proyección Astral | ✅ Fase 2.5 |
 | Materia | Estructuras Moleculares, Transmutación e Inorgánico | ✅ Fase 2.5 |
 | Tiempo | Dilatación, Profecía y Aceleración | ✅ Fase 2.5 |
+| **Espíritu** | **El Velo, los Efímeros y las Dimensiones de la Umbra** | **✅ Fase 3 Bloque 9** |
+| **Primo** | **La Quintaesencia, las Líneas Ley y la Creación de la Realidad** | **✅ Fase 3 Bloque 9** |
 
 Cada nivel incluye `effectType` (`coincidental` / `instrumental` / `vulgar`) renderizado como badge coloreado en `PowersView`.
 
@@ -222,7 +224,7 @@ Cada nivel incluye `realmRequired[]` con los Reinos canónicos. Recurso siempre 
   - [x] Bloque 6: V20 disciplinas de clan (Serpentis, Dementación, Nigromancia, Taumaturgia, Quietud) — **+25 PL**
   - [x] Bloque 7: W20 tribus (Vástagos de Fenris, Furias Negras, Caminantes de Cristal, Garras Rojas) — **+20 PL**
   - [x] Bloque 8: W20 raza Metis — **+5 PL**
-  - [ ] Bloque 9: M20 esferas restantes (Espíritu, Primo)
+  - [x] Bloque 9: M20 esferas restantes (Espíritu, Primo) — **+10 PL**
   - [ ] Bloque 10: C20 artes (Chronos, Prestidigitación, Nomenclatura, Pirética)
   - [ ] Bloque 11: C20 artes (Adivinación, Ensueño, Primavera)
   - [ ] Bloque 12: Wr20 arcanos (Argos, Castigate, Fatalismo, Inhabit, Lifeweb)
