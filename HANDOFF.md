@@ -1,5 +1,5 @@
 # 📂 ARCHIVO DE MEMORIA: HANDOFF.md
-> Guardián del Handoff — Agente Documentador | Última actualización: **Fase 2.5 — Llenado de Datos C20: 5 Artes completas (Bloque 4)**
+> Guardián del Handoff — Agente Documentador | Última actualización: **Fase 2.5 — COMPLETADA — Arcanos Wr20: 5 Arcanos × 5 niveles (Bloque 5)**
 
 ---
 
@@ -10,10 +10,10 @@ Líneas de juego: V20 (Vampiro), W20 (Hombre Lobo), M20 (Mago), C20 (Changeling)
 
 ---
 
-## ✅ Estado Actual: FASE 2.5 EN PROGRESO — Bloque 4 (C20) finalizado
+## ✅ Estado Actual: ██████████████ FASE 2.5 COMPLETADA ██████████████
 
 ### ══════════════════════════════════════════════════════
-### FASE 2.5 — Llenado de Datos
+### FASE 2.5 — Llenado de Datos — CIERRE FORMAL
 
 | Archivo | Cambio | Estado |
 |---|---|---|
@@ -21,7 +21,7 @@ Líneas de juego: V20 (Vampiro), W20 (Hombre Lobo), M20 (Mago), C20 (Changeling)
 | `src/data/powers/w20Gifts.ts` | +5 categorías: Ragabash, Philodox, Galliard, Homínido, Lupus — 5 rangos cada una | ✅ COMPLETO |
 | `src/data/powers/m20Spheres.ts` | +5 esferas nuevas (Fuerzas, Vida, Mente, Materia, Tiempo) + Entropía 5/5 niveles | ✅ COMPLETO |
 | `src/data/powers/c20Arts.ts` | +3 Artes nuevas (Primordial, Soberanía, Viaje) + Chicanería y Metamorfosis 5/5 niveles | ✅ COMPLETO |
-| `src/data/powers/wr20Arcanos.ts` | Arcanos completos Wr20 | ⏳ PENDIENTE |
+| `src/data/powers/wr20Arcanos.ts` | Reescritura completa: 5 Arcanos × 5 niveles (Encarnación, Flujo, Lamento, Moldeo, Marioneta) | ✅ COMPLETO |
 
 ### Disciplinas V20 — Estado de cobertura
 
@@ -87,6 +87,36 @@ Todos los niveles incluyen `realmRequired: string[]` con los Reinos canónicos C
 **Bloque 4 completo: 5 Artes × 5 niveles = 25 `PowerLevel` con `realmRequired`, `cost.resource: 'Glamour'`, `systemText` canónico C20 en español.**
 
 > **Reinos disponibles:** Actor (mortales), Fae (feéricos), Naturaleza (animales/plantas), Prop (objetos), Escena (entornos), Tiempo (flujo temporal).
+
+### Arcanos Wr20 — Estado de cobertura
+
+| Arcano | Descripción | Niveles | Recurso | Atributos pool | Estado |
+|---|---|---|---|---|---|
+| **Encarnación** | Manifestación en el plano físico | 5/5 | Pathos | Fuerza/Apariencia/Destreza/Resistencia + Encarnación | ✅ NUEVO (completado 3→5) |
+| **Flujo** | Cambio y transformación espectral | 5/5 | Pathos / Gratis | Percepción/Inteligencia/Destreza/Manipulación + Flujo | ✅ NUEVO (completado 3→5) |
+| **Lamento** | Voz de los muertos; terror y desesperación | 5/5 | Pathos / Gratis | Carisma/Manipulación/Fuerza + Lamento | ✅ NUEVO |
+| **Moldeo** | Esculpir Corpus propio y ajeno | 5/5 | Pathos | Destreza/Resistencia/Fuerza + Moldeo | ✅ NUEVO |
+| **Marioneta** | Control de mortales; posesión | 5/5 | Pathos / Gratis | Destreza/Manipulación/Inteligencia + Marioneta | ✅ NUEVO |
+
+**Bloque 5 completo: 5 Arcanos × 5 niveles = 25 `PowerLevel` con `dicePool` (atributos Wr20: Corporalidad/Mentalidad/Volatilidad), `cost.resource: 'Pathos'/'Gratis'`, `systemText` canónico Wr20 en español.**
+
+> **Nota de diseño Wr20:**
+> - `cost.resource: 'Pathos'` — recurso estándar para la mayoría de habilidades activas
+> - `cost.resource: 'Gratis'` + `amount: 'free'` — habilidades pasivas de nivel 1 (Sentir el Pathos, Voz del Velo, Toque Nervioso)
+> - Los niveles 4-5 incluyen activación de Angustia (Shadow roll) como efecto secundario en Lamento y Marioneta
+> - `dicePool.formula` combina atributo español + nombre del Arcano en español (Corporalidad, Mentalidad, Volatilidad)
+
+### ══ RESUMEN FINAL FASE 2.5 ══
+
+| Sistema | Archivo | Poderes totales | Estado |
+|---|---|---|---|
+| V20 | `v20Disciplines.ts` | 10 disciplinas × 5 = **50 PowerLevel** | ✅ |
+| W20 | `w20Gifts.ts` | 8 categorías, ~35 entradas | ✅ |
+| M20 | `m20Spheres.ts` | 7 esferas × 5 = **35 PowerLevel** | ✅ |
+| C20 | `c20Arts.ts` | 5 Artes × 5 = **25 PowerLevel** | ✅ |
+| Wr20 | `wr20Arcanos.ts` | 5 Arcanos × 5 = **25 PowerLevel** | ✅ |
+
+**Total Fase 2.5: ≥ 170 `PowerLevel` con `systemText`, `dicePool`, `cost`, `actionType`, `duration`, `tags` completos para los 5 sistemas.**
 
 ---
 

@@ -195,9 +195,17 @@ Cada nivel incluye `effectType` (`coincidental` / `instrumental` / `vulgar`) ren
 
 Cada nivel incluye `realmRequired[]` con los Reinos canónicos. Recurso siempre `Glamour`.
 
-### Wr20
+### Wr20 — Arcanos `src/data/powers/wr20Arcanos.ts`
 
-Arcanos de Wraith tienen datos base de 3 niveles — expansión completa a 5 pendiente en Bloque 5.
+| Arcano | Descripción | Atributos clave | Estado |
+|---|---|---|---|
+| Encarnación | Manifestación física en el mundo material | Fuerza, Apariencia, Destreza, Resistencia | ✅ Fase 2.5 |
+| Flujo | Cambio y transmutación del Umbral | Percepción, Inteligencia, Destreza, Manipulación | ✅ Fase 2.5 |
+| Lamento | Voz de los muertos; terror, desesperación y destrucción | Carisma, Manipulación, Fuerza | ✅ Fase 2.5 |
+| Moldeo | Escultura del Corpus propio y ajeno | Destreza, Resistencia, Fuerza | ✅ Fase 2.5 |
+| Marioneta | Control de mortales y posesión | Destreza, Manipulación, Inteligencia | ✅ Fase 2.5 |
+
+5 Arcanos × 5 niveles = **25 `PowerLevel`** con `dicePool` (atributos Wr20), `cost.resource: 'Pathos'/'Gratis'`, `systemText` y `tags`.
 
 ---
 
@@ -205,8 +213,7 @@ Arcanos de Wraith tienen datos base de 3 niveles — expansión completa a 5 pen
 
 - [x] **Fase 1** — Dashboard multirraza con selector de juego y grid de módulos
 - [x] **Fase 2** — Motor de Reglas Agnóstico: PowersView, FactionsView, CoreSystemView + colores canónicos
-- [~] **Fase 2.5** — V20 (50), W20 (25), M20 (35), C20 (25 — 5 Artes × 5 niveles)
-- [ ] **Fase 2.5 (resto)** — Arcanos Wr20 a 5 niveles completos
+- [x] **Fase 2.5** — Data layer completo: V20 (50), W20 (~35), M20 (35), C20 (25), Wr20 (25) — **≥ 170 PowerLevel**
 - [ ] **Fase 3** — Ficha de personaje interactiva con atributos y habilidades editables
 - [ ] **Fase 4** — Motor de tiradas (pool de dados, dificultad, especialidades)
 - [ ] **Fase 5** — Búsqueda global cross-game en poderes y facciones
