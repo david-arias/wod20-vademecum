@@ -183,9 +183,21 @@ Todos los dones nuevos incluyen `sourceType`, `associatedWith`, recurso `Gnosis`
 
 Cada nivel incluye `effectType` (`coincidental` / `instrumental` / `vulgar`) renderizado como badge coloreado en `PowersView`.
 
-### C20 / Wr20
+### C20 — Artes `src/data/powers/c20Arts.ts`
 
-Artes + Reinos (C20) y Arcanos (Wr20) tienen datos base de 3 niveles — expansión completa a 5 pendiente en Bloque 4.
+| Arte | Reinos requeridos | Estado |
+|---|---|---|
+| Chicanería | Actor, Fae, Naturaleza, Prop, Escena | ✅ Fase 2.5 |
+| Metamorfosis | Actor, Fae, Naturaleza, Prop | ✅ Fase 2.5 |
+| Primordial | Naturaleza, Escena | ✅ Fase 2.5 |
+| Soberanía | Actor, Fae, Naturaleza, Escena | ✅ Fase 2.5 |
+| Viaje | Actor, Fae, Escena | ✅ Fase 2.5 |
+
+Cada nivel incluye `realmRequired[]` con los Reinos canónicos. Recurso siempre `Glamour`.
+
+### Wr20
+
+Arcanos de Wraith tienen datos base de 3 niveles — expansión completa a 5 pendiente en Bloque 5.
 
 ---
 
@@ -193,8 +205,8 @@ Artes + Reinos (C20) y Arcanos (Wr20) tienen datos base de 3 niveles — expansi
 
 - [x] **Fase 1** — Dashboard multirraza con selector de juego y grid de módulos
 - [x] **Fase 2** — Motor de Reglas Agnóstico: PowersView, FactionsView, CoreSystemView + colores canónicos
-- [~] **Fase 2.5** — Llenado de datos: V20 (50 niveles), W20 (25 nuevos), M20 (35 niveles, 7 esferas completas)
-- [ ] **Fase 2.5 (resto)** — Artes C20 + Arcanos Wr20 a 5 niveles completos
+- [~] **Fase 2.5** — V20 (50), W20 (25), M20 (35), C20 (25 — 5 Artes × 5 niveles)
+- [ ] **Fase 2.5 (resto)** — Arcanos Wr20 a 5 niveles completos
 - [ ] **Fase 3** — Ficha de personaje interactiva con atributos y habilidades editables
 - [ ] **Fase 4** — Motor de tiradas (pool de dados, dificultad, especialidades)
 - [ ] **Fase 5** — Búsqueda global cross-game en poderes y facciones

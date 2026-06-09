@@ -1,5 +1,5 @@
 # 📂 ARCHIVO DE MEMORIA: HANDOFF.md
-> Guardián del Handoff — Agente Documentador | Última actualización: **Fase 2.5 — Llenado de Datos M20: 7 Esferas completas (Bloque 3)**
+> Guardián del Handoff — Agente Documentador | Última actualización: **Fase 2.5 — Llenado de Datos C20: 5 Artes completas (Bloque 4)**
 
 ---
 
@@ -10,7 +10,7 @@ Líneas de juego: V20 (Vampiro), W20 (Hombre Lobo), M20 (Mago), C20 (Changeling)
 
 ---
 
-## ✅ Estado Actual: FASE 2.5 EN PROGRESO — Bloque 3 (M20) finalizado
+## ✅ Estado Actual: FASE 2.5 EN PROGRESO — Bloque 4 (C20) finalizado
 
 ### ══════════════════════════════════════════════════════
 ### FASE 2.5 — Llenado de Datos
@@ -20,7 +20,7 @@ Líneas de juego: V20 (Vampiro), W20 (Hombre Lobo), M20 (Mago), C20 (Changeling)
 | `src/data/powers/v20Disciplines.ts` | +5 disciplinas completas (Auspex, Fortitud, Potencia, Obtenebración, Vicisitud) | ✅ COMPLETO |
 | `src/data/powers/w20Gifts.ts` | +5 categorías: Ragabash, Philodox, Galliard, Homínido, Lupus — 5 rangos cada una | ✅ COMPLETO |
 | `src/data/powers/m20Spheres.ts` | +5 esferas nuevas (Fuerzas, Vida, Mente, Materia, Tiempo) + Entropía 5/5 niveles | ✅ COMPLETO |
-| `src/data/powers/c20Arts.ts` | Artes + Reinos completos C20 | ⏳ PENDIENTE |
+| `src/data/powers/c20Arts.ts` | +3 Artes nuevas (Primordial, Soberanía, Viaje) + Chicanería y Metamorfosis 5/5 niveles | ✅ COMPLETO |
 | `src/data/powers/wr20Arcanos.ts` | Arcanos completos Wr20 | ⏳ PENDIENTE |
 
 ### Disciplinas V20 — Estado de cobertura
@@ -71,6 +71,22 @@ Líneas de juego: V20 (Vampiro), W20 (Hombre Lobo), M20 (Mago), C20 (Changeling)
 
 > Nota de diseño: el campo `effectType` se mapea a badges de color en `PowersView.tsx`:
 > `coincidental` → badge verde, `instrumental` → badge ámbar, `vulgar` → badge rojo.
+
+### Artes C20 — Estado de cobertura
+
+| Arte | Niveles | Reinos usados | Estado |
+|---|---|---|---|
+| Chicanería | 5/5 | Actor, Fae, Naturaleza, Prop, Escena | ✅ COMPLETADO |
+| Metamorfosis | 5/5 | Actor, Fae, Naturaleza, Prop | ✅ COMPLETADO |
+| **Primordial** | **5/5** | **Naturaleza, Escena** | **✅ NUEVO** |
+| **Soberanía** | **5/5** | **Actor, Fae, Naturaleza, Escena** | **✅ NUEVO** |
+| **Viaje** | **5/5** | **Actor, Fae, Escena** | **✅ NUEVO** |
+
+Todos los niveles incluyen `realmRequired: string[]` con los Reinos canónicos C20 y `cost: { resource: 'Glamour' }`.
+
+**Bloque 4 completo: 5 Artes × 5 niveles = 25 `PowerLevel` con `realmRequired`, `cost.resource: 'Glamour'`, `systemText` canónico C20 en español.**
+
+> **Reinos disponibles:** Actor (mortales), Fae (feéricos), Naturaleza (animales/plantas), Prop (objetos), Escena (entornos), Tiempo (flujo temporal).
 
 ---
 
