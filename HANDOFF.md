@@ -1,5 +1,5 @@
 # 📂 ARCHIVO DE MEMORIA: HANDOFF.md
-> Guardián del Handoff — Agente Documentador | Última actualización: **Fase 2.5 — COMPLETADA — Arcanos Wr20: 5 Arcanos × 5 niveles (Bloque 5)**
+> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 3 — 100% COMPLETADA — Arcanos Wr20: 15 Arcanos × 5 niveles (Bloques 12+13)**
 
 ---
 
@@ -10,7 +10,7 @@ Líneas de juego: V20 (Vampiro), W20 (Hombre Lobo), M20 (Mago), C20 (Changeling)
 
 ---
 
-## ✅ Estado Actual: ██████████████ FASE 2.5 COMPLETADA ██████████████
+## ✅ Estado Actual: ████████████████████ FASE 3 — 100% COMPLETADA ████████████████████
 
 ### ══════════════════════════════════════════════════════
 ### FASE 2.5 — Llenado de Datos — CIERRE FORMAL
@@ -100,13 +100,23 @@ Todos los niveles incluyen `realmRequired: string[]` con los Reinos canónicos C
 
 | Arcano | Descripción | Niveles | Recurso | Atributos pool | Estado |
 |---|---|---|---|---|---|
-| **Encarnación** | Manifestación en el plano físico | 5/5 | Pathos | Fuerza/Apariencia/Destreza/Resistencia + Encarnación | ✅ NUEVO (completado 3→5) |
-| **Flujo** | Cambio y transformación espectral | 5/5 | Pathos / Gratis | Percepción/Inteligencia/Destreza/Manipulación + Flujo | ✅ NUEVO (completado 3→5) |
-| **Lamento** | Voz de los muertos; terror y desesperación | 5/5 | Pathos / Gratis | Carisma/Manipulación/Fuerza + Lamento | ✅ NUEVO |
-| **Moldeo** | Esculpir Corpus propio y ajeno | 5/5 | Pathos | Destreza/Resistencia/Fuerza + Moldeo | ✅ NUEVO |
-| **Marioneta** | Control de mortales; posesión | 5/5 | Pathos / Gratis | Destreza/Manipulación/Inteligencia + Marioneta | ✅ NUEVO |
+| **Encarnación** | Manifestación en el plano físico | 5/5 | Pathos | Fuerza/Apariencia/Destreza/Resistencia + Encarnación | ✅ Fase 2.5 |
+| **Flujo** | Cambio y transformación espectral | 5/5 | Pathos / Gratis | Percepción/Inteligencia/Destreza/Manipulación + Flujo | ✅ Fase 2.5 |
+| **Lamento** | Voz de los muertos; terror y desesperación | 5/5 | Pathos / Gratis | Carisma/Manipulación/Fuerza + Lamento | ✅ Fase 2.5 |
+| **Moldeo** | Esculpir Corpus propio y ajeno | 5/5 | Pathos | Destreza/Resistencia/Fuerza + Moldeo | ✅ Fase 2.5 |
+| **Marioneta** | Control de mortales; posesión | 5/5 | Pathos / Gratis | Destreza/Manipulación/Inteligencia + Marioneta | ✅ Fase 2.5 |
+| **Argos** | Navegación espectral: Byways, Tempestado, cartografía del Inframundo | 5/5 | Pathos / Gratis | Percepción/Destreza/Inteligencia + Argos | ✅ NUEVO (Bloque 12) |
+| **Castigo** | Arcano de los Perdonadores: leer, confrontar y reducir la Sombra | 5/5 | Pathos / Gratis | Percepción/Manipulación/Carisma/Inteligencia + Castigo | ✅ NUEVO (Bloque 12) |
+| **Habitar** | Posesión de máquinas, sistemas electrónicos y redes digitales | 5/5 | Pathos / Gratis | Percepción/Inteligencia/Astucia + Habitar | ✅ NUEVO (Bloque 12) |
+| **Intimación** | Manipulación de deseos, pasiones y necesidades fundamentales | 5/5 | Pathos / Gratis | Percepción/Manipulación/Inteligencia + Intimación | ✅ NUEVO (Bloque 12) |
+| **Red de Vida** | Percibir, manipular y destruir Grilletes (Fetters) | 5/5 | Pathos / Gratis | Percepción/Manipulación/Destreza/Inteligencia + Red de Vida | ✅ NUEVO (Bloque 12) |
+| **Ultraje** | Psicoquinesis violenta: daño físico directo, destrucción de entornos | 5/5 | Pathos | Fuerza/Destreza + Ultraje | ✅ NUEVO (Bloque 13) |
+| **Pandemonium** | Terror espectral, pánico, locura y fenómenos poltergeist masivos | 5/5 | Pathos / Gratis | Manipulación/Carisma + Pandemonium | ✅ NUEVO (Bloque 13) |
+| **Fantasmagoría** | Invasión de sueños mortales; extracción de Pathos onírico | 5/5 | Pathos / Gratis | Percepción/Astucia/Inteligencia/Manipulación + Fantasmagoría | ✅ NUEVO (Bloque 13) |
+| **Ladrón del Velo** | Abrir brechas en el Velo para pasar objetos, observar y cruzar | 5/5 | Pathos / Gratis | Percepción/Destreza/Fuerza + Ladrón del Velo | ✅ NUEVO (Bloque 13) |
+| **Usura** | Transferencia y drenaje de Pathos y Corpus entre Wraiths | 5/5 | Pathos / Gratis | Percepción/Manipulación/Inteligencia + Usura | ✅ NUEVO (Bloque 13) |
 
-**Bloque 5 completo: 5 Arcanos × 5 niveles = 25 `PowerLevel` con `dicePool` (atributos Wr20: Corporalidad/Mentalidad/Volatilidad), `cost.resource: 'Pathos'/'Gratis'`, `systemText` canónico Wr20 en español.**
+**Bloques 12+13 completos: 15 Arcanos × 5 niveles = 75 `PowerLevel` con `dicePool` (atributos Wr20: Corporalidad/Mentalidad/Volatilidad), `cost.resource: 'Pathos'/'Gratis'`, `systemText` canónico Wr20 en español.**
 
 > **Nota de diseño Wr20:**
 > - `cost.resource: 'Pathos'` — recurso estándar para la mayoría de habilidades activas
@@ -118,13 +128,13 @@ Todos los niveles incluyen `realmRequired: string[]` con los Reinos canónicos C
 
 | Sistema | Archivo | Poderes totales | Estado |
 |---|---|---|---|
-| V20 | `v20Disciplines.ts` | 10 disciplinas × 5 = **50 PowerLevel** | ✅ |
-| W20 | `w20Gifts.ts` | 8 categorías, ~35 entradas | ✅ |
+| V20 | `v20Disciplines.ts` | 15 disciplinas × 5 = **75 PowerLevel** | ✅ |
+| W20 | `w20Gifts.ts` | 13 categorías, ~60 entradas | ✅ |
 | M20 | `m20Spheres.ts` | 9 esferas × 5 = **45 PowerLevel** | ✅ |
 | C20 | `c20Arts.ts` | 9 Artes × 5 = **45 PowerLevel** | ✅ |
-| Wr20 | `wr20Arcanos.ts` | 5 Arcanos × 5 = **25 PowerLevel** | ✅ |
+| Wr20 | `wr20Arcanos.ts` | 15 Arcanos × 5 = **75 PowerLevel** | ✅ |
 
-**Total Fase 2.5: ≥ 170 `PowerLevel` con `systemText`, `dicePool`, `cost`, `actionType`, `duration`, `tags` completos para los 5 sistemas.**
+**Total acumulado FASE 3: ≥ 360 `PowerLevel` con `systemText`, `dicePool`, `cost`, `actionType`, `duration`, `tags` completos para los 5 sistemas.**
 
 ---
 
@@ -303,10 +313,10 @@ Objetivo: cubrir al 100% los sistemas de poderes del manual básico de cada lín
 | **Bloque 9** | M20 | Espíritu, Primo (2 esferas faltantes del canon) | +10 | [x] COMPLETO |
 | **Bloque 10** | C20 | Infusión, Prestidigitación, Onomancia, Tejeduría del Cielo (4 artes × 5 niveles) | +20 | [x] COMPLETO |
 | **Bloque 11** | C20 | (absorbido en Bloque 10 — 4 artes cubren el canon básico restante) | — | [x] COMPLETO |
-| **Bloque 12** | Wr20 | Argos, Castigate, Fatalismo, Inhabit, Lifeweb | +25 | [ ] PENDIENTE |
-| **Bloque 13** | Wr20 | Mnemósynis, Outrage, Pandemonium, Phantasm, Usury | +25 | [ ] PENDIENTE |
+| **Bloque 12** | Wr20 | Argos, Castigo, Habitar, Intimación, Red de Vida | +25 | [x] COMPLETO |
+| **Bloque 13** | Wr20 | Ultraje, Pandemonium, Fantasmagoría, Ladrón del Velo, Usura | +25 | [x] COMPLETO |
 
-**Total Fase 3: ~190 PL nuevos. Total acumulado al cerrar Fase 3: ≥ 360 PowerLevel.**
+**✅ FASE 3: 100% COMPLETADA. Total acumulado: ≥ 360 PowerLevel.**
 
 ### W20 — Cobertura de Bloques 7+8
 
@@ -354,14 +364,18 @@ Nota: Ragabash, Philodox y Galliard ya cubiertos en Fase 2.5 (5 niveles cada uno
 
 ---
 
-## 🔜 Próximos Pasos (Post Fase 3)
+## 🔜 Siguiente Fase: FASE 4 — Motor de Tiradas Interactivo y Ficha de Personaje
+
+### ══════════════════════════════════════════════════════
+### FASE 4 — Objetivos
 
 | Tarea | Prioridad | Descripción |
 |---|---|---|
-| AttributesView | Media | Vista dedicada con atributos+habilidades de cada juego, sistema de puntos |
+| **AttributesView** | **Alta** | Vista dedicada con atributos+habilidades de cada juego, sistema de puntos editables |
+| **Motor de Tiradas** | **Alta** | Pool de dados interactivo: seleccionar atributo + habilidad/arcano, lanzar, leer resultado; dificultad configurable |
+| **CharacterSheet** | **Alta** | Formulario interactivo de ficha de personaje con campos editables y cálculo automático de pools |
 | CombatView | Media | Mecánica de iniciativa, daño, tipos, flujo de combate |
 | SearchGlobal | Alta | Búsqueda cross-game en poderes + facciones usando índice en memoria |
-| CharacterSheet | Alta | Formulario interactivo de ficha de personaje con campos editables |
 | Persistencia | Media | `localStorage` / exportar JSON de personaje |
 | React Router | Baja | Migrar enrutamiento interno a React Router v6 para URLs navegables |
 | Testing | Media | Vitest + Testing Library para componentes críticos (PowersView, FactionsView) |

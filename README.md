@@ -214,8 +214,18 @@ Cada nivel incluye `realmRequired[]` con los Reinos canónicos. Recurso siempre 
 | Lamento | Voz de los muertos; terror, desesperación y destrucción | Carisma, Manipulación, Fuerza | ✅ Fase 2.5 |
 | Moldeo | Escultura del Corpus propio y ajeno | Destreza, Resistencia, Fuerza | ✅ Fase 2.5 |
 | Marioneta | Control de mortales y posesión | Destreza, Manipulación, Inteligencia | ✅ Fase 2.5 |
+| **Argos** | **Navegación espectral: Byways, Tempestado e Inframundo** | **Percepción, Destreza, Inteligencia** | **✅ Fase 3 Bloque 12** |
+| **Castigo** | **Arcano de los Perdonadores: confrontar y reducir la Sombra** | **Percepción, Manipulación, Carisma, Inteligencia** | **✅ Fase 3 Bloque 12** |
+| **Habitar** | **Posesión de máquinas, electrónica y redes digitales** | **Percepción, Inteligencia, Astucia** | **✅ Fase 3 Bloque 12** |
+| **Intimación** | **Manipulación de deseos, pasiones y necesidades** | **Percepción, Manipulación, Inteligencia** | **✅ Fase 3 Bloque 12** |
+| **Red de Vida** | **Percibir, manipular y destruir Grilletes** | **Percepción, Manipulación, Destreza, Inteligencia** | **✅ Fase 3 Bloque 12** |
+| **Ultraje** | **Psicoquinesis violenta: daño físico y destrucción** | **Fuerza, Destreza** | **✅ Fase 3 Bloque 13** |
+| **Pandemonium** | **Terror espectral, pánico y locura** | **Manipulación, Carisma** | **✅ Fase 3 Bloque 13** |
+| **Fantasmagoría** | **Invasión de sueños mortales; Pathos onírico** | **Percepción, Astucia, Inteligencia, Manipulación** | **✅ Fase 3 Bloque 13** |
+| **Ladrón del Velo** | **Brechas en el Velo para paso de objetos y espionaje** | **Percepción, Destreza, Fuerza** | **✅ Fase 3 Bloque 13** |
+| **Usura** | **Transferencia y drenaje de Pathos y Corpus** | **Percepción, Manipulación, Inteligencia** | **✅ Fase 3 Bloque 13** |
 
-5 Arcanos × 5 niveles = **25 `PowerLevel`** con `dicePool` (atributos Wr20), `cost.resource: 'Pathos'/'Gratis'`, `systemText` y `tags`.
+15 Arcanos × 5 niveles = **75 `PowerLevel`** con `dicePool` (atributos Wr20), `cost.resource: 'Pathos'/'Gratis'`, `systemText` y `tags`.
 
 ---
 
@@ -224,17 +234,16 @@ Cada nivel incluye `realmRequired[]` con los Reinos canónicos. Recurso siempre 
 - [x] **Fase 1** — Dashboard multirraza con selector de juego y grid de módulos
 - [x] **Fase 2** — Motor de Reglas Agnóstico: PowersView, FactionsView, CoreSystemView + colores canónicos
 - [x] **Fase 2.5** — Data layer completo: V20 (50), W20 (~35), M20 (35), C20 (25), Wr20 (25) — **≥ 170 PowerLevel**
-- [ ] **Fase 3** — Expansión total del data layer al manual básico canónico (~190 PL adicionales, 8 bloques):
+- [x] **Fase 3** — Expansión total del data layer al manual básico canónico (~190 PL adicionales, 8 bloques):
   - [x] Bloque 6: V20 disciplinas de clan (Serpentis, Dementación, Nigromancia, Taumaturgia, Quietud) — **+25 PL**
   - [x] Bloque 7: W20 tribus (Vástagos de Fenris, Furias Negras, Caminantes de Cristal, Garras Rojas) — **+20 PL**
   - [x] Bloque 8: W20 raza Metis — **+5 PL**
   - [x] Bloque 9: M20 esferas restantes (Espíritu, Primo) — **+10 PL**
   - [x] Bloque 10: C20 artes (Infusión, Prestidigitación, Onomancia, Tejeduría del Cielo) — **+20 PL**
   - [x] Bloque 11: C20 (absorbido en Bloque 10)
-  - [ ] Bloque 12: Wr20 arcanos (Argos, Castigate, Fatalismo, Inhabit, Lifeweb)
-  - [ ] Bloque 13: Wr20 arcanos (Mnemósynis, Outrage, Pandemonium, Phantasm, Usury)
-- [ ] **Fase 3** — Ficha de personaje interactiva con atributos y habilidades editables
-- [ ] **Fase 4** — Motor de tiradas (pool de dados, dificultad, especialidades)
+  - [x] Bloque 12: Wr20 arcanos (Argos, Castigo, Habitar, Intimación, Red de Vida) — **+25 PL**
+  - [x] Bloque 13: Wr20 arcanos (Ultraje, Pandemonium, Fantasmagoría, Ladrón del Velo, Usura) — **+25 PL**
+- [ ] **Fase 4** — Motor de Tiradas Interactivo y Ficha de Personaje (AttributesView, CharacterSheet)
 - [ ] **Fase 5** — Búsqueda global cross-game en poderes y facciones
 - [ ] **Fase 6** — Persistencia local + exportar/importar personajes en JSON
 - [ ] **Fase 7** — Modo Narrador (gestión de múltiples personajes)
