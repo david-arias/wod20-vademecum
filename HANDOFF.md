@@ -290,8 +290,8 @@ Objetivo: cubrir al 100% los sistemas de poderes del manual básico de cada lín
 | Bloque | Sistema | Contenido | PL nuevos | Estado |
 |---|---|---|---|---|
 | **Bloque 6** | V20 | Serpentis, Dementación, Nigromancia (Senda del Sepulcro), Taumaturgia (Senda de la Sangre), Quietud | +25 | [x] COMPLETO |
-| **Bloque 7** | W20 | Tribus 1–6: Furias Negras, Roehuesos, Hijos de Gaia, Fianna, Vástagos de Fenris, Caminantes de Cristal | +30 | [ ] PENDIENTE |
-| **Bloque 8** | W20 | Tribus 7–12: Garras Rojas, Señores de la Sombra (completar), Peregrinos Silenciosos, Colmillos de Plata, Observadores, Uktena, Wendigo + raza Metis | +40 | [ ] PENDIENTE |
+| **Bloque 7** | W20 | Vástagos de Fenris, Furias Negras, Caminantes de Cristal, Garras Rojas (4 tribus × 5 dones) | +20 | [x] COMPLETO |
+| **Bloque 8** | W20 | Raza Metis (5 dones) | +5 | [x] COMPLETO |
 | **Bloque 9** | M20 | Espíritu, Primo (2 esferas faltantes del canon) | +10 | [ ] PENDIENTE |
 | **Bloque 10** | C20 | Chronos, Prestidigitación, Nomenclatura, Pirética | +20 | [ ] PENDIENTE |
 | **Bloque 11** | C20 | Adivinación, Ensueño, Primavera | +15 | [ ] PENDIENTE |
@@ -299,6 +299,19 @@ Objetivo: cubrir al 100% los sistemas de poderes del manual básico de cada lín
 | **Bloque 13** | Wr20 | Mnemósynis, Outrage, Pandemonium, Phantasm, Usury | +25 | [ ] PENDIENTE |
 
 **Total Fase 3: ~190 PL nuevos. Total acumulado al cerrar Fase 3: ≥ 360 PowerLevel.**
+
+### W20 — Cobertura de Bloques 7+8
+
+| Categoría | Tipo | Rangos | Estado |
+|---|---|---|---|
+| **Metis** | **breed** | **5/5** | **✅ NUEVO (Bloque 8)** |
+| **Vástagos de Fenris** | **tribe** | **5/5** | **✅ NUEVO (Bloque 7)** |
+| **Furias Negras** | **tribe** | **5/5** | **✅ NUEVO (Bloque 7)** |
+| **Caminantes de Cristal** | **tribe** | **5/5** | **✅ NUEVO (Bloque 7)** |
+| **Garras Rojas** | **tribe** | **5/5** | **✅ NUEVO (Bloque 7)** |
+
+**Bloques 7+8: 5 nuevas categorías × 5 dones = 25 nuevas entradas PowerLevel.**
+Nota: Ragabash, Philodox y Galliard ya cubiertos en Fase 2.5 (5 niveles cada uno).
 
 ### V20 — Cobertura completa de disciplinas (Bloque 6)
 

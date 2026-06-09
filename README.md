@@ -167,6 +167,9 @@ Para iniciar una nueva sesión de desarrollo, copiar el prompt de `.agents/SYSTE
 | Señores de la Sombra | tribe | base | ✅ |
 | Ragabash, Philodox, Galliard | auspice | 5/5 c/u | ✅ Fase 2.5 |
 | Homínido, Lupus | breed | 5/5 c/u | ✅ Fase 2.5 |
+| **Metis** | **breed** | **5/5** | **✅ Fase 3 Bloque 8** |
+| **Vástagos de Fenris, Furias Negras** | **tribe** | **5/5 c/u** | **✅ Fase 3 Bloque 7** |
+| **Caminantes de Cristal, Garras Rojas** | **tribe** | **5/5 c/u** | **✅ Fase 3 Bloque 7** |
 
 Todos los dones nuevos incluyen `sourceType`, `associatedWith`, recurso `Gnosis`/`Rabia`/`Gratis` y `systemText` canónico en español.
 
@@ -217,8 +220,8 @@ Cada nivel incluye `realmRequired[]` con los Reinos canónicos. Recurso siempre 
 - [x] **Fase 2.5** — Data layer completo: V20 (50), W20 (~35), M20 (35), C20 (25), Wr20 (25) — **≥ 170 PowerLevel**
 - [ ] **Fase 3** — Expansión total del data layer al manual básico canónico (~190 PL adicionales, 8 bloques):
   - [x] Bloque 6: V20 disciplinas de clan (Serpentis, Dementación, Nigromancia, Taumaturgia, Quietud) — **+25 PL**
-  - [ ] Bloque 7: W20 tribus 1–6 (Furias Negras, Roehuesos, Hijos de Gaia, Fianna, Vástagos de Fenris, Caminantes de Cristal)
-  - [ ] Bloque 8: W20 tribus 7–13 + raza Metis
+  - [x] Bloque 7: W20 tribus (Vástagos de Fenris, Furias Negras, Caminantes de Cristal, Garras Rojas) — **+20 PL**
+  - [x] Bloque 8: W20 raza Metis — **+5 PL**
   - [ ] Bloque 9: M20 esferas restantes (Espíritu, Primo)
   - [ ] Bloque 10: C20 artes (Chronos, Prestidigitación, Nomenclatura, Pirética)
   - [ ] Bloque 11: C20 artes (Adivinación, Ensueño, Primavera)
