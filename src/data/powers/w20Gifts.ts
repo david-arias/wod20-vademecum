@@ -401,7 +401,7 @@ export const W20_GIFTS: PowerCategory[] = [
     gameSystem: 'W20',
     categoryType: 'gift',
     description: 'Los Garou nacidos de madre humana poseen una afinidad innata con el mundo mortal que sus hermanos Lupus o Metis nunca tendrán. Sus dones reflejan la adaptabilidad humana, el carisma social y la capacidad de manipular herramientas y tecnología.',
-    associatedWith: { type: 'tribe', name: 'Homínido' },
+    associatedWith: { type: 'breed', name: 'Homínido' },
     levels: [
       {
         level: 1,
@@ -473,7 +473,7 @@ export const W20_GIFTS: PowerCategory[] = [
     gameSystem: 'W20',
     categoryType: 'gift',
     description: 'Los Garou nacidos de madre loba son los más cercanos a la naturaleza primal de Gaia. Sus dones amplifican instintos depredadores, vinculan con el mundo animal y expresan el poder crudo del lobo llevado a lo sobrenatural.',
-    associatedWith: { type: 'tribe', name: 'Lupus' },
+    associatedWith: { type: 'breed', name: 'Lupus' },
     levels: [
       {
         level: 1,

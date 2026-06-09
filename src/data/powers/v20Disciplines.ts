@@ -145,7 +145,7 @@ export const V20_DISCIPLINES: PowerCategory[] = [
         name: 'Mando',
         summary: 'Una palabra de poder que obliga a obedecer una orden simple.',
         systemText: 'El vampiro pronuncia una orden de una sola palabra con voz autoritaria mientras mantiene contacto visual. La víctima debe superar una tirada de Voluntad dif. (Voluntad del vampiro) o ejecutar la orden inmediatamente. La orden debe ser factible en el momento.',
-        dicePool: { formula: 'Carisma + Intimidación', difficulty: 'Voluntad del objetivo' as unknown as number },
+        dicePool: { formula: 'Carisma + Intimidación', notes: 'Dificultad igual a la Voluntad del objetivo' },
         cost: { resource: 'Gratis', amount: 'free' },
         actionType: 'instant',
         duration: 'instantáneo',

@@ -133,6 +133,18 @@ Cada `PowerLevel` incluye: nombre, resumen, texto de sistema, reserva de dados, 
 
 ---
 
+## Calidad del Data Layer
+
+Tras la auditoría QA de cierre de Fase 3, el data layer cumple las siguientes garantías:
+
+- **TypeScript strict**: 0 errores en `npx tsc --noEmit` — no hay casts ilegales ni tipados por conveniencia
+- **IDs cross-game consistentes**: todos los `nativePowerIds` de facciones apuntan a slugs existentes en los archivos de poderes
+- **`associatedWith` canónico**: los dones W20 usan correctamente `type: 'auspice'`, `'tribe'` o `'breed'`
+- **M20 completo**: las 9 esferas tienen `rulingConcept` — requerido por `PowersView`
+- **C20 completo**: las 9 artes tienen `realmRequired[]` con reinos válidos y `cost.resource: 'Glamour'`
+
+---
+
 ## Agentes del Proyecto
 
 Este proyecto usa un sistema de sub-agentes IA para mantener coherencia entre sesiones de desarrollo. Ver `.agents/AGENTS.md` para el protocolo completo.
@@ -243,7 +255,11 @@ Cada nivel incluye `realmRequired[]` con los Reinos canónicos. Recurso siempre 
   - [x] Bloque 11: C20 (absorbido en Bloque 10)
   - [x] Bloque 12: Wr20 arcanos (Argos, Castigo, Habitar, Intimación, Red de Vida) — **+25 PL**
   - [x] Bloque 13: Wr20 arcanos (Ultraje, Pandemonium, Fantasmagoría, Ladrón del Velo, Usura) — **+25 PL**
-- [ ] **Fase 4** — Motor de Tiradas Interactivo y Ficha de Personaje (AttributesView, CharacterSheet)
+  - [x] **Saneamiento QA**: eliminación de tipado ilegal (`as unknown as number`), resolución de 8 IDs huérfanos cross-game, corrección de `associatedWith.type` en W20
+- [ ] **Fase 4** — Motor de Tiradas Interactivo y Ficha de Personaje:
+  - [ ] `AttributesView` — atributos + habilidades interactivos por juego
+  - [ ] `DiceRoller` — simulador d10 con pool configurable, dificultad y lectura de resultados
+  - [ ] `CharacterSheet` — ficha de personaje completa y editable
 - [ ] **Fase 5** — Búsqueda global cross-game en poderes y facciones
 - [ ] **Fase 6** — Persistencia local + exportar/importar personajes en JSON
 - [ ] **Fase 7** — Modo Narrador (gestión de múltiples personajes)

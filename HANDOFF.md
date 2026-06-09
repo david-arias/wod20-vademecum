@@ -1,5 +1,5 @@
 # 📂 ARCHIVO DE MEMORIA: HANDOFF.md
-> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 3 — 100% COMPLETADA — Arcanos Wr20: 15 Arcanos × 5 niveles (Bloques 12+13)**
+> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 3 — SANEAMIENTO CRUZADO COMPLETADO — Data layer auditado y consistente al 100%**
 
 ---
 
@@ -10,7 +10,7 @@ Líneas de juego: V20 (Vampiro), W20 (Hombre Lobo), M20 (Mago), C20 (Changeling)
 
 ---
 
-## ✅ Estado Actual: ████████████████████ FASE 3 — 100% COMPLETADA ████████████████████
+## ✅ Estado Actual: ████████████████████ FASE 3 — EXPANSIÓN + SANEAMIENTO 100% COMPLETADA ████████████████████
 
 ### ══════════════════════════════════════════════════════
 ### FASE 2.5 — Llenado de Datos — CIERRE FORMAL
@@ -123,6 +123,49 @@ Todos los niveles incluyen `realmRequired: string[]` con los Reinos canónicos C
 > - `cost.resource: 'Gratis'` + `amount: 'free'` — habilidades pasivas de nivel 1 (Sentir el Pathos, Voz del Velo, Toque Nervioso)
 > - Los niveles 4-5 incluyen activación de Angustia (Shadow roll) como efecto secundario en Lamento y Marioneta
 > - `dicePool.formula` combina atributo español + nombre del Arcano en español (Corporalidad, Mentalidad, Volatilidad)
+
+### 🛡️ AUDITORÍA DE CONSISTENCIA DE DATOS
+
+Auditoría QA ejecutada tras el cierre de Fase 3 (contenido estático). Se detectaron y resolvieron las siguientes inconsistencias:
+
+#### `v20Disciplines.ts` — Tipado Ilegal Eliminado
+
+| Archivo | Nivel | Bug | Resolución |
+|---|---|---|---|
+| `v20Disciplines.ts` | Dominación L1 *Mando* | `difficulty: 'Voluntad del objetivo' as unknown as number` — cast ilegal que viola TypeScript strict | Eliminado el cast; campo movido a `dicePool.notes: 'Dificultad igual a la Voluntad del objetivo'` |
+
+#### `factions/index.ts` — IDs Huérfanos Resueltos
+
+Los siguientes `nativePowerIds` de clanes V20 apuntaban a slugs inexistentes en `v20Disciplines.ts`:
+
+| Clan | ID huérfano anterior | ID corregido | Razón |
+|---|---|---|---|
+| Gangrel | `resilencia` | `fortitud` | La Fortitud es la disciplina canónica Gangrel; "resilencia" no existe en el data layer |
+| Tremere | `taumaturgia` | `taumaturgia-sangre` | El slug real del objeto en v20Disciplines.ts es `taumaturgia-sangre` |
+| Lasombra | `ofuscamiento-oscuridad` | `obtenebración` | El slug real es `obtenebración` (con tilde); `ofuscamiento-oscuridad` no existía |
+| Tzimisce | `animalism` (inglés) | `animalismo` | Estandarización al español; `animalism` no existe como slug |
+| Giovanni | `nigromancia` | `nigromancia-sepulcro` | El slug real incluye la senda: `nigromancia-sepulcro` |
+| Ravnos | `animalism` (inglés) | `animalismo` | Estandarización al español |
+| Ravnos | `chimerismo` | *(eliminado)* | Chimerismo/Quimerismo no está implementado aún en v20Disciplines.ts — ID pendiente de Fase futura; se usa `fortitud` como sustituto temporal para no romper el enlazado |
+| Setita | `obfuscation` (inglés) | `ofuscacion` | Estandarización al español; `obfuscation` no existe como slug |
+
+#### `w20Gifts.ts` — Tipo de Categoría Corregido
+
+| Categoría | Bug | Resolución |
+|---|---|---|
+| Dones Homínido | `associatedWith: { type: 'tribe', ... }` | Corregido a `type: 'breed'` — Homínido es una raza (breed), no una tribu |
+| Dones Lupus | `associatedWith: { type: 'tribe', ... }` | Corregido a `type: 'breed'` — Lupus es una raza (breed), no una tribu |
+
+#### Estado post-auditoría
+
+- ✅ `npx tsc --noEmit` — 0 errores en todos los archivos del data layer
+- ✅ Todos los `nativePowerIds` de clanes V20 apuntan a IDs existentes en `v20Disciplines.ts`
+- ✅ Todos los `associatedWith.type` en W20 usan los valores canónicos (`auspice` / `tribe` / `breed`)
+- ✅ Todas las esferas M20 tienen `rulingConcept` (9/9)
+- ✅ Todas las Artes C20 tienen `realmRequired[]` y `cost.resource: 'Glamour'` (9/9)
+- ⚠️ **Pendiente Fase 4**: Chimerismo/Quimerismo (Ravnos) no tiene implementación en v20Disciplines.ts — disciplina única que requiere bloque de datos propio
+
+---
 
 ### ══ RESUMEN FINAL FASE 2.5 ══
 
@@ -369,16 +412,17 @@ Nota: Ragabash, Philodox y Galliard ya cubiertos en Fase 2.5 (5 niveles cada uno
 ### ══════════════════════════════════════════════════════
 ### FASE 4 — Objetivos
 
-| Tarea | Prioridad | Descripción |
+| Prioridad | Tarea | Descripción |
 |---|---|---|
-| **AttributesView** | **Alta** | Vista dedicada con atributos+habilidades de cada juego, sistema de puntos editables |
-| **Motor de Tiradas** | **Alta** | Pool de dados interactivo: seleccionar atributo + habilidad/arcano, lanzar, leer resultado; dificultad configurable |
-| **CharacterSheet** | **Alta** | Formulario interactivo de ficha de personaje con campos editables y cálculo automático de pools |
-| CombatView | Media | Mecánica de iniciativa, daño, tipos, flujo de combate |
-| SearchGlobal | Alta | Búsqueda cross-game en poderes + facciones usando índice en memoria |
-| Persistencia | Media | `localStorage` / exportar JSON de personaje |
-| React Router | Baja | Migrar enrutamiento interno a React Router v6 para URLs navegables |
-| Testing | Media | Vitest + Testing Library para componentes críticos (PowersView, FactionsView) |
+| 🔴 **1** | `[ ] AttributesView` | Vista dedicada con atributos+habilidades de cada juego, sistema de puntos editables; alimentada por los `attributeGroups` del config |
+| 🔴 **2** | `[ ] DiceRoller (Motor d10)` | Simulador de pool d10 interactivo: seleccionar atributo + habilidad/disciplina, configurar dificultad, lanzar, leer resultado con éxitos/fallos/pifias; integrado con `DicePool` del data layer |
+| 🟠 **3** | `[ ] CharacterSheet` | Formulario interactivo de ficha de personaje con campos editables y cálculo automático de pools |
+| 🟡 **4** | `[ ] CombatView` | Mecánica de iniciativa, daño, tipos, flujo de combate |
+| 🟡 **5** | `[ ] SearchGlobal` | Búsqueda cross-game en poderes + facciones usando índice en memoria |
+| 🟢 **6** | `[ ] Persistencia` | `localStorage` / exportar JSON de personaje |
+| 🟢 **7** | `[ ] React Router` | Migrar enrutamiento interno a React Router v6 para URLs navegables |
+| 🟢 **8** | `[ ] Testing` | Vitest + Testing Library para componentes críticos (PowersView, FactionsView) |
+| ⚪ **9** | `[ ] Chimerismo/Quimerismo (Ravnos)` | Disciplina única Ravnos pendiente de bloque de datos propio en v20Disciplines.ts |
 
 ---
 

@@ -21,7 +21,7 @@ const V20_CLANS = [
     id: 'gangrel', name: 'Gangrel', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Salvajes',
     lore: 'Solitarios por naturaleza, los Gangrel son los más bestiales de los vampiros, más cómodos bajo las estrellas que en las intrigas de la Camará. Son los supervivientes definitivos del Mundo de Tinieblas.',
-    nativePowerIds: ['animalismo', 'celeridad', 'resilencia'],
+    nativePowerIds: ['animalismo', 'celeridad', 'fortitud'],
     nativePowerLabel: 'Disciplinas de clan',
     weakness: {
       name: 'La Bestia Emerge',
@@ -73,7 +73,7 @@ const V20_CLANS = [
     id: 'tremere', name: 'Tremere', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Hechiceros',
     lore: 'Jóvenes en términos vampíricos, los Tremere construyeron su lugar entre los clanes a través del poder de la Taumaturgia. Son la facción más organizada y temida de la Camará, con una jerarquía casi militar.',
-    nativePowerIds: ['auspex', 'dominacion', 'taumaturgia'],
+    nativePowerIds: ['auspex', 'dominacion', 'taumaturgia-sangre'],
     nativePowerLabel: 'Disciplinas de clan',
     weakness: {
       name: 'Sangre Atada',
@@ -99,7 +99,7 @@ const V20_CLANS = [
     id: 'lasombra', name: 'Lasombra', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Señores de la Oscuridad',
     lore: 'Líderes espirituales y políticos del Sabbat, los Lasombra abrazan la Bestia con orgullo. Su poder sobre las sombras refleja su naturaleza: la oscuridad es su elemento natural y su arma preferida.',
-    nativePowerIds: ['dominacion', 'potencia', 'ofuscamiento-oscuridad'],
+    nativePowerIds: ['dominacion', 'potencia', 'obtenebración'],
     nativePowerLabel: 'Disciplinas de clan',
     weakness: {
       name: 'Sin Reflejo',
@@ -112,7 +112,7 @@ const V20_CLANS = [
     id: 'tzimisce', name: 'Tzimisce', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Diablos Carnales',
     lore: 'Los Tzimisce son los maestros de la carne y el hueso. Sus conocimientos de Vicisitud les permiten remodelar cuerpos como arcilla, creando obras maestras de horror o belleza según su capricho.',
-    nativePowerIds: ['animalism', 'auspex', 'vicisitud'],
+    nativePowerIds: ['animalismo', 'auspex', 'vicisitud'],
     nativePowerLabel: 'Disciplinas de clan',
     weakness: {
       name: 'Arraigo a la Tierra Natal',
@@ -138,7 +138,7 @@ const V20_CLANS = [
     id: 'giovanni', name: 'Giovanni', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Necromantes',
     lore: 'Una familia de banqueros venecianos que secuestró el linaje de un Antediluviano y se convirtió en uno de los clanes más ricos y temidos. Su poder sobre los muertos es inigualable.',
-    nativePowerIds: ['dominacion', 'potencia', 'nigromancia'],
+    nativePowerIds: ['dominacion', 'potencia', 'nigromancia-sepulcro'],
     nativePowerLabel: 'Disciplinas de clan',
     weakness: {
       name: 'El Abrazo Doloroso',
@@ -151,7 +151,8 @@ const V20_CLANS = [
     id: 'ravnos', name: 'Ravnos', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Nómadas',
     lore: 'Viajeros eternos y ilusionistas maestros, los Ravnos son el clan más difícil de atrapar y el más difícil de creer. Sus ilusiones son tan perfectas que pueden hacer creer casi cualquier cosa.',
-    nativePowerIds: ['animalism', 'chimerismo', 'celeridad'],
+    // chimerismo pendiente de implementar en v20Disciplines.ts (disciplina única Ravnos)
+    nativePowerIds: ['animalismo', 'celeridad', 'fortitud'],
     nativePowerLabel: 'Disciplinas de clan',
     weakness: {
       name: 'Vicio Compulsivo',
@@ -164,7 +165,7 @@ const V20_CLANS = [
     id: 'setita', name: 'Setita (Seguidores de Set)', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Tentadores',
     lore: 'Adoradores del dios serpiente Set, este clan busca corromper y debilitar a todos a su alrededor. Son los traficantes de adicciones, vicios y secretos del mundo vampírico.',
-    nativePowerIds: ['obfuscation', 'presencia', 'serpentis'],
+    nativePowerIds: ['ofuscacion', 'presencia', 'serpentis'],
     nativePowerLabel: 'Disciplinas de clan',
     weakness: {
       name: 'Vulnerabilidad a la Luz',
