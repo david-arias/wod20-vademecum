@@ -1,5 +1,5 @@
 # 📂 ARCHIVO DE MEMORIA: HANDOFF.md
-> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 4.1 — Corrección canónica Gangrel (celeridad→proteanismo) + disciplina Proteanismo (5 niveles), 20 disciplinas V20, 0 errores TypeScript**
+> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 4.2 — 4 nuevas sendas a Taumaturgia (Elemental, Verde, Adivinatoria, Espíritus), Taumaturgia ahora con 7 sendas, 0 errores TypeScript**
 
 ---
 
@@ -986,4 +986,84 @@ Inventario completo y exhaustivo del estado de `src/data/` para identificar todo
 3. **C20 kiths restantes**: Merfolk, Nunnehi, Inanimae y otros kith regionales
 4. **Rituales**: sistema de Rituales de Taumaturgia y Nigromancia (paralelo a disciplinas)
 5. **W20**: auspicio recomendado por tribu
+
+---
+
+## ✅ FASE 4.2 — Expansión Taumaturgia: 4 Sendas Adicionales (10 Jun 2026)
+
+### Cambios aplicados
+
+**Archivo:** `src/data/powers/v20Disciplines.ts` — MultiPathDiscipline `taumaturgia-sangre`
+
+4 nuevas `PowerPath` insertadas en `paths[]` después de `senda-conjuracion`:
+
+| ID | Nombre | isPrimary | Mecánica central |
+|----|--------|-----------|-----------------|
+| `senda-poder-elemental` | Senda del Poder Elemental | false | Fuego/aire/agua/tierra; elementales menores y devastación elemental masiva |
+| `senda-del-verde` | Senda del Verde | false | Crecimiento vegetal, plantas animadas como armas, venenos y bosque viviente |
+| `senda-adivinatoria` | Senda Adivinatoria | false | Psicometría, visión lejana, lectura de aura, pasado, profecía probabilística |
+| `senda-de-los-espiritus` | Senda de los Espíritus | false | Percepción/comunicación Umbra, fetiches vampíricos, cruzar el Velo, dominación de espíritus |
+
+#### Detalles de niveles por senda
+
+**Senda del Poder Elemental** — `dicePool` Ocultismo:
+
+| Nv | Nombre | Coste | Mecánica |
+|----|--------|-------|----------|
+| 1 | Sentir los Elementos | Gratis | Detección pasiva permanente de todos los elementos; radio (Taumaturgia×10)m |
+| 2 | Controlar los Elementos | 1 Sangre | Manipula elementos existentes; Int+Ocultismo dif.6; hasta (Tau×5 kg) |
+| 3 | Convocar los Elementos | 1 Sangre | Proyectil/barrera elemental; (Tau+2) dados letal; Int+Ocultismo dif.7 |
+| 4 | Elemental Menor | 2 Sangre | Elemental Fuerza3/Stamina4; (Tau) horas; Int+Ocultismo dif.8 |
+| 5 | Maestría Elemental | 3 Sangre | Devastación masiva; (Tau×3) dados agravado en área; Int+Ocultismo dif.9 |
+
+**Senda del Verde** — `dicePool` Naturaleza:
+
+| Nv | Nombre | Coste | Mecánica |
+|----|--------|-------|----------|
+| 1 | Sentir la Vida Verde | Gratis | Detección pasiva permanente; radio (Tau×20)m; identifica especies |
+| 2 | Crecer | 1 Sangre | Crecimiento sobrenatural: semilla→plántula en 1 turno; Int+Naturaleza dif.6 |
+| 3 | Armar las Plantas | 1 Sangre | Enredadera Fuerza3 / ramas golpe daño letal; Int+Naturaleza dif.7 |
+| 4 | Veneno Vegetal | 2 Sangre | Potencia (Tau×2); parálisis/alucinaciones/daño; Int+Medicina dif.8 |
+| 5 | Bosque Viviente | 3 Sangre | Área (Tau×50)m² animada; moverse dif.8; salir 1 letal/turno; Int+Naturaleza dif.9 |
+
+**Senda Adivinatoria** — `dicePool` Ocultismo/Empatía:
+
+| Nv | Nombre | Coste | Mecánica |
+|----|--------|-------|----------|
+| 1 | Leer el Objeto | Gratis | Psicometría: (Tau) días atrás; Per+Ocultismo dif.6 |
+| 2 | Visión Lejana | 1 Sangre | Sentidos remotos; (Tau×10)km; trance; Per+Ocultismo dif.7 |
+| 3 | Leer el Aura | 1 Sangre | Estado emocional, tipo sobrenatural, vínculos de Sangre; Per+Empatía dif.8 |
+| 4 | Visión del Pasado | 2 Sangre | (Tau) años atrás en lugar físico; Int+Ocultismo dif.7–9 |
+| 5 | Vislumbrar el Futuro | 2 Sangre | Posibilidades probabilísticas; (Tau) semanas alcance; Int+Ocultismo dif.9 |
+
+**Senda de los Espíritus** — `dicePool` Ocultismo:
+
+| Nv | Nombre | Coste | Mecánica |
+|----|--------|-------|----------|
+| 1 | Sentir el Umbra | Gratis | Detección pasiva permanente de espíritus; radio (Tau×10)m |
+| 2 | Hablar con Espíritus | 1 Sangre | Canal de comunicación; Car+Ocultismo dif.7; antipatía por naturaleza Muerto |
+| 3 | Vincular Espíritu | 2 Sangre | Fetiche vampírico; Gnosis espíritu ≤ Tau; Int+Ocultismo dif.8 enfrentada |
+| 4 | Cruzar el Velo | 2 Sangre | Presencia física en Umbra; peligro Garou; Int+Ocultismo dif.8 |
+| 5 | Dominar Espíritu | 3 Sangre | Control total (Tau) días; Gnosis ≤ (Tau+2); Int+Ocultismo dif.9 enfrentada |
+
+### 📊 Estado Post-Fase 4.2
+
+| Sistema | Facciones | Poderes | Core Rules | % Real |
+|---------|-----------|---------|------------|--------|
+| V20 | 13/13 ✅ canónicas | 20 disciplinas — Taumaturgia **7 sendas** (~78%) | 10/13 (77%) | ~76% |
+| W20 | 13/13 ✅ | 21 categorías ✅ | 10/13 (77%) | ~80% |
+| M20 | 9/9 ✅ | 9/9 Esferas ✅ | 10/13 (77%) | ~75% |
+| C20 | 13/~18 (72%) | 9/16 Artes + 2 artes nuevas (Llorona/Somniloquios) | 10/13 (77%) | ~65% |
+| Wr20 | 15/15 ✅ | 15/15 ✅ | 10/13 (77%) | ~80% |
+
+**Taumaturgia paths totales: 7** (Sangre [primaria] + Movimiento de la Mente + Conjuración + Poder Elemental + Verde + Adivinatoria + Espíritus)
+
+### 🔜 Siguientes Pasos
+
+1. **Disciplinas V20 pendientes**: Daimonion (Baali), Thanatosis (Samedi), Valeren (Salubri anciano), Visceratika (Gargoyle), Ogham (Lhiannan), Sanguinus (Blood Brothers)
+2. **Nigromancia sendas adicionales**: Senda de los Cuatro Vientos, Senda del Abismo, Senda de los Huesos (sendas opcionales)
+3. **C20 Artes**: Wayfare, Legerdemain, Naming, Primal, Dragon's Ire, Chronos
+4. **C20 kiths restantes**: Merfolk, Nunnehi, Inanimae y kith regionales
+5. **Rituales**: sistema de Rituales de Taumaturgia y Nigromancia (paralelo a disciplinas)
+6. **UI**: `PathSelector` en `PowersView.tsx` debe manejar 7 sendas — revisar wrap/scroll
 

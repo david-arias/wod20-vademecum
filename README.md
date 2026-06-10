@@ -14,7 +14,7 @@
 
 | ID | Juego | Acento | Facciones | Poderes | Estado |
 |----|-------|--------|-----------|---------|--------|
-| `V20` | Vampiro: La Mascarada | 🔴 `#FF3333` Blood Red | 13 clanes + afiliación política | 20 disciplinas (2 MultiPath) | ✅ Fase 4.1 |
+| `V20` | Vampiro: La Mascarada | 🔴 `#FF3333` Blood Red | 13 clanes + afiliación política | 20 disciplinas (2 MultiPath — Taumaturgia 7 sendas) | ✅ Fase 4.2 |
 | `W20` | Hombre Lobo: El Apocalipsis | 🟡 `#D4AF37` Dark Gold | 13 tribus | 21 categorías de dones | ✅ Fase 3.5 |
 | `M20` | Mago: La Ascensión | 🟣 `#8A2BE2` BlueViolet | 9 tradiciones (esferas correctas) | 9 esferas | ✅ Fase 4 |
 | `C20` | Changeling: El Ensueño | 🟢 `#00FF7F` Spring Green | 13 kiths | 9 artes | ✅ Fase 4 |
@@ -172,7 +172,7 @@ Para iniciar una nueva sesión de desarrollo, copiar el prompt de `.agents/SYSTE
 | Ampliado | Auspex, Fortitud, Potencia, Obtenebración, Vicisitud | 5/5 c/u | ✅ |
 | Clan (Fase 3) | Serpentis, Dementación, Quietud | 5/5 c/u | ✅ |
 | **MultiPath (Fase 3.5)** | **Nigromancia** (Sepulcro + Osario + Cenizas) | **5+5+5/5** | **✅ NUEVO** |
-| **MultiPath (Fase 3.5)** | **Taumaturgia** (Sangre + Mov.Mente + Conjuración) | **5+5+5/5** | **✅ NUEVO** |
+| **MultiPath (Fase 3.5)** | **Taumaturgia** (Sangre + Mov.Mente + Conjuración + Elemental + Verde + Adivinatoria + Espíritus) | **7 sendas × 5** | **✅ Fase 4.2** |
 | **Ravnos (Fase 3.5)** | **Quimerismo** | **5/5** | **✅ NUEVO** |
 
 16 disciplinas — **~100 `PowerLevel`** (incluyendo sub-sendas MultiPath) con `systemText`, `dicePool`, `cost`, `actionType`, `duration`, `tags`.
