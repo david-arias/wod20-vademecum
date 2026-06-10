@@ -1,5 +1,5 @@
 # 📂 ARCHIVO DE MEMORIA: HANDOFF.md
-> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 5 BLOQUE D — C20: Arte Contratos, 4 kiths nuevos; Wr20: wr20Shadow.ts (Angustia/Catarsis/Pasiones/Espectros); CoreSystem: 5 reglas + 5 CoreModuleId; 0 errores TypeScript**
+> Guardián del Handoff — Agente Documentador | Última actualización: **SANEAMIENTO TERMINOLÓGICO V20 — Clanes/Sectas refactorizados: slugs canónicos, V20_FACTIONS exportado, 0 errores TypeScript**
 
 ---
 
@@ -1360,4 +1360,55 @@ Exports: `ANGUSTIA_LEVELS`, `CATHARSIS_RESULTS`, `PASSION_TYPES`, `SPECTRES`, `S
 | **Wr20** | 15/15 ✅ | 15/15 ✅ | **Sombra completa** (10 niveles Angustia + Espectros) | **~90%** |
 
 **CoreSystem: 17 reglas** en 17 módulos (5 nuevas: Dificultades, Especialización, Agravado, Virtudes, Resonancia)
+
+---
+
+## 🔧 SANEAMIENTO TERMINOLÓGICO V20 — Consistencia Cruzada de Clanes y Sectas
+
+### Objetivo
+Auditoría y corrección de slugs/IDs en `src/data/factions/index.ts` (sección V20) contra el manual real en español de Vampiro: La Mascarada 20 Aniversario.
+
+### Cambios aplicados
+
+#### Correcciones de slugs (nativePowerIds)
+
+| Clan | Slug anterior | Slug corregido | Motivo |
+|------|--------------|----------------|--------|
+| Gangrel | `proteanismo` | `protean` | Nombre canónico oficial |
+| Lasombra | `obtenebración` (con tilde) | `obtenebracion` | Normalización de ID sin acento |
+| Tremere | `taumaturgia-sangre` | `taumaturgia` | Disciplina base, sin sufijo inventado |
+| Baali | `obtenebración` (con tilde) | `obtenebracion` | Normalización de ID sin acento |
+
+#### Reestructuración de facciones V20
+
+| Cambio | Anterior | Nuevo |
+|--------|----------|-------|
+| Variable / export principal | `const V20_CLANS` | `export const V20_FACTIONS: Faction[]` |
+| Alias de compatibilidad | — | `const V20_CLANS = V20_FACTIONS` |
+| `capadocio` (id) | `'capadocio'` + `factionType: 'clan'` | `'cappadocian'` + `factionType: 'legacy'` |
+| `baali` (factionType) | `'clan'` | `'legacy'` |
+| `tzimisce-antiguo` (id + powers) | `'tzimisce-antiguo'`, `koldunismo` | `'viejo-clan-tzimisce'`, `dominacion` |
+| Clanes eliminados | Assamita, Giovanni, Ravnos, Setita | — (no canónicos de la línea base V20) |
+| Sectas añadidas | — | `camarilla` + `sabbat` (`factionType: 'legacy'`) |
+| `politicalAffiliation` | presente en todos | eliminado (no parte de la interfaz Faction) |
+| `notableMembers` | presente en clanes | eliminado (limpieza estructural) |
+
+#### Estado final V20_FACTIONS
+
+| Tipo | Entidades |
+|------|-----------|
+| `clan` | Brujah, Gangrel, Malkaviano, Nosferatu, Toreador, Tremere, Ventrue, Lasombra, Tzimisce (9) |
+| `legacy` | Viejo Clan Tzimisce, Capadocio, Baali, La Camarilla, El Sabbat (5) |
+| **Total** | **14 facciones** |
+
+#### Verificación TypeScript
+```
+npx tsc --noEmit → 0 errores, 0 warnings ✅
+```
+
+#### Archivos modificados
+- `src/data/factions/index.ts` — Refactorización completa del bloque V20
+  - Import actualizado: `Faction` añadido a `@/types/factions`
+  - `V20_FACTIONS` exportado como `export const` con tipo explícito `Faction[]`
+  - Alias `V20_CLANS = V20_FACTIONS` mantiene compatibilidad con consumidores existentes
 
