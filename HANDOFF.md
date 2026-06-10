@@ -1,5 +1,5 @@
 # 📂 ARCHIVO DE MEMORIA: HANDOFF.md
-> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 5 BLOQUE B — W20: 18 ritos (w20Rites.ts), renombre completo (w20Renown.ts), 3 nuevas facciones (Nuwisha/Hakken/Ratkin), 10 nuevos dones, FactionType 'fera', 0 errores TypeScript**
+> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 5 BLOQUE C — M20: m20Foci.ts (8 tradiciones), m20Paradox.ts (10 niveles), 5 convenciones Tecnocracia en factions/index.ts, 0 errores TypeScript**
 
 ---
 
@@ -1225,4 +1225,73 @@ Exports: `W20_RANKS`, `W20_RENOWN_TYPES`, `W20_RENOWN_MECHANICS`, `W20_RENOWN_TA
 **W20 total facciones: 16** (13 tribus Garou + 2 Fera + 1 variante tribal Hakken)
 **W20 total dones: 24 categorías** (21 originales + dones-nuwisha + dones-hakken + dones-ratkin)
 **W20 ritos: 18** canónicos | **W20 renombre: tabla completa 6 rangos**
+
+---
+
+## ✅ FASE 5 BLOQUE C — Expansión M20: Focos, Paradoja y Tecnocracia (10 Jun 2026)
+
+### Archivos creados
+
+#### `src/data/powers/m20Foci.ts` (NUEVO)
+
+Interfaces: `MageFocus`, `FocusItem`, `FocusRule`
+
+| ID | Tradición | Focos primarios | Focos alternativos |
+|----|-----------|-----------------|-------------------|
+| `focos-akashic` | Hermandad Akásica | 9 (uno por Esfera) | 2 |
+| `focos-verbena` | Verbena | 9 | 2 |
+| `focos-hermetic` | Orden de Hermes | 9 | 2 |
+| `focos-chorus` | Coro Celestial | 9 | 2 |
+| `focos-dreamspeakers` | Cuentasueños | 9 | 2 |
+| `focos-euthanatos` | Eutanatos | 9 | 2 |
+| `focos-virtual-adepts` | Virtualistas | 9 | 2 |
+| `focos-sons-ether` | Hijos del Éter | 9 | 2 |
+| `focos-hollow-ones` | Disparatados | 9 | 2 |
+
+Exports: `M20_FOCI`, `M20_FOCI_BY_TRADITION`, `M20_FOCUS_RULES` (5 reglas: sin foco, trascendencia, pérdida, compartidos, improvisados)
+
+#### `src/data/m20Paradox.ts` (NUEVO)
+
+Interfaces: `ParadoxLevel`, `ParadoxEffect`, `ParadoxAccumulationRule`, `ParadoxReductionRule`, `ParadoxSpirit`, `QuietStage`
+
+| Nivel | Nombre | Umbral | Efecto primario |
+|-------|--------|--------|-----------------|
+| 1 | Eco | 1 pto | Hormigueo Estático (1 daño contuso) |
+| 2 | Interferencia | 3 ptos | Retroceso Menor (2 daño contuso) |
+| 3 | Tensión | 5 ptos | Descarga Dolorosa (1d6 letal) + Gremlin |
+| 4 | Presión | 7 ptos | Descarga Grave (2d6 letal) + Anomalía |
+| 5 | Ruptura | 10 ptos | 1d3 agravado + Espíritu Paradoja |
+| 6 | Fractura | 13 ptos | Marca física permanente + agravado |
+| 7 | Tormenta | 16 ptos | Paradox Wyrm (persecución) |
+| 8 | Caos | 20 ptos | Quietud completa / 2d10 agravado |
+| 9 | Vórtice | 25 ptos | Bolsillo de realidad + fragmentación |
+| 10 | Disolución | 30 ptos | Muerte o Trascendencia Paradójica |
+
+Exports: `PARADOX_LEVELS`, `PARADOX_SUMMARY_TABLE`, `PARADOX_ACCUMULATION_RULES` (6), `PARADOX_REDUCTION_RULES` (6), `PARADOX_SPIRITS` (3 tiers), `QUIET_STAGES` (3)
+
+### Facciones añadidas a `src/data/factions/index.ts` — M20_TECHNOCRACY
+
+| ID | Nombre | factionType | Esferas |
+|----|--------|-------------|---------|
+| `iteration-x` | Iteración X | `convention` | fuerzas, materia, vida |
+| `nwo` | Nuevo Orden Mundial | `convention` | mente, correspondencia |
+| `progenitors` | Progenitores | `convention` | vida, materia |
+| `syndicate` | Sindicato | `convention` | correspondencia, mente |
+| `void-engineers` | Ingenieros del Vacío | `convention` | correspondencia, fuerzas, espíritu |
+
+`ALL_FACTIONS.M20` ahora combina `[...M20_TRADITIONS, ...M20_TECHNOCRACY]` → **14 facciones M20 totales**
+
+### 📊 Estado Post-Fase 5 Bloque C
+
+| Sistema | Facciones | Poderes | Datos adicionales | % Real |
+|---------|-----------|---------|-------------------|--------|
+| V20 | 16 (13+3 menores) | 23 disciplinas | — | ~80% |
+| W20 | 16 ✅ | 24 dones + 18 ritos | Renombre 6 rangos | ~90% |
+| **M20** | **14/14 ✅** (9 tradiciones + 5 convenciones) | 9 esferas | **Focos 9 tradiciones + Paradoja 10 niveles** | **~90%** |
+| C20 | 13/~18 | 9/16 Artes | — | ~65% |
+| Wr20 | 15/15 ✅ | 15/15 ✅ | — | ~80% |
+
+**M20 facciones: 14** (9 tradiciones + 5 convenciones Tecnocracia)
+**m20Foci.ts: 9 conjuntos** de focos × 9 Esferas cada uno + 5 reglas de focos
+**m20Paradox.ts: 10 niveles** + 6 reglas acumulación + 6 reducción + 3 espíritus Paradoja + 3 etapas Quietud
 

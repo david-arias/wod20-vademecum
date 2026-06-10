@@ -16,7 +16,7 @@
 |----|-------|--------|-----------|---------|--------|
 | `V20` | Vampiro: La Mascarada | 🔴 `#FF3333` Blood Red | 16 clanes (13 base + 3 menores) | 23 disciplinas (2 MultiPath — Tau 7 sendas, Nigro 5 sendas) | ✅ Fase 5-A |
 | `W20` | Hombre Lobo: El Apocalipsis | 🟡 `#D4AF37` Dark Gold | 16 facciones (13 tribus + 2 Fera + Hakken) | 24 dones + 18 ritos + renombre | ✅ Fase 5-B |
-| `M20` | Mago: La Ascensión | 🟣 `#8A2BE2` BlueViolet | 9 tradiciones (esferas correctas) | 9 esferas | ✅ Fase 4 |
+| `M20` | Mago: La Ascensión | 🟣 `#8A2BE2` BlueViolet | 14 facciones (9 tradiciones + 5 convenciones) | 9 esferas + focos + paradoja | ✅ Fase 5-C |
 | `C20` | Changeling: El Ensueño | 🟢 `#00FF7F` Spring Green | 13 kiths | 9 artes | ✅ Fase 4 |
 | `Wr20` | Wraith: El Olvido | 🩶 `#708090` Slate Gray | 15 gremios (IDs corregidos) | 15 arcanos | ✅ Fase 4 |
 

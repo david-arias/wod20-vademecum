@@ -571,6 +571,82 @@ const M20_TRADITIONS = [
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────
+// M20 — TECNOCRACIA: 5 CONVENCIONES
+// ─────────────────────────────────────────────────────────────────────────────
+const M20_TECHNOCRACY = [
+  {
+    id: 'iteration-x', name: 'Iteración X', gameSystem: 'M20' as const, factionType: 'convention' as const,
+    archetype: 'Ingenieros del Cuerpo',
+    lore: 'Iteración X cree que la perfección humana se logra mediante la tecnología integrada directamente en la biología. Sus agentes son cyborgs, soldados aumentados y científicos que han fusionado la carne con el metal. Donde otros ven límites del cuerpo humano, Iteración X ve versiones 1.0 por actualizar.',
+    nativePowerIds: ['fuerzas', 'materia', 'vida'],
+    nativePowerLabel: 'Esferas predominantes',
+    weakness: {
+      name: 'Dependencia del Hardware',
+      description: 'Los aumentos tecnológicos de Iteración X son vulnerables a EMP, EMP mágico y condiciones extremas.',
+      mechanical: 'Toda habilidad mágica que dependa de augmentación tecnológica falla automáticamente si el agente es afectado por un pulso electromagnético (daño de Fuerzas 3+). Además, las reparaciones de augmentos requieren laboratorios especializados —no pueden ser curadas como heridas normales.',
+    },
+    notableMembers: ['Czar Vargo', 'Macallan-7'],
+    politicalAffiliation: 'Tecnocracia',
+  },
+  {
+    id: 'nwo', name: 'Nuevo Orden Mundial (N.O.M.)', gameSystem: 'M20' as const, factionType: 'convention' as const,
+    archetype: 'Controladores de la Narrativa',
+    lore: 'El Nuevo Orden Mundial controla el consenso de la humanidad mediante los medios de comunicación, los gobiernos y las estructuras de poder social. Son los maestros de la información: quienes deciden qué es "real" para millones de personas, quienes escriben los libros de historia y quienes gestionan los "incidentes sobrenaturales" antes de que lleguen a los titulares.',
+    nativePowerIds: ['mente', 'correspondencia'],
+    nativePowerLabel: 'Esferas predominantes',
+    weakness: {
+      name: 'Paranoide del Control',
+      description: 'La obsesión del N.O.M. con el control y la información les hace profundamente desconfiados —incluso entre sí.',
+      mechanical: 'Al interactuar con miembros de otras convenciones de la Tecnocracia (o con cualquier persona cuyas lealtades no estén 100% verificadas), los agentes del N.O.M. sufren dificultad +1 en tiradas de Empatía y Subterfugio defensivo: asumen conspiraciones donde no las hay. En situaciones de crisis, deben superar Autocontrol dif. 7 para no reportar sus propios aliados.',
+    },
+    notableMembers: ['Señor del Control', 'Director Ashby'],
+    politicalAffiliation: 'Tecnocracia',
+  },
+  {
+    id: 'progenitors', name: 'Progenitores', gameSystem: 'M20' as const, factionType: 'convention' as const,
+    archetype: 'Ingenieros de la Vida',
+    lore: 'Los Progenitores son los biólogos, genetistas y farmacólogos de la Tecnocracia: los que diseñan la humanidad del futuro mediante ingeniería genética, farmacología de precisión y modificación biológica. Su objetivo declarado es eliminar la enfermedad y optimizar el potencial humano. Su objetivo no declarado es mantener la humanidad biológicamente dependiente de sus sistemas.',
+    nativePowerIds: ['vida', 'materia'],
+    nativePowerLabel: 'Esferas predominantes',
+    weakness: {
+      name: 'Distancia Clínica',
+      description: 'Los Progenitores han reducido la vida a datos, lo que les hace pésimos comunicadores.',
+      mechanical: 'Todas las tiradas sociales de Empatía y Persuasión tienen dificultad +1 (piensan en términos de sistemas, no en términos humanos). En situaciones de urgencia emocional, deben superar Voluntad dif. 7 para no intentar "resolver el problema" en lugar de apoyar emocionalmente.',
+    },
+    notableMembers: ['Dra. Elizabeth Chen', 'Dr. Armand'],
+    politicalAffiliation: 'Tecnocracia',
+  },
+  {
+    id: 'syndicate', name: 'Sindicato', gameSystem: 'M20' as const, factionType: 'convention' as const,
+    archetype: 'Financieros del Consenso',
+    lore: 'El Sindicato controla el consenso de la humanidad no mediante el miedo sino mediante el dinero. Los sistemas económicos globales, las corporaciones transnacionales y los mercados financieros son sus herramientas. Si el N.O.M. es el gobierno visible, el Sindicato es el dinero invisible que lo mueve todo. Sus agentes son economistas, financieros y ejecutivos que entienden que el capitalismo moderno es, en sí mismo, el sistema mágico más eficaz jamás construido.',
+    nativePowerIds: ['correspondencia', 'mente'],
+    nativePowerLabel: 'Esferas predominantes',
+    weakness: {
+      name: 'El Precio de Todo',
+      description: 'Los agentes del Sindicato evalúan todo en términos económicos, lo que puede ser una desventaja fatal.',
+      mechanical: 'Ante una decisión que implique un coste financiero personal (incluso pequeño), deben superar Voluntad dif. 6 para no intentar negociar o buscar una alternativa más barata primero —incluso si el tiempo perdido es el coste real. También pierden automáticamente 1 punto de Voluntad temporal si son engañados o víctimas de un fraude, por el insulto a su competencia.',
+    },
+    notableMembers: ['Thadeus Shelby III', 'La Directora'],
+    politicalAffiliation: 'Tecnocracia',
+  },
+  {
+    id: 'void-engineers', name: 'Ingenieros del Vacío', gameSystem: 'M20' as const, factionType: 'convention' as const,
+    archetype: 'Exploradores del Cosmos',
+    lore: 'Los Ingenieros del Vacío son la división de exploración y control de fronteras de la Tecnocracia. Dominan el espacio exterior, las dimensiones y los límites del Consenso. Son los únicos agentes de la Tecnocracia que comprenden —y algunos que genuinamente temen— lo que hay más allá del velo de la realidad consensuada. Su misión oficial es expandir el Consenso al espacio. Su misión real es mantener a raya lo que hay entre las estrellas.',
+    nativePowerIds: ['correspondencia', 'fuerzas', 'espíritu'],
+    nativePowerLabel: 'Esferas predominantes',
+    weakness: {
+      name: 'Perspectiva Cósmica',
+      description: 'Haber visto el cosmos real hace que los Ingenieros del Vacío tengan dificultad para relacionarse con preocupaciones mundanas.',
+      mechanical: 'Las preocupaciones "terrestres" (política local, finanzas personales, relaciones cotidianas) les parecen triviales. Tiradas de Empatía con mortales ordinarios tienen dificultad +1. Sin embargo, ante amenazas cósmicas genuinas (entidades de más allá del Umbra), son los únicos agentes de la Tecnocracia que no sufren penalización de miedo —les resultan casi familiares.',
+    },
+    notableMembers: ['Comandante Vasquez', 'Dra. Yuki Tanaka'],
+    politicalAffiliation: 'Tecnocracia',
+  },
+]
+
+// ─────────────────────────────────────────────────────────────────────────────
 // C20 — KITHS (5 muestra)
 // ─────────────────────────────────────────────────────────────────────────────
 const C20_KITHS = [
@@ -928,9 +1004,9 @@ const WR20_GUILDS = [
 export const ALL_FACTIONS: FactionsIndex = {
   V20:  V20_CLANS,
   W20:  W20_TRIBES,
-  M20:  M20_TRADITIONS,
+  M20:  [...M20_TRADITIONS, ...M20_TECHNOCRACY],
   C20:  C20_KITHS,
   Wr20: WR20_GUILDS,
 }
 
-export { V20_CLANS, W20_TRIBES, M20_TRADITIONS, C20_KITHS, WR20_GUILDS }
+export { V20_CLANS, W20_TRIBES, M20_TRADITIONS, M20_TECHNOCRACY, C20_KITHS, WR20_GUILDS }
