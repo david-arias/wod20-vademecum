@@ -77,7 +77,7 @@ export interface PowerCategory {
 
 // ─── Powers Index (all categories by game system) ────────────────────────────
 
-export type PowersIndex = Record<GameSystemId, PowerCategory[]>
+export type PowersIndex = Record<GameSystemId, (PowerCategory | MultiPathDiscipline)[]>
 
 // ─── C20: Realm (used in combination with Arts) ──────────────────────────────
 

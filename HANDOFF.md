@@ -1,5 +1,5 @@
 # 📂 ARCHIVO DE MEMORIA: HANDOFF.md
-> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 3.5 ABIERTA — Arquitectura de Reglas Agnósticas completada (W20 triple eje, Formas Garou, tipos MultiPath)**
+> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 3.5 CERRADA — Sincronización completa de datos: 16 disciplinas V20 (MultiPath), 13 tribus W20, 9 kiths C20, 15 gremios Wr20, nomenclatura M20 corregida**
 
 ---
 
@@ -10,21 +10,21 @@ Líneas de juego: V20 (Vampiro), W20 (Hombre Lobo), M20 (Mago), C20 (Changeling)
 
 ---
 
-## 🔧 FASE 3.5 ABIERTA — Arquitectura de Reglas Agnósticas
+## ✅ FASE 3.5 CERRADA — Arquitectura de Reglas Agnósticas + Sincronización Completa de Datos
 
 ### ══════════════════════════════════════════════════════
 ### FASE 3.5 — Refactorización del Motor de Reglas (agnostic rules engine)
 
-Objetivo: enriquecer el motor de tipos y la UI para soportar estructuras mecánicas avanzadas sin romper datos existentes.
+Objetivo: enriquecer el motor de tipos y la UI para soportar estructuras mecánicas avanzadas + sincronización completa de facciones y poderes en los 5 sistemas.
 
 | Paso | Tarea | Archivos | Estado |
 |---|---|---|---|
 | **3.5-A** | Tipos nuevos en `powers.ts` | `src/types/powers.ts` | ✅ COMPLETO |
 | **3.5-B** | Formas Garou data object | `src/data/powers/w20Forms.ts` | ✅ COMPLETO |
 | **3.5-C** | W20 triple-eje UI (`PowersView.tsx`) | `src/components/powers/PowersView.tsx` | ✅ COMPLETO |
-| **3.5-D** | MultiPathDiscipline data (Taumaturgia sub-sendas) | `src/data/powers/v20Disciplines.ts` | 🔜 PENDIENTE |
-| **3.5-E** | Paradox/Coincidencia rigor en esferas M20 | `src/data/powers/m20Spheres.ts` | 🔜 PENDIENTE |
-| **3.5-F** | Roadmap de contenido W20 tribus completo (13 tribus × 5) | `src/data/powers/w20Gifts.ts` | 🔜 PENDIENTE |
+| **3.5-D** | MultiPathDiscipline data (Quimerismo + Taumaturgia + Nigromancia multi-senda) | `src/data/powers/v20Disciplines.ts` | ✅ COMPLETO |
+| **3.5-E** | Paradox/Coincidencia rigor en esferas M20 + fix nomenclatura Dreamspeakers | `src/data/powers/m20Spheres.ts`, `src/data/factions/index.ts` | ✅ COMPLETO |
+| **3.5-F** | Sincronización completa: W20 (13 tribus), C20 (9 kiths), Wr20 (15 gremios) | `src/data/powers/w20Gifts.ts`, `src/data/factions/index.ts` | ✅ COMPLETO |
 
 #### Paso 3.5-A — Nuevos tipos en `src/types/powers.ts`
 
@@ -64,7 +64,7 @@ Exporta: W20_FORMS: GarouForm[]    (5 formas con modificadores exactos del manua
 | Hispo | +3 | +2 | +3 | -3 | 0 (fijo) | Dif.5 | Agravado |
 | Lupus | +1 | +2 | +2 | -3 | 0 (animal) | — | Letal |
 
-#### Paso 3.5-C — `PowersView.tsx` — W20 triple-eje
+#### Paso 3.5-C — `PowersView.tsx` — W20 triple-eje (referencia anterior)
 
 Cambios en `src/components/powers/PowersView.tsx`:
 
@@ -75,6 +75,172 @@ Cambios en `src/components/powers/PowersView.tsx`:
 5. **`handleAxisChange`**: al cambiar eje, resetea `activeCatId` a la primera categoría del nuevo eje y limpia `selectedPowerLevel`
 6. **Header breadcrumb**: cuando W20, muestra `RAZA/AUSPICIO/TRIBU › NombreCategoría` debajo del título
 7. **`W20AxisSelector` se renderiza** entre el header y los `CategoryTabs` solo cuando `gameSystem === 'W20'`
+
+---
+
+#### Paso 3.5-D — `v20Disciplines.ts` — Quimerismo + MultiPathDiscipline
+
+##### Quimerismo (Ravnos — disciplina nueva)
+
+| Nivel | Poder | Coste | Efecto |
+|---|---|---|---|
+| 1 | Fantasma Táctil | Gratis | Ilusión de un solo sentido |
+| 2 | Fantasma de los Sentidos | 1 Voluntad | Ilusión multisensorial |
+| 3 | Fantasma con Voluntad | 1 Voluntad | Ilusión autónoma |
+| 4 | Fantasma Permanente | 2 Voluntad | Ilusión permanente |
+| 5 | Fantasma Asesino | 2 Voluntad | Mata al objetivo (daño agravado) |
+
+Facción actualizada: `Ravnos.nativePowerIds = ['animalismo', 'celeridad', 'quimerismo']`
+
+##### Nigromancia — convertida a `MultiPathDiscipline`
+
+```typescript
+{
+  id: 'nigromancia-sepulcro',
+  isMultiPath: true as const,
+  paths: [
+    { id: 'senda-sepulcro', isPrimary: true,  levels: [...5 niveles Senda del Sepulcro] },
+    { id: 'senda-osario',   isPrimary: false, levels: [
+      // L1 Hablar con los Huesos, L2 Animar Esqueleto, L3 Arma de Hueso,
+      // L4 Ejército de Huesos, L5 El Osario Viviente
+    ]},
+    { id: 'senda-cenizas',  isPrimary: false, levels: [
+      // L1 Ver el Umbral, L2 Tocar el Umbral, L3 Velo de Cenizas,
+      // L4 Puerta de Ceniza, L5 Señor de las Cenizas
+    ]},
+  ],
+  levels: [],   // re-export vacío para compatibilidad de tipo
+} as unknown as MultiPathDiscipline
+```
+
+##### Taumaturgia — convertida a `MultiPathDiscipline`
+
+```typescript
+{
+  id: 'taumaturgia-sangre',
+  isMultiPath: true as const,
+  paths: [
+    { id: 'senda-sangre',            isPrimary: true,  levels: [...5 niveles Senda de la Sangre] },
+    { id: 'senda-movimiento-mente',  isPrimary: false, levels: [
+      // L1 Agitar, L2 Impeler, L3 Detener, L4 Mover en Masa, L5 Aplastamiento Mental
+    ]},
+    { id: 'senda-conjuracion',       isPrimary: false, levels: [
+      // L1 Conjurar lo Simple, L2 Conjurar lo Complejo, L3 Conjurar Materia Viva,
+      // L4 Conjurar Animal, L5 Conjurar el Imposible
+    ]},
+  ],
+  levels: [],
+} as unknown as MultiPathDiscipline
+```
+
+##### Cambio de tipo en `src/types/powers.ts`
+
+```typescript
+// ANTES:
+export type PowersIndex = Record<GameSystemId, PowerCategory[]>
+
+// DESPUÉS:
+export type PowersIndex = Record<GameSystemId, (PowerCategory | MultiPathDiscipline)[]>
+```
+
+Y en `v20Disciplines.ts`:
+```typescript
+// ANTES:
+export const V20_DISCIPLINES: PowerCategory[] = [...]
+
+// DESPUÉS:
+import type { PowerCategory, MultiPathDiscipline } from '@/types/powers'
+export const V20_DISCIPLINES: (PowerCategory | MultiPathDiscipline)[] = [...]
+```
+
+> **Nota técnica**: `isMultiPath: true as const` crea un tipo literal incompatible con la unión estructural de `MultiPathDiscipline`, por lo que los objetos se castean con `as unknown as MultiPathDiscipline`. El campo `levels: []` es requerido por el tipo base `PowerCategory`; la UI debe consumir `paths` para renderizar multi-senda.
+
+---
+
+#### Paso 3.5-E — M20 `effectType` + Nomenclatura Dreamspeakers
+
+- **`effectType` en esferas M20**: Auditoría de verificación ejecutada — los 45 niveles (9 esferas × 5) ya tenían `effectType` correctamente asignado. Tarea confirmada completa desde sesión anterior.
+- **Dreamspeakers renombrados** en `src/data/factions/index.ts`:
+  - `id: 'dreamers'` → `id: 'cuentasuenos'`
+  - `name: 'Dreamers (Soñadores)'` → `name: 'Cuentasueños (Dreamspeakers)'`
+  - Lore actualizado con terminología canónica española
+
+---
+
+#### Paso 3.5-F — Sincronización completa de Facciones y Poderes
+
+##### W20 — 13 tribus completas en `factions/index.ts`
+
+| Tribu | ID | `nativePowerIds` | Estado |
+|---|---|---|---|
+| Señores de la Sombra | `senores-sombra` | `dones-senores-sombra` | ✅ (preexistente) |
+| Vástagos de Fenris | `vastagos-fenris` | `dones-vastagos-fenris` | ✅ CORREGIDO |
+| Furias Negras | `furias-negras` | `dones-furias-negras` | ✅ NUEVO |
+| Fianna | `fianna` | `dones-fianna` | ✅ NUEVO |
+| Contemplaestrellas | `contemplaestrellas` | `dones-contemplaestrellas` | ✅ NUEVO |
+| Roedores de Huesos | `bone-gnawers` | `dones-bone-gnawers` | ✅ NUEVO |
+| Caminantes de Cristal | `caminantes-cristal` | `dones-caminantes-cristal` | ✅ NUEVO |
+| Garras Rojas | `garras-rojas` | `dones-garras-rojas` | ✅ NUEVO |
+| Hijos de Gaia | `hijos-gaia` | `dones-hijos-gaia` | ✅ NUEVO |
+| Peregrinos Silenciosos | `peregrinos-silenciosos` | `dones-peregrinos-silenciosos` | ✅ NUEVO |
+| Colmillos de Plata | `colmillos-plata` | `dones-colmillos-plata` | ✅ NUEVO |
+| Uktena | `uktena` | `dones-uktena` | ✅ NUEVO |
+| Wendigo | `wendigo` | `dones-wendigo` | ✅ NUEVO |
+
+##### W20 — 8 nuevos conjuntos de dones de tribu en `w20Gifts.ts`
+
+| Categoría | L1 | L2 | L3 | L4 | L5 |
+|---|---|---|---|---|---|
+| Dones Fianna | Corazón del Bardo | Furia del Festín | Paso Feérico | Canto de Gaia | Balada de los Héroes |
+| Dones Roedores de Huesos | Cara de la Multitud | Estómago de Acero | Red de los Marginados | Plaga de Ratas | Ciudad de los Olvidados |
+| Dones Contemplaestrellas | Leer el Aura Espiritual | Voz del Umbra | Secretos del Umbra Profundo | Vínculo del Conocimiento | Guardián del Umbra |
+| Dones Hijos de Gaia | Toque Sanador | Voz de la Paz | Escudo de Gaia | Purificación | Abrazo de Gaia |
+| Dones Peregrinos Silenciosos | Sentido de los Muertos | Hablar con los Muertos | Paso entre Velos | Guiar el Alma | Señor de los Umbrales |
+| Dones Colmillos de Plata | Aura de Nobleza | Mando de la Manada | Desafío Ancestral | Pureza del Linaje | Rugido del Ancestro |
+| Dones Uktena | Visión del Buscador | Trampa de Espíritu | Conocimiento Prohibido | Fetiche Prohibido | Ojo de Uktena |
+| Dones Wendigo | Soplo del Invierno | Cacería del Espíritu | Tormenta de Nieve | Ira de los Ancestros | Maldición del Wendigo |
+
+##### C20 — 4 nuevas Parentelas en `factions/index.ts`
+
+| Parentela | ID | Debilidad |
+|---|---|---|
+| Gorros Rojos (Redcaps) | `redcaps` | Hambre Insaciable — deben destrozar y consumir algo antes de rendirse |
+| Sluagh | `sluagh` | Voz del Susurro — incapaces de hablar por encima de un susurro |
+| Sátiros (Satyrs) | `satyrs` | Pasión Insaciable — sucumben fácilmente a impulsos y deseos extremos |
+| Trols (Trolls) | `trolls` | Lazo de Honor — sufren -2 dados si rompen su palabra dada |
+
+**Total C20 parentelas: 9** (pooka, sídhe, eshu, nocker, boggan + 4 nuevas)
+
+##### Wr20 — 10 nuevos Gremios en `factions/index.ts`
+
+| Gremio | ID | Arcano asociado |
+|---|---|---|
+| Artesanos | `artisans` | Keening arcano |
+| Alquimistas | `alchemists` | Flujo |
+| Cantores | `chanteurs` | Keening |
+| Embrujadores | `haunters` | Pandemonium |
+| Enmascarados | `masquers` | Moldeo |
+| Mnemoi | `mnemoi` | Red de Vida |
+| Titiriteros | `puppeteers` | Marioneta |
+| Areneros | `sandmen` | Fantasmagoría |
+| Espantos | `spooks` | Argos |
+| Usureros | `usurers` | Usura |
+
+**Total Wr20 gremios: 15** (5 originales + 10 nuevos)
+
+---
+
+### 📊 Conteo Final de Facciones y Poderes — Fase 3.5
+
+| Sistema | Facciones | Poderes | PowerLevel total |
+|---|---|---|---|
+| **V20** | 13 clanes | 16 disciplinas (incl. 2 MultiPath × 3 sendas) | ~80 PL (niveles primarios) + 20 PL sub-sendas |
+| **W20** | 13 tribus | 13 conjuntos tribu + 5 auspicios + 3 razas = 21 categorías | ~105 PL |
+| **M20** | 9 tradiciones | 9 esferas × 5 niveles | 45 PL |
+| **C20** | 9 parentelas | 9 artes × 5 niveles | 45 PL |
+| **Wr20** | 15 gremios | 15 arcanos × 5 niveles | 75 PL |
+
+**Verificación TypeScript**: `npx tsc --noEmit` — único aviso pre-existente: `TS6133 'category' declared but never read` en `PowersView.tsx:68` (variable no utilizada en componente UI, no en data layer). Data layer: 0 errores.
 
 ---
 
@@ -105,8 +271,11 @@ Cambios en `src/components/powers/PowersView.tsx`:
 | Potencia | 5/5 | ✅ |
 | Obtenebración | 5/5 | ✅ |
 | Vicisitud | 5/5 | ✅ |
+| **Quimerismo** | **5/5** | **✅ Fase 3.5** |
+| **Nigromancia** (MultiPath: Sepulcro + Osario + Cenizas) | **5+5+5/5** | **✅ Fase 3.5** |
+| **Taumaturgia** (MultiPath: Sangre + Mov.Mente + Conjuración) | **5+5+5/5** | **✅ Fase 3.5** |
 
-**Total V20: 10 disciplinas × 5 niveles = 50 PowerLevel.**
+**Total V20: 16 disciplinas — 80 PL niveles primarios + 20 PL sub-sendas = ~100 PowerLevel.**
 
 ### Dones W20 — Estado de cobertura
 
@@ -226,12 +395,17 @@ Los siguientes `nativePowerIds` de clanes V20 apuntaban a slugs inexistentes en 
 
 #### Estado post-auditoría
 
-- ✅ `npx tsc --noEmit` — 0 errores en todos los archivos del data layer
+- ✅ `npx tsc --noEmit` — 0 errores en todos los archivos del data layer (único aviso: variable no usada en `PowersView.tsx:68`, pre-existente)
 - ✅ Todos los `nativePowerIds` de clanes V20 apuntan a IDs existentes en `v20Disciplines.ts`
 - ✅ Todos los `associatedWith.type` en W20 usan los valores canónicos (`auspice` / `tribe` / `breed`)
-- ✅ Todas las esferas M20 tienen `rulingConcept` (9/9)
+- ✅ Todas las esferas M20 tienen `rulingConcept` (9/9) y `effectType` (45/45 niveles)
 - ✅ Todas las Artes C20 tienen `realmRequired[]` y `cost.resource: 'Glamour'` (9/9)
-- ⚠️ **Pendiente Fase 4**: Chimerismo/Quimerismo (Ravnos) no tiene implementación en v20Disciplines.ts — disciplina única que requiere bloque de datos propio
+- ✅ **Quimerismo (Ravnos)** implementado en Fase 3.5 — 5 niveles, ID `quimerismo`, wired en `Ravnos.nativePowerIds`
+- ✅ **Nigromancia** y **Taumaturgia** convertidas a `MultiPathDiscipline` (3 sendas cada una)
+- ✅ **13 tribus W20** con facciones completas y gift sets sincronizados
+- ✅ **9 kiths C20** en facciones (4 nuevas: Gorros Rojos, Sluagh, Sátiros, Trols)
+- ✅ **15 gremios Wr20** en facciones (10 nuevos)
+- ✅ **M20 Dreamspeakers** renombrados canónicamente a `Cuentasueños`
 
 ---
 
@@ -239,13 +413,13 @@ Los siguientes `nativePowerIds` de clanes V20 apuntaban a slugs inexistentes en 
 
 | Sistema | Archivo | Poderes totales | Estado |
 |---|---|---|---|
-| V20 | `v20Disciplines.ts` | 15 disciplinas × 5 = **75 PowerLevel** | ✅ |
-| W20 | `w20Gifts.ts` | 13 categorías, ~60 entradas | ✅ |
+| V20 | `v20Disciplines.ts` | 16 disciplinas (2 MultiPath × 3 sendas) = **~100 PowerLevel** | ✅ Fase 3.5 |
+| W20 | `w20Gifts.ts` | 21 categorías (13 tribu + 5 auspicio + 3 raza) = **~105 PowerLevel** | ✅ Fase 3.5 |
 | M20 | `m20Spheres.ts` | 9 esferas × 5 = **45 PowerLevel** | ✅ |
 | C20 | `c20Arts.ts` | 9 Artes × 5 = **45 PowerLevel** | ✅ |
 | Wr20 | `wr20Arcanos.ts` | 15 Arcanos × 5 = **75 PowerLevel** | ✅ |
 
-**Total acumulado FASE 3: ≥ 360 `PowerLevel` con `systemText`, `dicePool`, `cost`, `actionType`, `duration`, `tags` completos para los 5 sistemas.**
+**Total acumulado FASE 3.5: ≥ 370 `PowerLevel` con `systemText`, `dicePool`, `cost`, `actionType`, `duration`, `tags` completos para los 5 sistemas.**
 
 ---
 
@@ -320,7 +494,8 @@ Dashboard.tsx
 
 ### PowersIndex
 ```typescript
-type PowersIndex = Record<GameSystemId, PowerCategory[]>
+// ── Tipo actualizado en Fase 3.5 para soportar disciplinas multi-senda ──
+type PowersIndex = Record<GameSystemId, (PowerCategory | MultiPathDiscipline)[]>
 
 interface PowerCategory {
   id: string
@@ -329,10 +504,29 @@ interface PowerCategory {
   categoryType: PowerCategoryType  // 'discipline' | 'gift' | 'sphere' | 'art' | 'realm' | 'arcano'
   description?: string
   rulingConcept?: string           // M20: "Control del Espacio"
-  associatedWith?: { type: 'auspice' | 'tribe', name: string }  // W20
+  associatedWith?: {               // W20 / C20 / Wr20
+    type: 'auspice' | 'tribe' | 'breed' | 'tradition' | 'convention' | 'kith' | 'guild' | 'generic'
+    name: string
+  }
   levels: PowerLevel[]
 }
 
+// ── MultiPathDiscipline — V20: Taumaturgia y Nigromancia ──────────────────
+interface PowerPath {
+  id: string
+  name: string
+  isPrimary: boolean    // true = senda primaria/por defecto
+  description: string
+  levels: PowerLevel[]
+}
+
+interface MultiPathDiscipline extends Omit<PowerCategory, 'levels'> {
+  isMultiPath: true
+  paths: PowerPath[]
+  levels: PowerLevel[]  // [] — vacío; la UI usa `paths` para renderizar
+}
+
+// ── PowerLevel ────────────────────────────────────────────────────────────
 interface PowerLevel {
   level: number
   name: string
@@ -344,6 +538,7 @@ interface PowerLevel {
   duration?: string
   effectType?: 'coincidental' | 'vulgar' | 'instrumental'  // M20
   realmRequired?: string[]                                   // C20
+  sourceType?: 'auspice' | 'tribe' | 'breed' | 'camp' | 'generic'  // W20
   tags?: string[]
 }
 ```
@@ -429,6 +624,21 @@ Objetivo: cubrir al 100% los sistemas de poderes del manual básico de cada lín
 
 **✅ FASE 3: 100% COMPLETADA. Total acumulado: ≥ 360 PowerLevel.**
 
+### W20 — Cobertura Fase 3.5 (tribus nuevas)
+
+| Categoría | Tipo | Rangos | Estado |
+|---|---|---|---|
+| **Fianna** | **tribe** | **5/5** | **✅ NUEVO (Fase 3.5)** |
+| **Roedores de Huesos** | **tribe** | **5/5** | **✅ NUEVO (Fase 3.5)** |
+| **Contemplaestrellas** | **tribe** | **5/5** | **✅ NUEVO (Fase 3.5)** |
+| **Hijos de Gaia** | **tribe** | **5/5** | **✅ NUEVO (Fase 3.5)** |
+| **Peregrinos Silenciosos** | **tribe** | **5/5** | **✅ NUEVO (Fase 3.5)** |
+| **Colmillos de Plata** | **tribe** | **5/5** | **✅ NUEVO (Fase 3.5)** |
+| **Uktena** | **tribe** | **5/5** | **✅ NUEVO (Fase 3.5)** |
+| **Wendigo** | **tribe** | **5/5** | **✅ NUEVO (Fase 3.5)** |
+
+**Fase 3.5 W20: 8 nuevas categorías × 5 dones = 40 nuevas entradas PowerLevel.**
+
 ### W20 — Cobertura de Bloques 7+8
 
 | Categoría | Tipo | Rangos | Estado |
@@ -482,15 +692,25 @@ Nota: Ragabash, Philodox y Galliard ya cubiertos en Fase 2.5 (5 niveles cada uno
 
 | Prioridad | Tarea | Descripción |
 |---|---|---|
-| 🔴 **1** | `[ ] AttributesView` | Vista dedicada con atributos+habilidades de cada juego, sistema de puntos editables; alimentada por los `attributeGroups` del config |
-| 🔴 **2** | `[ ] DiceRoller (Motor d10)` | Simulador de pool d10 interactivo: seleccionar atributo + habilidad/disciplina, configurar dificultad, lanzar, leer resultado con éxitos/fallos/pifias; integrado con `DicePool` del data layer |
-| 🟠 **3** | `[ ] CharacterSheet` | Formulario interactivo de ficha de personaje con campos editables y cálculo automático de pools |
-| 🟡 **4** | `[ ] CombatView` | Mecánica de iniciativa, daño, tipos, flujo de combate |
-| 🟡 **5** | `[ ] SearchGlobal` | Búsqueda cross-game en poderes + facciones usando índice en memoria |
-| 🟢 **6** | `[ ] Persistencia` | `localStorage` / exportar JSON de personaje |
-| 🟢 **7** | `[ ] React Router` | Migrar enrutamiento interno a React Router v6 para URLs navegables |
-| 🟢 **8** | `[ ] Testing` | Vitest + Testing Library para componentes críticos (PowersView, FactionsView) |
-| ⚪ **9** | `[ ] Chimerismo/Quimerismo (Ravnos)` | Disciplina única Ravnos pendiente de bloque de datos propio en v20Disciplines.ts |
+| 🔴 **1** | `[ ] MultiPathDiscipline UI` | Renderizar Taumaturgia y Nigromancia en `PowersView` con selector de senda activa; el componente debe leer `isMultiPath`, mostrar `paths[]` como sub-tabs y renderizar los niveles de la senda seleccionada |
+| 🔴 **2** | `[ ] AttributesView` | Vista dedicada con atributos+habilidades de cada juego, sistema de puntos editables; alimentada por los `attributeGroups` del config |
+| 🔴 **3** | `[ ] DiceRoller (Motor d10)` | Simulador de pool d10 interactivo: seleccionar atributo + habilidad/disciplina, configurar dificultad, lanzar, leer resultado con éxitos/fallos/pifias; integrado con `DicePool` del data layer |
+| 🟠 **4** | `[ ] CharacterSheet` | Formulario interactivo de ficha de personaje con campos editables y cálculo automático de pools |
+| 🟡 **5** | `[ ] CombatView` | Mecánica de iniciativa, daño, tipos, flujo de combate |
+| 🟡 **6** | `[ ] SearchGlobal` | Búsqueda cross-game en poderes + facciones usando índice en memoria |
+| 🟢 **7** | `[ ] Fix TS6133` | Eliminar la variable `category` no usada en `PowersView.tsx:68` para limpiar `npx tsc --noEmit` completamente |
+| 🟢 **8** | `[ ] Persistencia` | `localStorage` / exportar JSON de personaje |
+| 🟢 **9** | `[ ] React Router` | Migrar enrutamiento interno a React Router v6 para URLs navegables |
+| 🟢 **10** | `[ ] Testing` | Vitest + Testing Library para componentes críticos (PowersView, FactionsView) |
+
+> **Nota para Fase 4 — MultiPath UI**: `PowersView.tsx` aún trata todas las categorías como `PowerCategory` con `levels[]` directos. Al iterar sobre `ALL_POWERS['V20']`, las entradas `MultiPathDiscipline` tendrán `isMultiPath === true`; el componente debe branching en este flag para renderizar el selector de senda. Patrón sugerido:
+> ```typescript
+> if ('isMultiPath' in category && category.isMultiPath) {
+>   // renderizar PathSelector con category.paths
+> } else {
+>   // renderizar niveles normales con category.levels
+> }
+> ```
 
 ---
 
@@ -535,7 +755,7 @@ wod20 - Vademecum/
 │   │   │   ├── wr20Arcanos.ts
 │   │   │   └── index.ts        # ALL_POWERS: PowersIndex
 │   │   └── factions/
-│   │       └── index.ts        # ALL_FACTIONS: FactionsIndex (13+5+9+5+5 facciones)
+│   │       └── index.ts        # ALL_FACTIONS: FactionsIndex (13+13+9+9+15 facciones)
 │   ├── components/
 │   │   ├── Dashboard.tsx       # Orquestador principal + todos los sub-componentes del home
 │   │   ├── powers/

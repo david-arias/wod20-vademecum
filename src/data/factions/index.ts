@@ -150,9 +150,8 @@ const V20_CLANS = [
   {
     id: 'ravnos', name: 'Ravnos', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Nómadas',
-    lore: 'Viajeros eternos y ilusionistas maestros, los Ravnos son el clan más difícil de atrapar y el más difícil de creer. Sus ilusiones son tan perfectas que pueden hacer creer casi cualquier cosa.',
-    // chimerismo pendiente de implementar en v20Disciplines.ts (disciplina única Ravnos)
-    nativePowerIds: ['animalismo', 'celeridad', 'fortitud'],
+    lore: 'Viajeros eternos e ilusionistas maestros, los Ravnos son el clan más difícil de atrapar y el más difícil de creer. Sus ilusiones son tan perfectas que pueden hacer creer casi cualquier cosa, y su Quimerismo único les distingue de cualquier otro linaje.',
+    nativePowerIds: ['animalismo', 'celeridad', 'quimerismo'],
     nativePowerLabel: 'Disciplinas de clan',
     weakness: {
       name: 'Vicio Compulsivo',
@@ -177,7 +176,7 @@ const V20_CLANS = [
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────
-// W20 — TRIBUS (sample 5 de 13)
+// W20 — TRIBUS (13 tribus canónicas completas)
 // ─────────────────────────────────────────────────────────────────────────────
 const W20_TRIBES = [
   {
@@ -197,7 +196,7 @@ const W20_TRIBES = [
     id: 'vastagos-fenris', name: 'Vástagos de Fenris', gameSystem: 'W20' as const, factionType: 'tribe' as const,
     archetype: 'Guerreros',
     lore: 'Los guerreros más salvajes y feroces de todas las tribus. Honran a Fenris, el lobo devorador, y buscan la gloria en la batalla. Para ellos, la guerra es purificación.',
-    nativePowerIds: ['dones-ahroun'],
+    nativePowerIds: ['dones-vastagos-fenris'],
     nativePowerLabel: 'Dones tribales',
     weakness: {
       name: 'Berserker',
@@ -209,21 +208,21 @@ const W20_TRIBES = [
   {
     id: 'fianna', name: 'Fianna', gameSystem: 'W20' as const, factionType: 'tribe' as const,
     archetype: 'Bardos',
-    lore: 'La tribu de los cantores, poetas y guerreros irlandeses. Los Fianna preservan la historia y la leyenda Garou con la misma pasión con que defienden a Gaia.',
-    nativePowerIds: ['dones-theurge'],
+    lore: 'La tribu de los cantores, poetas y guerreros irlandeses. Los Fianna preservan la historia y la leyenda Garou con la misma pasión con que defienden a Gaia. Cada batalla es un poema, cada poema una batalla.',
+    nativePowerIds: ['dones-fianna'],
     nativePowerLabel: 'Dones tribales',
     weakness: {
       name: 'Sed de Placer',
       description: 'Los Fianna se dejan llevar fácilmente por el placer, el vino y la fiesta.',
       mechanical: '+1 dificultad a todas las tiradas de Autocontrol cuando hay alcohol, fiesta o placeres disponibles.',
     },
-    notableMembers: ['Rhiannon Morningkill', 'Liam'],
+    notableMembers: ['Rhiannon Morningkill', 'Liam O\'Donal'],
   },
   {
     id: 'contemplaestrellas', name: 'Contemplaestrellas', gameSystem: 'W20' as const, factionType: 'tribe' as const,
     archetype: 'Místicos',
-    lore: 'Guardianes del conocimiento y los secretos espirituales, los Contemplaestrellas tienen acceso a poderes espirituales y conocimientos que otras tribus ni sospechan.',
-    nativePowerIds: ['dones-theurge'],
+    lore: 'Guardianes del conocimiento oculto, los Contemplaestrellas preservan los secretos del Umbra y las enseñanzas de los espíritus ancestrales. Su conocimiento es su poder y su mayor fardo.',
+    nativePowerIds: ['dones-contemplaestrellas'],
     nativePowerLabel: 'Dones tribales',
     weakness: {
       name: 'Secretos Prohibidos',
@@ -233,17 +232,121 @@ const W20_TRIBES = [
     notableMembers: ['Evan Heals-the-Past', 'Crying Wind'],
   },
   {
-    id: 'bone-gnawers', name: 'Bone Gnawers (Roedores de Huesos)', gameSystem: 'W20' as const, factionType: 'tribe' as const,
+    id: 'bone-gnawers', name: 'Roedores de Huesos', gameSystem: 'W20' as const, factionType: 'tribe' as const,
     archetype: 'Supervivientes',
-    lore: 'Los parias de la sociedad Garou, los Bone Gnawers viven entre los más pobres y marginados de la humanidad. Son los mejores adaptados al mundo urbano y conocen cada callejón.',
-    nativePowerIds: ['animalismo'],
+    lore: 'Los parias de la sociedad Garou, los Roedores de Huesos viven entre los más pobres y marginados de la humanidad. Son los mejor adaptados al mundo urbano: conocen cada callejón, cada cara sin techo, cada red de supervivencia.',
+    nativePowerIds: ['dones-bone-gnawers'],
     nativePowerLabel: 'Dones tribales',
     weakness: {
       name: 'Sin Recursos',
-      description: 'Los Bone Gnawers raramente tienen acceso a equipamiento de calidad o financiación.',
+      description: 'Los Roedores raramente tienen acceso a equipamiento de calidad o financiación.',
       mechanical: 'No pueden tener más de 2 puntos en los Trasfondos de Recursos, Contactos o Aliados al inicio del juego.',
     },
     notableMembers: ['Alicia Vargas', 'Dog'],
+  },
+  {
+    id: 'furias-negras', name: 'Furias Negras', gameSystem: 'W20' as const, factionType: 'tribe' as const,
+    archetype: 'Guerreras',
+    lore: 'Las hijas de Gaia, guardianas de los misterios femeninos y de los lugares sagrados. Las Furias Negras son las más antiguas de las tribus Garou, descendientes de las amazonas originales, y su ira contra el Wyrm es sagrada como la luna.',
+    nativePowerIds: ['dones-furias-negras'],
+    nativePowerLabel: 'Dones tribales',
+    weakness: {
+      name: 'Ira de las Erinias',
+      description: 'Las Furias Negras guardan un odio ancestral hacia los hombres que han traicionado lo sagrado.',
+      mechanical: 'Al tratar con hombres que hayan cometido crímenes contra mujeres o lugares sagrados, las tiradas de Autocontrol tienen dificultad +2.',
+    },
+    notableMembers: ['Caitlin Doyle', 'Vera Ivanova'],
+  },
+  {
+    id: 'caminantes-cristal', name: 'Caminantes de Cristal', gameSystem: 'W20' as const, factionType: 'tribe' as const,
+    archetype: 'Tecnólogos',
+    lore: 'La tribu de las ciudades y la tecnología, los Caminantes de Cristal abrazan la civilización humana como campo de batalla contra el Wyrm. Donde otros Garou ven la ciudad como enemigo, ellos ven una herramienta.',
+    nativePowerIds: ['dones-caminantes-cristal'],
+    nativePowerLabel: 'Dones tribales',
+    weakness: {
+      name: 'Desconexión con la Naturaleza',
+      description: 'La vida en las ciudades ha debilitado su conexión con Gaia.',
+      mechanical: 'En entornos naturales alejados de la civilización, todas las tiradas espirituales tienen dificultad +1. No pueden ganar más de 3 puntos de Gnosis por rituales realizados en naturaleza virgen.',
+    },
+    notableMembers: ['Mario Esperanza', 'Sarah Running Sky'],
+  },
+  {
+    id: 'garras-rojas', name: 'Garras Rojas', gameSystem: 'W20' as const, factionType: 'tribe' as const,
+    archetype: 'Puristas',
+    lore: 'La tribu más extremista y sangrienta, los Garras Rojas creen que la humanidad es una plaga de la que Gaia debe ser purificada. Son los terroristas ecológicos del mundo Garou: implacables, efectivos y aterradores.',
+    nativePowerIds: ['dones-garras-rojas'],
+    nativePowerLabel: 'Dones tribales',
+    weakness: {
+      name: 'El Odio a la Humanidad',
+      description: 'Los Garras Rojas desprecian fundamentalmente a los humanos.',
+      mechanical: 'No pueden tener más de 1 punto en los Trasfondos de Contactos o Aliados humanos. En interacciones sociales con humanos conscientes, todas las tiradas tienen dificultad +2.',
+    },
+    notableMembers: ['Wyrm-Breaker', 'The Red Knife'],
+  },
+  {
+    id: 'hijos-gaia', name: 'Hijos de Gaia', gameSystem: 'W20' as const, factionType: 'tribe' as const,
+    archetype: 'Pacificadores',
+    lore: 'Los diplomáticos y sanadores del mundo Garou. Los Hijos de Gaia creen en la reconciliación, la compasión y el poder curativo del amor de Gaia. Son los que se niegan a ver al enemigo como algo que solo merece ser destruido.',
+    nativePowerIds: ['dones-hijos-gaia'],
+    nativePowerLabel: 'Dones tribales',
+    weakness: {
+      name: 'Aversión a la Violencia Innecesaria',
+      description: 'Los Hijos de Gaia tienen dificultad para infligir daño cuando no es absolutamente necesario.',
+      mechanical: 'Para atacar o matar a algo que no sea claramente un agente del Wyrm, deben superar Voluntad dif. 7. Actos de violencia innecesaria reducen permanentemente su Renombre de Honor.',
+    },
+    notableMembers: ['Sherri Calls-the-Rain', 'Evan Song'],
+  },
+  {
+    id: 'peregrinos-silenciosos', name: 'Peregrinos Silenciosos', gameSystem: 'W20' as const, factionType: 'tribe' as const,
+    archetype: 'Psicopompos',
+    lore: 'Los guías de los muertos, los Peregrinos Silenciosos son los Garou que acompañan a las almas en su tránsito. Tienen acceso a poderes sobre la muerte que los demás Garou ignoran, y su silencio no es timidez —es reverencia por el paso que todos los seres deben hacer.',
+    nativePowerIds: ['dones-peregrinos-silenciosos'],
+    nativePowerLabel: 'Dones tribales',
+    weakness: {
+      name: 'El Peso del Silencio',
+      description: 'Los Peregrinos Silenciosos no pueden hablar en voz alta excepto en rituales sagrados.',
+      mechanical: 'No pueden hablar en voz alta sin gastar 1 punto de Voluntad. Se comunican mediante lenguaje de señas Garou o escritura. En combate, las órdenes verbales cuestan 1 Voluntad cada una.',
+    },
+    notableMembers: ['Tamsin Bailey', 'The Walking Dead'],
+  },
+  {
+    id: 'colmillos-plata', name: 'Colmillos de Plata', gameSystem: 'W20' as const, factionType: 'tribe' as const,
+    archetype: 'Aristocracia',
+    lore: 'Los nobles del mundo Garou, los Colmillos de Plata reclaman el liderazgo de las tropas de luna como herencia ancestral. Su linaje puro y su tradición les otorga poderes únicos —pero también una arrogancia que amenaza con destruirlos desde dentro.',
+    nativePowerIds: ['dones-colmillos-plata'],
+    nativePowerLabel: 'Dones tribales',
+    weakness: {
+      name: 'Orgullo de la Sangre Pura',
+      description: 'La obsesión con la pureza racial de los Colmillos de Plata les ciega ante muchas verdades.',
+      mechanical: 'No pueden cooperar plenamente con Garou de razas Metis o con híbridos marcados. En grupos mixtos, todas las tiradas de liderazgo tienen dificultad +1 por la tensión generada.',
+    },
+    notableMembers: ['Jonas Albrecht', 'Mari Cabrah'],
+  },
+  {
+    id: 'uktena', name: 'Uktena', gameSystem: 'W20' as const, factionType: 'tribe' as const,
+    archetype: 'Guardadores de Secretos',
+    lore: 'La tribu de los pueblos indígenas americanos, los Uktena guardan los secretos más peligrosos del mundo sobrenatural. Conocen fetiches prohibidos, espíritus oscuros atrapados, y poderes que otros Garou ni se atreverían a aprender.',
+    nativePowerIds: ['dones-uktena'],
+    nativePowerLabel: 'Dones tribales',
+    weakness: {
+      name: 'La Tentación de lo Prohibido',
+      description: 'La fascinación de los Uktena por los poderes oscuros les pone en riesgo constante de corrupción.',
+      mechanical: 'Al estudiar o usar un fetiche o conocimiento prohibido del Wyrm, deben superar Voluntad dif. 7 o sentir fascinación compulsiva por continuar. Cada uso de conocimiento prohibido reduce en 1 su Renombre de Honor.',
+    },
+    notableMembers: ['Marcus Two Moons', 'Wind Spirit'],
+  },
+  {
+    id: 'wendigo', name: 'Wendigo', gameSystem: 'W20' as const, factionType: 'tribe' as const,
+    archetype: 'Guardianes del Norte',
+    lore: 'La tribu más antigua de América del Norte, los Wendigo son los guardianes de los pueblos nativos y las tierras del frío. Su conexión con el invierno y la cacería los hace letales, y su ira contra aquellos que han destruido las tierras de sus ancestros arde con la intensidad del frío polar.',
+    nativePowerIds: ['dones-wendigo'],
+    nativePowerLabel: 'Dones tribales',
+    weakness: {
+      name: 'Odio a los Invasores',
+      description: 'Los Wendigo cargan con siglos de ira contra los que colonizaron sus tierras sagradas.',
+      mechanical: 'Al interactuar con Garou de tribus de origen europeo en territorio ancestral wendigo, Autocontrol dif. +1. Al ver destrucción de tierras sagradas nativas, Rabia automática (tirada Autocontrol dif. 7 o frenesí).',
+    },
+    notableMembers: ['White Thunder', 'Running Bear'],
   },
 ]
 
@@ -343,9 +446,9 @@ const M20_TRADITIONS = [
     notableMembers: ['Valoran', 'Matthias'],
   },
   {
-    id: 'dreamers', name: 'Dreamers (Soñadores)', gameSystem: 'M20' as const, factionType: 'tradition' as const,
+    id: 'cuentasuenos', name: 'Cuentasueños (Dreamspeakers)', gameSystem: 'M20' as const, factionType: 'tradition' as const,
     archetype: 'Chamanes',
-    lore: 'Los Dreamers son los chamanes y hombres-medicina de culturas indígenas y chamánicas de todo el mundo. Su magia es instintiva, conectada a la tierra y los espíritus ancestrales.',
+    lore: 'Los Cuentasueños son los chamanes, hombres-medicina y narradores espirituales de culturas indígenas y chamánicas de todo el mundo. Su magia es instintiva, conectada a la tierra y los espíritus ancestrales que hablan a través de los sueños.',
     nativePowerIds: ['correspondencia', 'entropia'],
     nativePowerLabel: 'Esferas predominantes',
     weakness: {
@@ -434,6 +537,54 @@ const C20_KITHS = [
       mechanical: 'Después de (Glamour en semanas) en el mismo lugar, el Eshu debe superar Voluntad dif. 7 para no partir en busca de nuevas aventuras.',
     },
   },
+  {
+    id: 'redcaps', name: 'Gorros Rojos (Redcaps)', gameSystem: 'C20' as const, factionType: 'kith' as const,
+    archetype: 'Depredadores',
+    lore: 'Los Gorros Rojos son los más temidos de los Kithain: criaturas de dientes afilados y apetito insaciable que devoran casi cualquier cosa. Bajo su aspecto de acólitos brutales de los sueños oscuros late un hambre que nunca puede saciarse del todo.',
+    nativePowerIds: ['llorona'],
+    nativePowerLabel: 'Artes preferidas',
+    weakness: {
+      name: 'Hambre Insaciable',
+      description: 'Los Gorros Rojos están dominados por un hambre permanente y compulsiva.',
+      mechanical: 'Cada escena en que no consuman algo (físicamente —objeto, ser vivo) deben tirar Autocontrol dif. 7 o comenzar a devorar lo más cercano. No pueden tener más de 1 punto en Apariencia.',
+    },
+  },
+  {
+    id: 'sluagh', name: 'Sluagh', gameSystem: 'C20' as const, factionType: 'kith' as const,
+    archetype: 'Espías',
+    lore: 'Criaturas de susurros y sombras, los Sluagh son los recopiladores de secretos del mundo feérico. Viven en espacios oscuros y olvidados, arañas del conocimiento que tejen redes de información invisibles para otros Kithain.',
+    nativePowerIds: ['somniloquios'],
+    nativePowerLabel: 'Artes preferidas',
+    weakness: {
+      name: 'Voz del Susurro',
+      description: 'Los Sluagh no pueden hablar por encima de un susurro.',
+      mechanical: 'Físicamente incapaces de alzar la voz —ni en combate, ni de desesperación. Hablar en voz audible para más de 2 personas requiere Voluntad dif. 8. Esto hace imposible gritar órdenes o alertas.',
+    },
+  },
+  {
+    id: 'satyrs', name: 'Sátiros (Satyrs)', gameSystem: 'C20' as const, factionType: 'kith' as const,
+    archetype: 'Hedonistas',
+    lore: 'Medio humanos, medio cabra, los Sátiros son los amantes, músicos y filósofos del mundo feérico. Su pasión por la vida y el placer es legendaria, pero bajo ese hedonismo exuberante existe una profundidad filosófica que muchos subestiman.',
+    nativePowerIds: ['metamorfosis'],
+    nativePowerLabel: 'Artes preferidas',
+    weakness: {
+      name: 'Pasión Insaciable',
+      description: 'La búsqueda del placer extremo puede llevar a los Sátiros a rincones peligrosos.',
+      mechanical: 'Ante una invitación a cualquier tipo de placer intenso (música extraordinaria, amor, debate filosófico, vino), deben superar Voluntad dif. 7 para no involucrarse. Pueden olvidar obligaciones críticas en favor de placeres inmediatos.',
+    },
+  },
+  {
+    id: 'trolls', name: 'Trols (Trolls)', gameSystem: 'C20' as const, factionType: 'kith' as const,
+    archetype: 'Guardianes',
+    lore: 'Gigantes de corazón noble, los Trols son los guerreros y guardianes del mundo feérico. Su fuerza es legendaria, pero su compromiso con el honor y la lealtad es aún mayor. Son los que se colocan entre sus compañeros y el peligro sin pensarlo dos veces.',
+    nativePowerIds: ['metamorfosis'],
+    nativePowerLabel: 'Artes preferidas',
+    weakness: {
+      name: 'Lazo de Honor',
+      description: 'Los Trols están atados por un código de honor tan férreo que puede convertirse en trampa.',
+      mechanical: 'Si prometen algo o dan su palabra, deben cumplirlo con Voluntad dif. 8 para incumplirlo incluso si hacerlo les pone en grave peligro. Romper una promesa reduce en 1 permanente su Glamour hasta que reparen el honor.',
+    },
+  },
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -498,6 +649,126 @@ const WR20_GUILDS = [
       name: 'Deber Antes que Todo',
       description: 'El deber siempre supera el deseo personal.',
       mechanical: 'Ante una amenaza directa a su área de vigilancia, deben responder aunque ello les ponga en peligro personal.',
+    },
+  },
+  {
+    id: 'artisans', name: 'Artesanos (Artisans)', gameSystem: 'Wr20' as const, factionType: 'guild' as const,
+    archetype: 'Creadores de Belleza',
+    lore: 'Los Artesanos son los artistas del Umbral: pintores, escultores y músicos cuya obra genera Pathos suficiente para mantener a los wraiths cuerdos. Su arte es literalmente vital en el Más Allá.',
+    nativePowerIds: ['keening'],
+    nativePowerLabel: 'Arcanos del Gremio',
+    weakness: {
+      name: 'Perfeccionismo Obsesivo',
+      description: 'Los Artesanos no pueden dejar una obra incompleta sin consecuencias.',
+      mechanical: 'Si interrumpen una creación artística en proceso, pierden 1 punto de Pathos y deben superar Voluntad dif. 7 para concentrarse en otra cosa hasta completarla o destruirla.',
+    },
+  },
+  {
+    id: 'alchemists', name: 'Alquimistas (Alchemists)', gameSystem: 'Wr20' as const, factionType: 'guild' as const,
+    archetype: 'Transmutadores',
+    lore: 'Los Alquimistas dominan la materia espectral, transmutando sustancias del Umbral en otras más útiles o peligrosas. Son los farmacéuticos y los envenenadores del mundo de los muertos.',
+    nativePowerIds: ['flux'],
+    nativePowerLabel: 'Arcanos del Gremio',
+    weakness: {
+      name: 'Adicción a la Transmutación',
+      description: 'El contacto constante con materiales mutables crea dependencia.',
+      mechanical: 'Si no realizan un proceso de transmutación en 24 horas espectrales, pierden 1 punto de Voluntad por día hasta hacerlo.',
+    },
+  },
+  {
+    id: 'chanteurs', name: 'Cantores (Chanteurs)', gameSystem: 'Wr20' as const, factionType: 'guild' as const,
+    archetype: 'Manipuladores',
+    lore: 'Los Cantores son los bardos del Umbral, cuyos cantos pueden alterar las emociones, los recuerdos y hasta la Sombra de otros wraiths. Su música es un arma y una medicina a la vez.',
+    nativePowerIds: ['keening'],
+    nativePowerLabel: 'Arcanos del Gremio',
+    weakness: {
+      name: 'Ecos de la Melodía',
+      description: 'Sus propias canciones les afectan tanto como a sus objetivos.',
+      mechanical: 'Cuando usan Keening para manipular emociones, deben tirar Voluntad dif. 6 o experimentar ellos mismos las emociones que generan, durante la misma duración.',
+    },
+  },
+  {
+    id: 'haunters', name: 'Embrujadores (Haunters)', gameSystem: 'Wr20' as const, factionType: 'guild' as const,
+    archetype: 'Aterrorizadores',
+    lore: 'Los Embrujadores son los expertos en aterrorizar a los vivos —no por maldad, sino porque el miedo genera Pathos. Son los responsables de las casas encantadas, las apariciones y los poltergeists.',
+    nativePowerIds: ['pandemonium'],
+    nativePowerLabel: 'Arcanos del Gremio',
+    weakness: {
+      name: 'Compulsión del Terror',
+      description: 'No pueden resistir asustar a los vivos cuando la oportunidad se presenta.',
+      mechanical: 'Ante un mortal asustable y a solas, deben superar Voluntad dif. 7 para no aterrorizarle aunque hacerlo sea contraproducente para sus objetivos.',
+    },
+  },
+  {
+    id: 'masquers', name: 'Enmascarados (Masquers)', gameSystem: 'Wr20' as const, factionType: 'guild' as const,
+    archetype: 'Transformadores',
+    lore: 'Los Enmascarados dominan la apariencia espectral, alterando la forma de los wraiths y de la materia umbral. Son los espías perfectos, los impostores definitivos y los cirujanos del alma.',
+    nativePowerIds: ['moliate'],
+    nativePowerLabel: 'Arcanos del Gremio',
+    weakness: {
+      name: 'Pérdida de Identidad',
+      description: 'Cambiar de forma tan frecuentemente debilita el sentido del yo.',
+      mechanical: 'Cada vez que adoptan una forma diferente a su apariencia base, pierden 1 punto temporal de Voluntad (recuperable tras 8 horas en su forma propia).',
+    },
+  },
+  {
+    id: 'mnemoi', name: 'Mnemoi', gameSystem: 'Wr20' as const, factionType: 'guild' as const,
+    archetype: 'Guardianes de la Memoria',
+    lore: 'Los Mnemoi preservan y manipulan los recuerdos —tanto los propios como los de otros wraiths. Son los historiadores del Umbral y, a veces, los editores de la historia personal de los muertos.',
+    nativePowerIds: ['lifeweb'],
+    nativePowerLabel: 'Arcanos del Gremio',
+    weakness: {
+      name: 'Carga de los Recuerdos Ajenos',
+      description: 'Conservar los recuerdos de otros tiene un coste personal.',
+      mechanical: 'Por cada recuerdo ajeno almacenado (hasta Voluntad recuerdos simultáneos), el wraith pierde 1 punto temporal de Pathos. Recuerdos de muertes violentas cuestan el doble.',
+    },
+  },
+  {
+    id: 'puppeteers', name: 'Titiriteros (Puppeteers)', gameSystem: 'Wr20' as const, factionType: 'guild' as const,
+    archetype: 'Posesores',
+    lore: 'Los Titiriteros practican el arte de poseer y controlar cuerpos vivos. Son los más temidos por los mortales (aunque no saben por qué su vecino actúa "extraño") y los más sospechosos entre los propios wraiths.',
+    nativePowerIds: ['inhabit'],
+    nativePowerLabel: 'Arcanos del Gremio',
+    weakness: {
+      name: 'Contaminación del Huésped',
+      description: 'Poseer un cuerpo vivo deja residuos del huésped en la psique del Titiritero.',
+      mechanical: 'Por cada posesión de más de 1 hora, el wraith adquiere un rasgo de personalidad menor del mortal poseído (Narrador decide). Estos rasgos acumulados pueden alterar el comportamiento en momentos de estrés.',
+    },
+  },
+  {
+    id: 'sandmen', name: 'Areneros (Sandmen)', gameSystem: 'Wr20' as const, factionType: 'guild' as const,
+    archetype: 'Señores de los Sueños',
+    lore: 'Los Areneros entran en los sueños de los vivos, nutriéndose del Pathos que generan los sueños y pesadillas. Son los responsables de los sueños más vívidos, los que a veces dejan una sensación de haber sido visitado.',
+    nativePowerIds: ['phantasm'],
+    nativePowerLabel: 'Arcanos del Gremio',
+    weakness: {
+      name: 'Atrapado en el Sueño',
+      description: 'El tiempo en los sueños puede atrapar al Arenero.',
+      mechanical: 'Por cada hora en el sueño de un mortal, deben tirar Voluntad dif. 6 para no "dormirse" junto al soñador, quedando incapacitados en el Umbral hasta que el mortal despierte.',
+    },
+  },
+  {
+    id: 'spooks', name: 'Espantos (Spooks)', gameSystem: 'Wr20' as const, factionType: 'guild' as const,
+    archetype: 'Cazadores de Espectros',
+    lore: 'Los Espantos son los soldados en primera línea contra la Sombra y los Espectros. Especializados en detectar, combatir y destruir las manifestaciones más oscuras del Tempestado, son los más heridos y los más necesarios.',
+    nativePowerIds: ['argos'],
+    nativePowerLabel: 'Arcanos del Gremio',
+    weakness: {
+      name: 'Atracción de la Oscuridad',
+      description: 'Su especialización en la Sombra la atrae hacia ellos.',
+      mechanical: 'La propia Sombra del Espanto es un punto más difícil de controlar: todas las tiradas de Psyche para resistir a la Sombra tienen dificultad +1.',
+    },
+  },
+  {
+    id: 'usurers', name: 'Usureros (Usurers)', gameSystem: 'Wr20' as const, factionType: 'guild' as const,
+    archetype: 'Banqueros del Más Allá',
+    lore: 'Los Usureros son los economistas del Umbral: prestan Pathos, comercian con Reliquias y gestionan las deudas de los muertos. Su poder reside en que todos necesitan algo y ellos saben exactamente cuánto cobrar.',
+    nativePowerIds: ['fatalism'],
+    nativePowerLabel: 'Arcanos del Gremio',
+    weakness: {
+      name: 'La Deuda Nunca Perdona',
+      description: 'Los Usureros están igualmente atados por sus propias deudas.',
+      mechanical: 'Toda promesa incumplida o deuda no cobrada reduce en 1 su reserva máxima de Pathos hasta ser saldada. No pueden tener más deudas activas que su Voluntad.',
     },
   },
 ]

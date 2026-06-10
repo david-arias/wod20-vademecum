@@ -12,13 +12,13 @@
 
 ## Líneas de Juego Soportadas
 
-| ID | Juego | Acento | Estado |
-|----|-------|--------|--------|
-| `V20` | Vampiro: La Mascarada | 🔴 `#FF3333` Blood Red | ✅ Fase 2 |
-| `W20` | Hombre Lobo: El Apocalipsis | 🟡 `#D4AF37` Dark Gold | ✅ Fase 2 |
-| `M20` | Mago: La Ascensión | 🟣 `#8A2BE2` BlueViolet | ✅ Fase 2 |
-| `C20` | Changeling: El Ensueño | 🟢 `#00FF7F` Spring Green | ✅ Fase 2 |
-| `Wr20` | Wraith: El Olvido | 🩶 `#708090` Slate Gray | ✅ Fase 2 |
+| ID | Juego | Acento | Facciones | Poderes | Estado |
+|----|-------|--------|-----------|---------|--------|
+| `V20` | Vampiro: La Mascarada | 🔴 `#FF3333` Blood Red | 13 clanes | 16 disciplinas (2 MultiPath) | ✅ Fase 3.5 |
+| `W20` | Hombre Lobo: El Apocalipsis | 🟡 `#D4AF37` Dark Gold | 13 tribus | 21 categorías de dones | ✅ Fase 3.5 |
+| `M20` | Mago: La Ascensión | 🟣 `#8A2BE2` BlueViolet | 9 tradiciones | 9 esferas | ✅ Fase 3.5 |
+| `C20` | Changeling: El Ensueño | 🟢 `#00FF7F` Spring Green | 9 kiths | 9 artes | ✅ Fase 3.5 |
+| `Wr20` | Wraith: El Olvido | 🩶 `#708090` Slate Gray | 15 gremios | 15 arcanos | ✅ Fase 3.5 |
 
 ---
 
@@ -120,7 +120,8 @@ Tres capas de datos adicionales que permiten consultar poderes, facciones y regl
 
 ```typescript
 // Poderes: Disciplinas / Dones / Esferas / Artes / Arcanos
-const ALL_POWERS: PowersIndex = Record<GameSystemId, PowerCategory[]>
+// ── Actualizado en Fase 3.5: soporta MultiPathDiscipline (Taumaturgia, Nigromancia)
+const ALL_POWERS: PowersIndex = Record<GameSystemId, (PowerCategory | MultiPathDiscipline)[]>
 
 // Facciones: Clanes / Tribus / Tradiciones / Parentelas / Gremios
 const ALL_FACTIONS: FactionsIndex = Record<GameSystemId, Faction[]>
@@ -129,7 +130,9 @@ const ALL_FACTIONS: FactionsIndex = Record<GameSystemId, Faction[]>
 const CORE_RULES: CoreRule[]
 ```
 
-Cada `PowerLevel` incluye: nombre, resumen, texto de sistema, reserva de dados, coste de recurso, tipo de acción, duración y campos específicos del juego (`effectType` para M20, `realmRequired` para C20, `associatedWith` para W20).
+Cada `PowerLevel` incluye: nombre, resumen, texto de sistema, reserva de dados, coste de recurso, tipo de acción, duración y campos específicos del juego (`effectType` para M20, `realmRequired` para C20, `sourceType` / `associatedWith` para W20).
+
+Las disciplinas con múltiples sendas (Taumaturgia, Nigromancia) usan `MultiPathDiscipline` con array `paths: PowerPath[]`. La UI debe detectar `isMultiPath === true` y renderizar un selector de senda antes de mostrar los niveles.
 
 ---
 
@@ -167,23 +170,27 @@ Para iniciar una nueva sesión de desarrollo, copiar el prompt de `.agents/SYSTE
 |---|---|---|---|
 | Base | Animalismo, Celeridad, Dominación, Ofuscación, Presencia | 5/5 c/u | ✅ |
 | Ampliado | Auspex, Fortitud, Potencia, Obtenebración, Vicisitud | 5/5 c/u | ✅ |
-| Clan (Fase 3 Bloque 6) | Serpentis, Dementación, Nigromancia (Senda Sepulcro), Taumaturgia (Senda Sangre), Quietud | 5/5 c/u | ✅ |
+| Clan (Fase 3) | Serpentis, Dementación, Quietud | 5/5 c/u | ✅ |
+| **MultiPath (Fase 3.5)** | **Nigromancia** (Sepulcro + Osario + Cenizas) | **5+5+5/5** | **✅ NUEVO** |
+| **MultiPath (Fase 3.5)** | **Taumaturgia** (Sangre + Mov.Mente + Conjuración) | **5+5+5/5** | **✅ NUEVO** |
+| **Ravnos (Fase 3.5)** | **Quimerismo** | **5/5** | **✅ NUEVO** |
 
-15 disciplinas × 5 niveles = **75 `PowerLevel`** con `systemText`, `dicePool`, `cost`, `actionType`, `duration`, `tags`.
+16 disciplinas — **~100 `PowerLevel`** (incluyendo sub-sendas MultiPath) con `systemText`, `dicePool`, `cost`, `actionType`, `duration`, `tags`.
 
 ### W20 — Dones `src/data/powers/w20Gifts.ts`
 
 | Categoría | Tipo | Rangos | Estado |
 |---|---|---|---|
 | Ahroun, Theurge | auspice | base | ✅ |
-| Señores de la Sombra | tribe | base | ✅ |
 | Ragabash, Philodox, Galliard | auspice | 5/5 c/u | ✅ Fase 2.5 |
 | Homínido, Lupus | breed | 5/5 c/u | ✅ Fase 2.5 |
-| **Metis** | **breed** | **5/5** | **✅ Fase 3 Bloque 8** |
-| **Vástagos de Fenris, Furias Negras** | **tribe** | **5/5 c/u** | **✅ Fase 3 Bloque 7** |
-| **Caminantes de Cristal, Garras Rojas** | **tribe** | **5/5 c/u** | **✅ Fase 3 Bloque 7** |
+| Metis | breed | 5/5 | ✅ Fase 3 Bloque 8 |
+| Señores de la Sombra, Vástagos de Fenris, Furias Negras, Caminantes de Cristal, Garras Rojas | tribe | 5/5 c/u | ✅ Fase 3 |
+| **Fianna, Roedores de Huesos, Contemplaestrellas** | **tribe** | **5/5 c/u** | **✅ Fase 3.5** |
+| **Hijos de Gaia, Peregrinos Silenciosos, Colmillos de Plata** | **tribe** | **5/5 c/u** | **✅ Fase 3.5** |
+| **Uktena, Wendigo** | **tribe** | **5/5 c/u** | **✅ Fase 3.5** |
 
-Todos los dones nuevos incluyen `sourceType`, `associatedWith`, recurso `Gnosis`/`Rabia`/`Gratis` y `systemText` canónico en español.
+**21 categorías totales** — todos los dones incluyen `sourceType`, `associatedWith`, recurso `Gnosis`/`Rabia`/`Gratis` y `systemText` canónico en español. Las 13 tribus canónicas W20 tienen gift sets completos.
 
 ### M20 — Esferas `src/data/powers/m20Spheres.ts`
 
@@ -196,12 +203,12 @@ Todos los dones nuevos incluyen `sourceType`, `associatedWith`, recurso `Gnosis`
 | Mente | Consciencia, Psique y Proyección Astral | ✅ Fase 2.5 |
 | Materia | Estructuras Moleculares, Transmutación e Inorgánico | ✅ Fase 2.5 |
 | Tiempo | Dilatación, Profecía y Aceleración | ✅ Fase 2.5 |
-| **Espíritu** | **El Velo, los Efímeros y las Dimensiones de la Umbra** | **✅ Fase 3 Bloque 9** |
-| **Primo** | **La Quintaesencia, las Líneas Ley y la Creación de la Realidad** | **✅ Fase 3 Bloque 9** |
+| Espíritu | El Velo, los Efímeros y las Dimensiones de la Umbra | ✅ Fase 3 Bloque 9 |
+| Primo | La Quintaesencia, las Líneas Ley y la Creación de la Realidad | ✅ Fase 3 Bloque 9 |
 
-Cada nivel incluye `effectType` (`coincidental` / `instrumental` / `vulgar`) renderizado como badge coloreado en `PowersView`.
+Cada nivel incluye `effectType` (`coincidental` / `instrumental` / `vulgar`) renderizado como badge coloreado en `PowersView`. **45/45 niveles con `effectType` asignado** (verificado Fase 3.5). Tradición Dreamspeakers renombrada canónicamente a `Cuentasueños` en Fase 3.5.
 
-### C20 — Artes `src/data/powers/c20Arts.ts`
+### C20 — Artes `src/data/powers/c20Arts.ts` · Parentelas `src/data/factions/index.ts`
 
 | Arte | Reinos requeridos | Estado |
 |---|---|---|
@@ -210,12 +217,22 @@ Cada nivel incluye `effectType` (`coincidental` / `instrumental` / `vulgar`) ren
 | Primordial | Naturaleza, Escena | ✅ Fase 2.5 |
 | Soberanía | Actor, Fae, Naturaleza, Escena | ✅ Fase 2.5 |
 | Viaje | Actor, Fae, Escena | ✅ Fase 2.5 |
-| **Infusión** | **Prop, Fae, Actor, Escena** | **✅ Fase 3 Bloque 10** |
-| **Prestidigitación** | **Prop, Actor, Fae, Escena** | **✅ Fase 3 Bloque 10** |
-| **Onomancia** | **Actor, Fae, Prop, Naturaleza** | **✅ Fase 3 Bloque 10** |
-| **Tejeduría del Cielo** | **Naturaleza, Escena, Actor, Fae** | **✅ Fase 3 Bloque 10** |
+| Infusión | Prop, Fae, Actor, Escena | ✅ Fase 3 Bloque 10 |
+| Prestidigitación | Prop, Actor, Fae, Escena | ✅ Fase 3 Bloque 10 |
+| Onomancia | Actor, Fae, Prop, Naturaleza | ✅ Fase 3 Bloque 10 |
+| Tejeduría del Cielo | Naturaleza, Escena, Actor, Fae | ✅ Fase 3 Bloque 10 |
 
 Cada nivel incluye `realmRequired[]` con los Reinos canónicos. Recurso siempre `Glamour`.
+
+**Parentelas (Fase 3.5)** — 9 kiths completos:
+
+| Kith | Debilidad | Estado |
+|---|---|---|
+| Pooka, Sídhe, Eshu, Nocker, Boggan | (previas) | ✅ |
+| **Gorros Rojos (Redcaps)** | Hambre Insaciable | **✅ Fase 3.5** |
+| **Sluagh** | Voz del Susurro | **✅ Fase 3.5** |
+| **Sátiros (Satyrs)** | Pasión Insaciable | **✅ Fase 3.5** |
+| **Trols (Trolls)** | Lazo de Honor | **✅ Fase 3.5** |
 
 ### Wr20 — Arcanos `src/data/powers/wr20Arcanos.ts`
 
@@ -239,6 +256,8 @@ Cada nivel incluye `realmRequired[]` con los Reinos canónicos. Recurso siempre 
 
 15 Arcanos × 5 niveles = **75 `PowerLevel`** con `dicePool` (atributos Wr20), `cost.resource: 'Pathos'/'Gratis'`, `systemText` y `tags`.
 
+**Gremios (Fase 3.5)** — 15 gremios completos: Encarnadores, Proctores, Tejedores + 10 nuevos (Artesanos, Alquimistas, Cantores, Embrujadores, Enmascarados, Mnemoi, Titiriteros, Areneros, Espantos, Usureros).
+
 ---
 
 ## Roadmap
@@ -256,12 +275,19 @@ Cada nivel incluye `realmRequired[]` con los Reinos canónicos. Recurso siempre 
   - [x] Bloque 12: Wr20 arcanos (Argos, Castigo, Habitar, Intimación, Red de Vida) — **+25 PL**
   - [x] Bloque 13: Wr20 arcanos (Ultraje, Pandemonium, Fantasmagoría, Ladrón del Velo, Usura) — **+25 PL**
   - [x] **Saneamiento QA**: eliminación de tipado ilegal (`as unknown as number`), resolución de 8 IDs huérfanos cross-game, corrección de `associatedWith.type` en W20
-- [x] **Fase 3.5** — Arquitectura de Reglas Agnósticas:
+- [x] **Fase 3.5** — Arquitectura de Reglas Agnósticas + Sincronización Completa de Datos:
   - [x] `W20GiftAxis` + `W20_AXIS_LABELS` + `getW20Axis()` en `types/powers.ts`
   - [x] `GarouForm` / `GarouFormModifier` / `PowerPath` / `MultiPathDiscipline` en `types/powers.ts`
+  - [x] `PowersIndex` actualizado a `Record<GameSystemId, (PowerCategory | MultiPathDiscipline)[]>`
   - [x] `w20Forms.ts` — 5 Formas Garou con modificadores exactos (pp.285-290 W20)
   - [x] `PowersView.tsx` — selector triple-eje RAZA/AUSPICIO/TRIBU para W20; breadcrumb de eje activo
+  - [x] **V20**: Quimerismo (Ravnos, 5 niveles) + Taumaturgia MultiPath (3 sendas) + Nigromancia MultiPath (3 sendas)
+  - [x] **W20**: 13 tribus canónicas en facciones + 8 nuevos conjuntos de dones de tribu (Fianna, Roedores de Huesos, Contemplaestrellas, Hijos de Gaia, Peregrinos Silenciosos, Colmillos de Plata, Uktena, Wendigo)
+  - [x] **M20**: `effectType` verificado en 45/45 niveles; Dreamspeakers renombrados a `Cuentasueños`
+  - [x] **C20**: 4 nuevas parentelas (Gorros Rojos, Sluagh, Sátiros, Trols) → 9 kiths completos
+  - [x] **Wr20**: 10 nuevos gremios → 15 gremios completos
 - [ ] **Fase 4** — Motor de Tiradas Interactivo y Ficha de Personaje:
+  - [ ] `MultiPathDiscipline UI` — selector de senda en `PowersView` para Taumaturgia y Nigromancia
   - [ ] `AttributesView` — atributos + habilidades interactivos por juego
   - [ ] `DiceRoller` — simulador d10 con pool configurable, dificultad y lectura de resultados
   - [ ] `CharacterSheet` — ficha de personaje completa y editable
