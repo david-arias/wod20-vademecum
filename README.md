@@ -14,7 +14,7 @@
 
 | ID | Juego | Acento | Facciones | Poderes | Estado |
 |----|-------|--------|-----------|---------|--------|
-| `V20` | Vampiro: La Mascarada | 🔴 `#FF3333` Blood Red | 13 clanes + afiliación política | 20 disciplinas (2 MultiPath — Taumaturgia 7 sendas) | ✅ Fase 4.2 |
+| `V20` | Vampiro: La Mascarada | 🔴 `#FF3333` Blood Red | 16 clanes (13 base + 3 menores) | 23 disciplinas (2 MultiPath — Tau 7 sendas, Nigro 5 sendas) | ✅ Fase 5-A |
 | `W20` | Hombre Lobo: El Apocalipsis | 🟡 `#D4AF37` Dark Gold | 13 tribus | 21 categorías de dones | ✅ Fase 3.5 |
 | `M20` | Mago: La Ascensión | 🟣 `#8A2BE2` BlueViolet | 9 tradiciones (esferas correctas) | 9 esferas | ✅ Fase 4 |
 | `C20` | Changeling: El Ensueño | 🟢 `#00FF7F` Spring Green | 13 kiths | 9 artes | ✅ Fase 4 |
@@ -172,7 +172,11 @@ Para iniciar una nueva sesión de desarrollo, copiar el prompt de `.agents/SYSTE
 | Ampliado | Auspex, Fortitud, Potencia, Obtenebración, Vicisitud | 5/5 c/u | ✅ |
 | Clan (Fase 3) | Serpentis, Dementación, Quietud | 5/5 c/u | ✅ |
 | **MultiPath (Fase 3.5)** | **Nigromancia** (Sepulcro + Osario + Cenizas) | **5+5+5/5** | **✅ NUEVO** |
-| **MultiPath (Fase 3.5)** | **Taumaturgia** (Sangre + Mov.Mente + Conjuración + Elemental + Verde + Adivinatoria + Espíritus) | **7 sendas × 5** | **✅ Fase 4.2** |
+| **MultiPath (Fase 4.2)** | **Taumaturgia** (Sangre + Mov.Mente + Conjuración + Elemental + Verde + Adivinatoria + Espíritus) | **7 sendas × 5** | **✅ Fase 4.2** |
+| **MultiPath (Fase 5-A)** | **Nigromancia** (Sepulcro + Osario + Cenizas + Alma + Testigo) | **5 sendas × 5** | **✅ Fase 5-A** |
+| **Clan menor (Fase 5-A)** | **Mortis** (Capadocios) | **5/5** | **✅ Fase 5-A** |
+| **Clan menor (Fase 5-A)** | **Daimonion** (Baali) | **5/5** | **✅ Fase 5-A** |
+| **Clan menor (Fase 5-A)** | **Koldunismo** (Tzimisce Antiguos) | **5/5** | **✅ Fase 5-A** |
 | **Ravnos (Fase 3.5)** | **Quimerismo** | **5/5** | **✅ NUEVO** |
 
 16 disciplinas — **~100 `PowerLevel`** (incluyendo sub-sendas MultiPath) con `systemText`, `dicePool`, `cost`, `actionType`, `duration`, `tags`.

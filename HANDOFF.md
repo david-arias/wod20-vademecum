@@ -1,5 +1,5 @@
 # 📂 ARCHIVO DE MEMORIA: HANDOFF.md
-> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 4.2 — 4 nuevas sendas a Taumaturgia (Elemental, Verde, Adivinatoria, Espíritus), Taumaturgia ahora con 7 sendas, 0 errores TypeScript**
+> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 5 BLOQUE A — Nigromancia 2 sendas nuevas (Alma+Testigo), 3 clanes menores (Capadocio/Baali/Tzimisce Antiguo), 3 disciplinas nuevas (Mortis/Daimonion/Koldunismo), 23 disciplinas V20, 0 errores TypeScript**
 
 ---
 
@@ -1060,10 +1060,96 @@ Inventario completo y exhaustivo del estado de `src/data/` para identificar todo
 
 ### 🔜 Siguientes Pasos
 
-1. **Disciplinas V20 pendientes**: Daimonion (Baali), Thanatosis (Samedi), Valeren (Salubri anciano), Visceratika (Gargoyle), Ogham (Lhiannan), Sanguinus (Blood Brothers)
-2. **Nigromancia sendas adicionales**: Senda de los Cuatro Vientos, Senda del Abismo, Senda de los Huesos (sendas opcionales)
+1. **Disciplinas V20 pendientes**: Thanatosis (Samedi), Valeren (Salubri anciano), Visceratika (Gargoyle), Ogham (Lhiannan), Sanguinus (Blood Brothers)
+2. **Nigromancia sendas adicionales**: Senda de los Cuatro Vientos, Senda del Abismo (opcionales)
 3. **C20 Artes**: Wayfare, Legerdemain, Naming, Primal, Dragon's Ire, Chronos
 4. **C20 kiths restantes**: Merfolk, Nunnehi, Inanimae y kith regionales
 5. **Rituales**: sistema de Rituales de Taumaturgia y Nigromancia (paralelo a disciplinas)
-6. **UI**: `PathSelector` en `PowersView.tsx` debe manejar 7 sendas — revisar wrap/scroll
+6. **UI**: `PathSelector` en `PowersView.tsx` debe manejar 7+ sendas — revisar wrap/scroll
+
+---
+
+## ✅ FASE 5 BLOQUE A — Expansión Masiva V20: Clanes Menores y Sendas Adicionales (10 Jun 2026)
+
+### Cambios aplicados
+
+#### Nigromancia — 2 sendas adicionales en `v20Disciplines.ts`
+
+| ID | Nombre | Temática |
+|----|--------|----------|
+| `senda-del-alma` | Senda del Alma | Ver, llamar, atar, robar y destruir almas de difuntos y vivos |
+| `senda-del-testigo` | Senda del Testigo | Leer memorias de restos, interrogar difuntos, acceso a siglos de historia |
+
+**Nigromancia paths totales: 5** (Sepulcro [primaria] + Osario + Cenizas + Alma + Testigo)
+
+##### Senda del Alma — niveles
+
+| Nv | Nombre | Coste | Mecánica |
+|----|--------|-------|----------|
+| 1 | Ver las Almas | Gratis | Percibe almas de recién fallecidos y estado espiritual de los vivos; pasivo |
+| 2 | Llamada del Alma | 1 Sangre | Invoca wraith específico con foco material; Car+Ocultismo dif.7 enfrentada |
+| 3 | Atar el Alma | 1 Sangre | Vincula alma a lugar/objeto/persona; (éxitos) semanas; Int+Ocultismo dif.8 |
+| 4 | Robar el Alma | 2 Sangre | Extrae alma de vivo dejándolo en coma; Man+Ocultismo dif.8 enfrentada |
+| 5 | Devolver o Destruir | 3 Sangre | Resurrección o aniquilación total del alma; Int+Ocultismo dif.9 |
+
+##### Senda del Testigo — niveles
+
+| Nv | Nombre | Coste | Mecánica |
+|----|--------|-------|----------|
+| 1 | Eco del Difunto | Gratis | Últimas impresiones del difunto por contacto con restos; Per+Ocultismo dif.5 |
+| 2 | Leer los Huesos | 1 Sangre | Historia de vida completa desde restos físicos; Int+Medicina dif.6 |
+| 3 | Interrogar al Difunto | 1 Sangre | Coerciona al alma a responder (Tau) preguntas; Man+Ocultismo dif.7 |
+| 4 | Memorias Completas | 2 Sangre | Inmersión en la memoria completa del difunto; Int+Empatía dif.8 |
+| 5 | Archivo de los Siglos | 3 Sangre | Cadena histórica de vidas en lugar u objeto; siglos de alcance; Int+Ocultismo dif.9 |
+
+#### Nuevos clanes y disciplinas en `factions/index.ts` + `v20Disciplines.ts`
+
+| Clan | ID Facción | Disciplinas Nativas | Tipo | Estado |
+|------|-----------|---------------------|------|--------|
+| Capadocio | `capadocio` | auspex, fortitud, mortis | Extinto/Independiente | ✅ |
+| Baali | `baali` | daimonion, presencia, obtenebración | Proscrito | ✅ |
+| Tzimisce Antiguo (Koldun) | `tzimisce-antiguo` | animalismo, auspex, koldunismo | Independiente | ✅ |
+
+##### Mortis — Capadocios (5 niveles)
+
+| Nv | Nombre | Coste | Mecánica |
+|----|--------|-------|----------|
+| 1 | Aura de Muerte | 1 Sangre | Terror en radio (Mortis×3)m; mortales huyen dif.6; Apa+Intimidación dif.6 |
+| 2 | Palabra de la Muerte | 1 Sangre | Daño agravado necrótico directo; Man+Intimidación dif.7 |
+| 3 | Marchitar | 2 Sangre | Necrosis de extremidad (éxitos) días; permanente en mortales 4+ éxitos; Sta+Medicina dif.8 |
+| 4 | Llamada de la Tumba | 2 Sangre | Maldición a distancia: daño diario a mortales, penalizadores a vampiros; Man+Ocultismo dif.8 |
+| 5 | Puerta de la Muerte | 3 Sangre | Portal al Umbral (éxitos)h O descarga (Mortis×2) dados agravados en área; Int+Ocultismo dif.9 |
+
+##### Daimonion — Baali (5 niveles)
+
+| Nv | Nombre | Coste | Mecánica |
+|----|--------|-------|----------|
+| 1 | Detectar Corrupción | Gratis | Percibe vínculos infernales, posesiones y reliquias; pasivo permanente |
+| 2 | Infundir Miedo | 1 Sangre | Terror de origen abismal; parálisis o pánico de fuga; Man+Intimidación dif.6 |
+| 3 | Plaga Menor | 1 Sangre | Enjambre infernal (Daemon×3)m² durante (éxitos)h; 1 letal/turno; Int+Ocultismo dif.7 |
+| 4 | Evocar Demonio Menor | 2 Sangre | Demonio Fue4/Sta5; (éxitos)h; riesgo de pérdida de control; Int+Ocultismo dif.8 |
+| 5 | Entidad Infernal Mayor | 3 Sangre | Gran Entidad Fue7/Sta7, devasta área, UN objetivo, (éxitos) turnos; Int+Ocultismo dif.9 |
+
+##### Koldunismo — Tzimisce Antiguos (5 niveles)
+
+| Nv | Nombre | Coste | Mecánica |
+|----|--------|-------|----------|
+| 1 | Dominio del Viento | 1 Sangre | Viento fuerza Beaufort hasta 8; (Kol) dados letal como proyectil; Man+Naturaleza dif.6 |
+| 2 | Dominio del Fuego | 1 Sangre | Crea/controla fuego; proyectil (Kol+2) dados agravados; Int+Naturaleza dif.7 |
+| 3 | Dominio de la Tierra | 2 Sangre | (Kol×500kg) tierra/piedra; muros, enterrar objetivos; Fue+Naturaleza dif.7 |
+| 4 | Dominio del Agua | 2 Sangre | Agua en (Kol×20)m; ola/torbellino; coagular sangre en mortales; Int+Naturaleza dif.8 |
+| 5 | Gran Koldun | 3 Sangre | Todos los elementos simultáneos; tormentas/seísmos en (Kol×100)m; Int+Naturaleza dif.9 |
+
+### 📊 Estado Post-Fase 5 Bloque A
+
+| Sistema | Facciones | Poderes | Core Rules | % Real |
+|---------|-----------|---------|------------|--------|
+| **V20** | **16/~20** (13 base + 3 menores) | **23 disciplinas** — Tau 7 sendas, Nigro 5 sendas | 10/13 (77%) | **~80%** |
+| W20 | 13/13 ✅ | 21 categorías ✅ | 10/13 (77%) | ~80% |
+| M20 | 9/9 ✅ | 9/9 Esferas ✅ | 10/13 (77%) | ~75% |
+| C20 | 13/~18 (72%) | 9/16 Artes | 10/13 (77%) | ~65% |
+| Wr20 | 15/15 ✅ | 15/15 ✅ | 10/13 (77%) | ~80% |
+
+**V20 disciplinas totales: 23** (20 base + Mortis + Daimonion + Koldunismo)
+**Nigromancia paths totales: 5** | **Taumaturgia paths totales: 7**
 

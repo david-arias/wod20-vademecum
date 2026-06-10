@@ -186,6 +186,49 @@ const V20_CLANS = [
     },
     notableMembers: ['Kemintiri', 'Nefertiti', 'Horus Bey'],
   },
+  // ── CLANES MENORES / EXTINTOS ────────────────────────────────────────────────
+  {
+    id: 'capadocio', name: 'Capadocio', gameSystem: 'V20' as const, factionType: 'clan' as const,
+    archetype: 'Estudiosos de la Muerte',
+    politicalAffiliation: 'Independiente (extinto)',
+    lore: 'El clan de los académicos de la muerte, antepasados espirituales de los Giovanni. Los Capadocios dedicaron siglos al estudio filosófico y metafísico de la mortalidad, buscando comprender qué hay más allá de la muerte. Fueron diezmados por Augustus Giovanni, quien absorbió su linaje y sus secretos. En la modernidad son prácticamente extintos salvo excepciones rarísimas en zonas remotas de Oriente Medio.',
+    nativePowerIds: ['auspex', 'fortitud', 'mortis'],
+    nativePowerLabel: 'Disciplinas de clan',
+    weakness: {
+      name: 'Marca de la Muerte',
+      description: 'Los Capadocios parecen cadáveres descomponiéndose y huelen a tumba. Su aspecto repele a los vivos.',
+      mechanical: 'Penalización permanente de -2 a todas las tiradas de interacción social con mortales. No puede usarse Apariencia para seducir o intimidar mortales normales —el resultado es siempre repulsión o terror.',
+    },
+    notableMembers: ['Japheth', 'Constancia', 'Lazarus'],
+  },
+  {
+    id: 'baali', name: 'Baali', gameSystem: 'V20' as const, factionType: 'clan' as const,
+    archetype: 'Adoradores del Abismo',
+    politicalAffiliation: 'Independiente (proscrito)',
+    lore: 'El clan más odiado del mundo vampírico: adoradores de los Antediluvianos dormidos y de los demonios del Abismo que preceden incluso a Caín. Los Baali son los agentes del Wyrm en la sociedad vampírica, buscando despertar las entidades que destruirían el mundo. Son cazados activamente por la Camarilla, el Sabbat y prácticamente cualquier facción con principios mínimos. Su sola existencia es un anatema.',
+    nativePowerIds: ['daimonion', 'presencia', 'obtenebración'],
+    nativePowerLabel: 'Disciplinas de clan',
+    weakness: {
+      name: 'Antema del Abismo',
+      description: 'Los Baali son repelidos por objetos de fe genuina y sufren daño ante ellos.',
+      mechanical: 'Los símbolos de fe sostenidos con convicción verdadera actúan como si fueran fuego para los Baali: 1 nivel de daño agravado por turno de contacto. Además, siempre tienen Humanidad máxima de 3 —su pacto con el Abismo cierra la puerta al redención.',
+    },
+    notableMembers: ['Nergal', 'Moloch', 'Shaitan'],
+  },
+  {
+    id: 'tzimisce-antiguo', name: 'Tzimisce Antiguo (Koldun)', gameSystem: 'V20' as const, factionType: 'clan' as const,
+    archetype: 'Shamanes de la Tierra',
+    politicalAffiliation: 'Independiente',
+    lore: 'La rama del linaje Tzimisce que rechazó la Vía de la Carne y las transformaciones grotescas del Sabbat moderno. Los Koldun mantienen las tradiciones shamánicas de los Tzimisce originales de Europa del Este: pactos con la tierra, el viento, el fuego y el agua. Son más raros que los Tzimisce del Sabbat, pero más sabios y más temidos por quienes conocen su historia. Muchos son Ancianos que sobrevivieron incontables siglos aislados en los Cárpatos.',
+    nativePowerIds: ['animalismo', 'auspex', 'koldunismo'],
+    nativePowerLabel: 'Disciplinas de clan',
+    weakness: {
+      name: 'Arraigo Profundo',
+      description: 'Como todos los Tzimisce necesitan tierra natal, pero el vínculo de los Koldun es más intenso aún.',
+      mechanical: 'Necesitan al menos un puñado de tierra natal para descansar. Sin ella pierden 1 punto de todos los Atributos por día, igual que los Tzimisce normales. Adicionalmente, alejarse más de 100 kilómetros de su tierra natal causa -1 a todas las tiradas de Koldunismo (el vínculo con los espíritus locales se debilita con la distancia).',
+    },
+    notableMembers: ['Vladimir Rustovich', 'Noriz', 'Tabak'],
+  },
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────
