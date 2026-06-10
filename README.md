@@ -15,7 +15,7 @@
 | ID | Juego | Acento | Facciones | Poderes | Estado |
 |----|-------|--------|-----------|---------|--------|
 | `V20` | Vampiro: La Mascarada | 🔴 `#FF3333` Blood Red | 16 clanes (13 base + 3 menores) | 23 disciplinas (2 MultiPath — Tau 7 sendas, Nigro 5 sendas) | ✅ Fase 5-A |
-| `W20` | Hombre Lobo: El Apocalipsis | 🟡 `#D4AF37` Dark Gold | 13 tribus | 21 categorías de dones | ✅ Fase 3.5 |
+| `W20` | Hombre Lobo: El Apocalipsis | 🟡 `#D4AF37` Dark Gold | 16 facciones (13 tribus + 2 Fera + Hakken) | 24 dones + 18 ritos + renombre | ✅ Fase 5-B |
 | `M20` | Mago: La Ascensión | 🟣 `#8A2BE2` BlueViolet | 9 tradiciones (esferas correctas) | 9 esferas | ✅ Fase 4 |
 | `C20` | Changeling: El Ensueño | 🟢 `#00FF7F` Spring Green | 13 kiths | 9 artes | ✅ Fase 4 |
 | `Wr20` | Wraith: El Olvido | 🩶 `#708090` Slate Gray | 15 gremios (IDs corregidos) | 15 arcanos | ✅ Fase 4 |
@@ -194,7 +194,11 @@ Para iniciar una nueva sesión de desarrollo, copiar el prompt de `.agents/SYSTE
 | **Hijos de Gaia, Peregrinos Silenciosos, Colmillos de Plata** | **tribe** | **5/5 c/u** | **✅ Fase 3.5** |
 | **Uktena, Wendigo** | **tribe** | **5/5 c/u** | **✅ Fase 3.5** |
 
-**21 categorías totales** — todos los dones incluyen `sourceType`, `associatedWith`, recurso `Gnosis`/`Rabia`/`Gratis` y `systemText` canónico en español. Las 13 tribus canónicas W20 tienen gift sets completos.
+| **Fera (Fase 5-B)** | **Dones Nuwisha** (Coyotes Cambiantes) | **5/5** | **✅ Fase 5-B** |
+| **Fera (Fase 5-B)** | **Dones Ratkin** (Cambiantes Rata) | **3** | **✅ Fase 5-B** |
+| **Variante tribal (Fase 5-B)** | **Dones Hakken** (Señores de la Sombra Orientales) | **2 variantes** | **✅ Fase 5-B** |
+
+**24 categorías totales** — todos los dones incluyen `sourceType`, `associatedWith`, recurso `Gnosis`/`Rabia`/`Gratis` y `systemText` canónico en español. Las 13 tribus canónicas W20 tienen gift sets completos, más Nuwisha, Hakken y Ratkin.
 
 ### M20 — Esferas `src/data/powers/m20Spheres.ts`
 

@@ -7,6 +7,7 @@ import type { GameSystemId } from './gameSystem'
 export type FactionType =
   | 'clan'         // V20
   | 'tribe'        // W20
+  | 'fera'         // W20 Changing Breeds (non-Garou shapeshifters: Nuwisha, Ratkin, etc.)
   | 'tradition'    // M20
   | 'convention'   // M20 Tecnocracia
   | 'craft'        // M20 Solitarios

@@ -1,5 +1,5 @@
 # 📂 ARCHIVO DE MEMORIA: HANDOFF.md
-> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 5 BLOQUE A — Nigromancia 2 sendas nuevas (Alma+Testigo), 3 clanes menores (Capadocio/Baali/Tzimisce Antiguo), 3 disciplinas nuevas (Mortis/Daimonion/Koldunismo), 23 disciplinas V20, 0 errores TypeScript**
+> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 5 BLOQUE B — W20: 18 ritos (w20Rites.ts), renombre completo (w20Renown.ts), 3 nuevas facciones (Nuwisha/Hakken/Ratkin), 10 nuevos dones, FactionType 'fera', 0 errores TypeScript**
 
 ---
 
@@ -1152,4 +1152,77 @@ Inventario completo y exhaustivo del estado de `src/data/` para identificar todo
 
 **V20 disciplinas totales: 23** (20 base + Mortis + Daimonion + Koldunismo)
 **Nigromancia paths totales: 5** | **Taumaturgia paths totales: 7**
+
+---
+
+## ✅ FASE 5 BLOQUE B — Expansión W20: Ritos, Renombre y Feras (10 Jun 2026)
+
+### Archivos creados
+
+#### `src/data/powers/w20Rites.ts` (NUEVO)
+
+Interfaces: `GarouRite`, `RiteType = 'minor' | 'renown' | 'mystic' | 'death' | 'punishment'`
+
+| Grupo | Ritos | Rank |
+|-------|-------|------|
+| RITOS_MENORES | rito-contricion, rito-mantenimiento-fetiche, rito-plegaria-gaia, rito-despertar, rito-purificacion-menor | 1 |
+| RITOS_RENOMBRE | rito-pasaje, rito-nombramiento, rito-reconocimiento-rango | 1–2 |
+| RITOS_MISTICOS | rito-vinculacion, rito-luna-llena, rito-convocacion-espiritual, rito-del-caern | 2–4 |
+| RITOS_MUERTE | rito-lamentacion, rito-ultimo-aullido, rito-caceria-honor | 2–3 |
+| RITOS_CASTIGO | rito-mordaza, rito-cicatriz, rito-destierro | 3–5 |
+
+**Total: 18 ritos canónicos** | Exports: `W20_RITES`, `W20_RITES_BY_TYPE`, `RITE_TYPE_LABELS`
+
+#### `src/data/w20Renown.ts` (NUEVO)
+
+Interfaces: `GarouRankEntry`, `RenownType`, `RenownMechanics`, `RenownSummaryRow`
+
+| Rank | Nombre | Gloria min | Honor min | Sabiduría min |
+|------|--------|-----------|-----------|---------------|
+| 0 | Cachorro | 0 | 0 | 0 |
+| 1 | Cliath | 2 | 1 | 1 |
+| 2 | Fostern | 4 | 4 | 4 |
+| 3 | Adren | 8 | 8 | 8 |
+| 4 | Athro | 14 | 12 | 12 |
+| 5 | Elder | 20 | 18 | 18 |
+
+Exports: `W20_RANKS`, `W20_RENOWN_TYPES`, `W20_RENOWN_MECHANICS`, `W20_RENOWN_TABLE`
+
+### Facciones añadidas a `src/data/factions/index.ts`
+
+| ID | Nombre | factionType | nativePowerIds |
+|----|--------|-------------|----------------|
+| `nuwisha` | Nuwisha (Coyotes Cambiantes) | `fera` | `dones-nuwisha` |
+| `hakken` | Hakken (Señores de la Sombra Orientales) | `tribe` | `dones-senores-sombra`, `dones-hakken` |
+| `ratkin` | Ratkin (Cambiantes Rata) | `fera` | `dones-ratkin` |
+
+### Dones añadidos a `src/data/powers/w20Gifts.ts`
+
+| Conjunto | Niveles | Descripción |
+|----------|---------|-------------|
+| `dones-nuwisha` | 5 (1–5) | Risa Sagrada, Paso del Embaucador, Engaño del Umbra, Lección del Coyote, Camino del Embaucador |
+| `dones-hakken` | 2 (1, 3) | Silencio del Bambú, Corte del Viento |
+| `dones-ratkin` | 3 (1–3) | Plaga Menor, Control de Roedores, Forma de Enjambre |
+
+### Tipo extendido en `src/types/factions.ts`
+
+`FactionType` ahora incluye `'fera'` para Cambiantes no-Garou (Nuwisha, Ratkin, etc.)
+
+### `src/components/factions/FactionsView.tsx`
+
+`FACTION_TYPE_LABEL` extendido con `fera: 'FERA'` para compatibilidad con `Record<FactionType, string>`.
+
+### 📊 Estado Post-Fase 5 Bloque B
+
+| Sistema | Facciones | Poderes | Core Rules | % Real |
+|---------|-----------|---------|------------|--------|
+| **V20** | 16/~20 (13 base + 3 menores) | 23 disciplinas — Tau 7 sendas, Nigro 5 sendas | 10/13 (77%) | ~80% |
+| **W20** | **16/~16 ✅** (13 tribus + Nuwisha + Hakken + Ratkin) | 21 dones + **18 ritos** + **renombre completo** | 10/13 (77%) | **~90%** |
+| M20 | 9/9 ✅ | 9/9 Esferas ✅ | 10/13 (77%) | ~75% |
+| C20 | 13/~18 (72%) | 9/16 Artes | 10/13 (77%) | ~65% |
+| Wr20 | 15/15 ✅ | 15/15 ✅ | 10/13 (77%) | ~80% |
+
+**W20 total facciones: 16** (13 tribus Garou + 2 Fera + 1 variante tribal Hakken)
+**W20 total dones: 24 categorías** (21 originales + dones-nuwisha + dones-hakken + dones-ratkin)
+**W20 ritos: 18** canónicos | **W20 renombre: tabla completa 6 rangos**
 

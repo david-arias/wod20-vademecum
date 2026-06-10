@@ -12,6 +12,7 @@ import { ALL_FACTIONS } from '@/data/factions'
 const FACTION_TYPE_LABEL: Record<FactionType, string> = {
   clan:        'CLAN',
   tribe:       'TRIBU',
+  fera:        'FERA',
   tradition:   'TRADICIÓN',
   convention:  'CONVENCIÓN',
   craft:       'OFICIO',

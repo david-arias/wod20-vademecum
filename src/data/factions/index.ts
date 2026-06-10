@@ -404,6 +404,47 @@ const W20_TRIBES = [
     },
     notableMembers: ['White Thunder', 'Running Bear'],
   },
+
+  // ── FERA W20 ─────────────────────────────────────────────────────────────────
+  {
+    id: 'nuwisha', name: 'Nuwisha (Coyotes Cambiantes)', gameSystem: 'W20' as const, factionType: 'fera' as const,
+    archetype: 'Embaucadores del Umbra',
+    lore: 'Los Nuwisha son los Cambiantes del Coyote, el Gran Trickster de Gaia. A diferencia de los Garou, los Nuwisha no nacen de la luna —su vínculo es directamente con Gaia y con el tejido del Umbra. Su misión es enseñar mediante el engaño, corregir la arrogancia con el ridículo, y mantener el equilibrio del Umbra con risa sagrada. Son viajeros del espíritu sin igual, y su relación con la muerte es de familiaridad cómica antes que de terror.',
+    nativePowerIds: ['dones-nuwisha'],
+    nativePowerLabel: 'Dones Nuwisha',
+    weakness: {
+      name: 'Compulsión a la Broma',
+      description: 'El Coyote impone su naturaleza trickster en cada momento inapropiado.',
+      mechanical: 'En situaciones de alta tensión dramática (negociaciones críticas, rituales sagrados de otras especies, momentos de dolor genuino ajeno), el Nuwisha debe tirar Voluntad dif. 7 o hacer un comentario irónico, broma o gesto absurdo que puede arruinar el momento. Fallar ante un Elder de otra especie puede costar Renombre social.',
+    },
+    notableMembers: ['Laughing Coyote', 'Twisted Mirror'],
+  },
+  {
+    id: 'hakken', name: 'Hakken (Señores de la Sombra Orientales)', gameSystem: 'W20' as const, factionType: 'tribe' as const,
+    archetype: 'Samurais del Umbra',
+    lore: 'Los Hakken son la expresión japonesa de los Señores de la Sombra, forjados en el código del Bushido más que en la manipulación política europea. Donde los Señores de la Sombra occidentales tejen intrigas desde las sombras, los Hakken actúan con una precisión ceremonial y un código de honor absoluto. Sirven a sus daimyos (líderes Garou) con lealtad total y buscan el dominio de sí mismos tanto como el dominio sobre sus enemigos.',
+    nativePowerIds: ['dones-senores-sombra', 'dones-hakken'],
+    nativePowerLabel: 'Dones tribales',
+    weakness: {
+      name: 'Código del Bushido',
+      description: 'Los Hakken están vinculados a un código de honor que no pueden violar sin consecuencias.',
+      mechanical: 'Los Hakken comparten la debilidad de los Señores de la Sombra (desconfiar de los de fuera del grupo) pero su versión es la Deuda de Honor: cualquier favor recibido debe devolverse con equivalente o mayor valor. Ignorar una deuda de honor reduce Renombre de Honor en 1 permanente por deuda pendiente. Además no pueden atacar a un enemigo desarmado o vulnerable sin declararlo primero (una respiración de pausa): ignorar esta regla provoca pérdida de 1 Renombre de Honor automática.',
+    },
+    notableMembers: ['Kenshin the Unwavering', 'Moon-Mirror'],
+  },
+  {
+    id: 'ratkin', name: 'Ratkin (Cambiantes Rata)', gameSystem: 'W20' as const, factionType: 'fera' as const,
+    archetype: 'Demoledores de la Creación',
+    lore: 'Los Ratkin creen que fueron creados para hacer lo que los Garou no podían hacer: reducir la sobrepoblación humana que devora el mundo. Son los agentes del caos equilibrador de Gaia, los que sabotean la civilización desde dentro, los que recuerdan que la plaga es también una herramienta de la naturaleza. Profundamente resentidos por haber sido "traicionados" en la Primera Guerra, los Ratkin son impredecibles, supervivientes natos y ferozmente independientes.',
+    nativePowerIds: ['dones-ratkin'],
+    nativePowerLabel: 'Dones Ratkin',
+    weakness: {
+      name: 'Fobia Felina',
+      description: 'Los Ratkin tienen un miedo instintivo y visceral a los felinos de cualquier tipo.',
+      mechanical: 'Al entrar en combate o ser sorprendido por un felino (gato doméstico, guepardo, Bastet en cualquier forma), el Ratkin debe tirar Voluntad dif. 7 o huir durante (3 - éxitos) turnos. Los Bastet tienen dificultad 8 en esta tirada. Un Ratkin que falla ante un Bastet entra en frenesí de huida automático durante toda la escena a menos que supere Voluntad dif. 9.',
+    },
+    notableMembers: ['Plague Wind', 'Broken Chain'],
+  },
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────
