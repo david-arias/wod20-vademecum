@@ -1,13 +1,22 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // 🎨 UX/UI: Tabs 0px radius, pips cuadrados, badges técnicos JetBrains Mono
 // 💻 Arch: Dos paneles — lista scrollable izquierda + card expandida derecha
+// 🔀 MultiPath: Taumaturgia / Nigromancia muestran selector de senda
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { useState, useMemo } from 'react'
 import type { GameSystemId } from '@/types/gameSystem'
-import type { PowerCategory, PowerLevel, ActionType, W20GiftAxis } from '@/types/powers'
+import type {
+  PowerCategory, PowerLevel, PowerPath,
+  ActionType, W20GiftAxis, MultiPathDiscipline,
+} from '@/types/powers'
 import { W20_AXIS_LABELS, getW20Axis } from '@/types/powers'
 import { ALL_POWERS } from '@/data/powers'
+
+// ─── Type guard ───────────────────────────────────────────────────────────────
+function isMultiPath(c: PowerCategory | MultiPathDiscipline): c is MultiPathDiscipline {
+  return 'isMultiPath' in c && (c as MultiPathDiscipline).isMultiPath === true
+}
 
 // ─── Action type labels ──────────────────────────────────────────────────────
 const ACTION_LABELS: Record<ActionType, string> = {
@@ -65,7 +74,7 @@ const Badge = ({ label, value, color }: { label: string; value: string; color?: 
 )
 
 // ─── Expanded Power Card ─────────────────────────────────────────────────────
-const PowerCard = ({ power, category }: { power: PowerLevel; category: PowerCategory }) => {
+const PowerCard = ({ power }: { power: PowerLevel }) => {
   const effectStyle = power.effectType ? EFFECT_TYPE_LABELS[power.effectType] : null
 
   return (
@@ -193,7 +202,11 @@ const PowerListItem = ({
 // ─── Category Tabs ────────────────────────────────────────────────────────────
 const CategoryTabs = ({
   categories, activeId, onSelect,
-}: { categories: PowerCategory[]; activeId: string; onSelect: (id: string) => void }) => (
+}: {
+  categories: (PowerCategory | MultiPathDiscipline)[]
+  activeId: string
+  onSelect: (id: string) => void
+}) => (
   <div className="flex overflow-x-auto border-b border-[#1E1E1E] flex-shrink-0 scrollbar-none">
     {categories.map(cat => (
       <button
@@ -206,7 +219,39 @@ const CategoryTabs = ({
           backgroundColor: cat.id === activeId ? '#0F0F0F' : 'transparent',
         }}
       >
-        {cat.name}
+        {/* Show multi-path indicator */}
+        {isMultiPath(cat) ? `⊕ ${cat.name}` : cat.name}
+      </button>
+    ))}
+  </div>
+)
+
+// ─── Path Selector (MultiPathDiscipline) ──────────────────────────────────────
+const PathSelector = ({
+  paths, activePathId, onSelect,
+}: { paths: PowerPath[]; activePathId: string; onSelect: (id: string) => void }) => (
+  <div className="flex border-b border-[#1E1E1E] flex-shrink-0 bg-[#0A0A0A] overflow-x-auto scrollbar-none">
+    <div
+      className="flex-shrink-0 flex items-center px-4 font-mono text-[9px] tracking-widest uppercase"
+      style={{ color: '#444', borderRight: '1px solid #1E1E1E' }}
+    >
+      SENDA
+    </div>
+    {paths.map(path => (
+      <button
+        key={path.id}
+        onClick={() => onSelect(path.id)}
+        className="flex-shrink-0 flex items-center gap-2 px-5 py-2 font-mono text-[10px] tracking-widest uppercase border-b-2 -mb-[1px] transition-none"
+        style={{
+          color: path.id === activePathId ? 'var(--accent)' : '#6B7280',
+          borderColor: path.id === activePathId ? 'var(--accent)' : 'transparent',
+          backgroundColor: path.id === activePathId ? '#131313' : 'transparent',
+        }}
+      >
+        {path.isPrimary && (
+          <span style={{ color: 'var(--accent)', fontSize: 9 }}>★</span>
+        )}
+        {path.name}
       </button>
     ))}
   </div>
@@ -258,26 +303,69 @@ export default function PowersView({ gameSystem }: PowersViewProps) {
 
   const [activeCatId, setActiveCatId] = useState(allCategories[0]?.id ?? '')
   const [selectedPowerLevel, setSelectedPowerLevel] = useState<number | null>(null)
+  // Active path ID for MultiPathDiscipline (null = use primary path)
+  const [activePathId, setActivePathId] = useState<string | null>(null)
 
-  // When axis changes, reset to first category of new axis
+  // ── Resolve active category ──────────────────────────────────────────────
+  const activeCategory = categories.find(c => c.id === activeCatId) ?? categories[0]
+
+  // ── For MultiPath: resolve which path is currently shown ─────────────────
+  const effectivePathId = useMemo(() => {
+    if (!activeCategory || !isMultiPath(activeCategory)) return null
+    // Use explicit selection if valid, else fall back to primary path
+    if (activePathId) {
+      const exists = activeCategory.paths.find(p => p.id === activePathId)
+      if (exists) return activePathId
+    }
+    return activeCategory.paths.find(p => p.isPrimary)?.id
+      ?? activeCategory.paths[0]?.id
+      ?? null
+  }, [activeCategory, activePathId])
+
+  const activePath = useMemo(() => {
+    if (!activeCategory || !isMultiPath(activeCategory) || !effectivePathId) return null
+    return activeCategory.paths.find(p => p.id === effectivePathId) ?? null
+  }, [activeCategory, effectivePathId])
+
+  // ── Levels to render — MultiPath uses selected path's levels ─────────────
+  const levelsToShow = useMemo(() => {
+    if (!activeCategory) return []
+    if (isMultiPath(activeCategory)) {
+      return activePath?.levels ?? []
+    }
+    return activeCategory.levels
+  }, [activeCategory, activePath])
+
+  const selectedPower = levelsToShow.find(l => l.level === selectedPowerLevel)
+    ?? levelsToShow[0]
+
+  // ── When axis changes, reset to first category of new axis ────────────────
   const handleAxisChange = (axis: W20GiftAxis) => {
     setW20Axis(axis)
     const first = allCategories.find(c => getW20Axis(c.associatedWith?.type ?? '') === axis)
     if (first) {
       setActiveCatId(first.id)
       setSelectedPowerLevel(null)
+      setActivePathId(null)
     }
   }
 
-  const activeCategory = categories.find(c => c.id === activeCatId)
-    ?? categories[0]
-
-  const selectedPower = activeCategory?.levels.find(l => l.level === selectedPowerLevel)
-    ?? activeCategory?.levels[0]
-
-  // Reset selection when category changes
+  // ── When category changes, reset selection & path ─────────────────────────
   const handleCatChange = (id: string) => {
     setActiveCatId(id)
+    setSelectedPowerLevel(null)
+    // Auto-select primary path if new category is MultiPath
+    const cat = allCategories.find(c => c.id === id)
+    if (cat && isMultiPath(cat)) {
+      setActivePathId(cat.paths.find(p => p.isPrimary)?.id ?? cat.paths[0]?.id ?? null)
+    } else {
+      setActivePathId(null)
+    }
+  }
+
+  // ── When path changes, reset power selection ──────────────────────────────
+  const handlePathChange = (pathId: string) => {
+    setActivePathId(pathId)
     setSelectedPowerLevel(null)
   }
 
@@ -299,13 +387,28 @@ export default function PowersView({ gameSystem }: PowersViewProps) {
         <h1 className="font-garamond text-3xl font-semibold text-[#F5F5F0]">
           {activeCategory ? activeCategory.name : 'Poderes'}
         </h1>
-        {activeCategory?.description && (
+
+        {/* MultiPath: show current path info */}
+        {activeCategory && isMultiPath(activeCategory) && activePath && (
+          <>
+            <p className="font-mono text-[10px] tracking-widest mt-1 uppercase" style={{ color: 'var(--accent)' }}>
+              {activePath.isPrimary ? '★ SENDA PRIMARIA' : 'SENDA ALTERNATIVA'} — {activePath.name}
+            </p>
+            <p className="font-inter text-[13px] text-[#6B7280] mt-2 max-w-2xl leading-relaxed">
+              {activePath.description}
+            </p>
+          </>
+        )}
+
+        {/* Regular description (non-MultiPath) */}
+        {activeCategory && !isMultiPath(activeCategory) && activeCategory.description && (
           <p className="font-inter text-[13px] text-[#6B7280] mt-2 max-w-2xl leading-relaxed">
             {activeCategory.description}
           </p>
         )}
+
         {/* M20 ruling concept */}
-        {activeCategory?.rulingConcept && (
+        {activeCategory && !isMultiPath(activeCategory) && activeCategory.rulingConcept && (
           <p className="font-mono text-[10px] tracking-widest mt-2 uppercase" style={{ color: 'var(--accent)' }}>
             Concepto rector: {activeCategory.rulingConcept}
           </p>
@@ -330,24 +433,41 @@ export default function PowersView({ gameSystem }: PowersViewProps) {
         onSelect={handleCatChange}
       />
 
+      {/* MultiPath: path selector — shown when active category has multiple paths */}
+      {activeCategory && isMultiPath(activeCategory) && effectivePathId && (
+        <PathSelector
+          paths={activeCategory.paths}
+          activePathId={effectivePathId}
+          onSelect={handlePathChange}
+        />
+      )}
+
       {/* Two-pane layout */}
       <div className="flex flex-1 min-h-0 overflow-hidden">
         {/* Left: Power list */}
         <div className="w-72 flex-shrink-0 border-r border-[#1E1E1E] overflow-y-auto bg-[#0A0A0A]">
-          {activeCategory?.levels.map(power => (
-            <PowerListItem
-              key={`${power.level}-${power.name}`}
-              power={power}
-              isSelected={selectedPower?.name === power.name}
-              onClick={() => setSelectedPowerLevel(power.level)}
-            />
-          ))}
+          {levelsToShow.length === 0 ? (
+            <div className="flex items-center justify-center h-32">
+              <p className="font-mono text-[10px] tracking-widest text-[#333] uppercase">
+                Selecciona una senda
+              </p>
+            </div>
+          ) : (
+            levelsToShow.map(power => (
+              <PowerListItem
+                key={`${power.level}-${power.name}`}
+                power={power}
+                isSelected={selectedPower?.name === power.name}
+                onClick={() => setSelectedPowerLevel(power.level)}
+              />
+            ))
+          )}
         </div>
 
         {/* Right: Expanded card */}
         <div className="flex-1 overflow-hidden bg-[#0D0D0D]">
-          {selectedPower && activeCategory ? (
-            <PowerCard power={selectedPower} category={activeCategory} />
+          {selectedPower ? (
+            <PowerCard power={selectedPower} />
           ) : (
             <div className="flex items-center justify-center h-full">
               <p className="font-mono text-[11px] tracking-widest text-[#333] uppercase">

@@ -12,6 +12,11 @@ export type CoreModuleId =
   | 'extended-actions'
   | 'social-actions'
   | 'resistance'
+  | 'combat-initiative'
+  | 'combat-basics'
+  | 'virtues-morality'
+  | 'experience-advancement'
+  | 'backgrounds'
 
 // ─── Energy Resource Comparison Row ──────────────────────────────────────────
 

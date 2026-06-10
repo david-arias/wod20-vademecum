@@ -208,4 +208,242 @@ export const CORE_RULES: CoreRule[] = [
       },
     ],
   },
+
+  {
+    id: 'combat-initiative',
+    module: 'combat-initiative',
+    eyebrow: 'COMBATE — INICIATIVA',
+    title: 'Iniciativa y Orden de Turno',
+    summary: 'Al inicio de cada turno de combate, todos los participantes determinan su orden de acción mediante una tirada de iniciativa.',
+    applicableTo: 'all',
+    content: [
+      {
+        type: 'text',
+        content: 'Al comienzo de cada turno de combate todos los participantes tiran Destreza + Alerta (dificultad 4). El resultado más el Rasgo de Destreza determina el valor de iniciativa. El combatiente con la iniciativa más alta actúa primero; los empates se resuelven por Destreza (y luego por Astucia si persiste el empate).',
+      },
+      {
+        type: 'table',
+        caption: 'Fórmula de Iniciativa',
+        headers: ['Elemento', 'Descripción'],
+        rows: [
+          ['Tirada base', 'Destreza + Alerta vs. dificultad 4'],
+          ['Bonificador fijo', '+Destreza (no se tira, se suma al total)'],
+          ['Modificadores', 'Heridas, sorpresa, poderes sobrenaturales'],
+          ['Empate', 'Mayor Destreza, luego Astucia, luego Narrador decide'],
+        ],
+      },
+      {
+        type: 'list',
+        title: 'Modificadores de Iniciativa por Juego',
+        items: [
+          'V20: Celeridad añade acciones adicionales al final del orden, no a la iniciativa base.',
+          'W20: Rabia puede usarse para actuar inmediatamente fuera del orden normal, una vez por escena.',
+          'M20: Correspondencia + Tiempo puede alterar el orden de iniciativa como efecto mágico.',
+          'C20: Gastar 1 Glamour permite actuar primero una vez por combate.',
+          'Wr20: Los Wraiths en Forma Espectral tienen iniciativa +2 contra mortales que no los perciban.',
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 'combat-basics',
+    module: 'combat-basics',
+    eyebrow: 'COMBATE — MECÁNICAS',
+    title: 'Mecánicas de Combate',
+    summary: 'Atacar, defender, calcular daño. El combate en WoD es letal: Ataque vs. Defensa, los éxitos netos determinan el daño.',
+    applicableTo: 'all',
+    content: [
+      {
+        type: 'text',
+        content: 'El combate sigue tres pasos: el atacante tira su reserva de ataque, el defensor tira su reserva de defensa (o esquiva), y los éxitos netos (éxitos ataque – éxitos defensa) determinan el daño infligido.',
+      },
+      {
+        type: 'table',
+        caption: 'Reservas de Ataque Comunes',
+        headers: ['Tipo de Ataque', 'Reserva de Dados', 'Dificultad'],
+        rows: [
+          ['Puñetazo / Patada', 'Destreza + Pelea', '6'],
+          ['Arma cuerpo a cuerpo', 'Destreza + Melee', '6'],
+          ['Arma de fuego', 'Destreza + Armas de Fuego', '6'],
+          ['Ataque sobrenatural', 'Varía por poder', 'Varía'],
+        ],
+      },
+      {
+        type: 'table',
+        caption: 'Tipos de Daño por Fuente',
+        headers: ['Fuente', 'Tipo de Daño'],
+        rows: [
+          ['Puños, caídas', 'Contuso'],
+          ['Cuchillos, balas', 'Letal'],
+          ['Fuego, luz solar, garras sobrenaturales', 'Agravado'],
+          ['Plata (contra Garou)', 'Agravado'],
+        ],
+      },
+      {
+        type: 'list',
+        title: 'Esquiva y Defensa',
+        items: [
+          'Esquiva completa: usa toda la reserva para defenderse (Destreza + Atletismo dif. 6); no puede atacar ese turno.',
+          'Parar (Melee): Destreza + Melee dif. 6 para bloquear ataques cuerpo a cuerpo.',
+          'Los ataques de fuego a distancia solo pueden esquivarse, no pararse.',
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 'virtues-morality',
+    module: 'virtues-morality',
+    eyebrow: 'VIRTUDES Y MORALIDAD',
+    title: 'Virtudes, Humanidad y Moralidad',
+    summary: 'La Humanidad (u equivalente) mide cuánto del ser original queda en el personaje. Bajarla tiene consecuencias mecánicas y narrativas graves.',
+    applicableTo: 'all',
+    content: [
+      {
+        type: 'text',
+        content: 'Cada juego del ecosistema WoD 20 usa un sistema de moralidad que mide la conexión del personaje con su naturaleza original y sus valores. Perder estos puntos no solo afecta las tiradas: cambia quién es el personaje.',
+      },
+      {
+        type: 'comparison',
+        caption: 'Equivalentes de Moralidad por Juego',
+        rows: [
+          {
+            action: 'Rasgo de Moralidad',
+            v20: 'Humanidad (o Camino)',
+            w20: 'Gnosis + Renombre',
+            m20: 'Afinidad / Humanidad',
+            c20: 'Glamour vs. Banalidad',
+            wr20: 'Pathos vs. Angst',
+          },
+          {
+            action: 'Pérdida de puntos',
+            v20: 'Actos que violan la Jerarquía de Pecados',
+            w20: 'Fallar a Gaia, perder Renombre',
+            m20: 'Paradoja, actos contrarios a la Afinidad',
+            c20: 'Banalidad sube por actos mundanos',
+            wr20: 'Angst sube, Pathos cae por trauma',
+          },
+          {
+            action: 'Consecuencia a 0',
+            v20: 'Bestia permanente (PNJ)',
+            w20: 'Harano o muerte espiritual',
+            m20: 'Magus perdido (PNJ)',
+            c20: 'Changeling olvida su naturaleza feérica',
+            wr20: 'Wraith se convierte en Espectro',
+          },
+        ],
+      },
+      {
+        type: 'list',
+        title: 'Recuperación de Moralidad',
+        items: [
+          'V20: Gastar 5 PX + narrativa justificada (arrepentimiento, actos de redención).',
+          'W20: Rituales de purificación, hazañas heroicas en nombre de Gaia.',
+          'M20: Meditación, actos de creación o descubrimiento auténtico, resolución de Paradoja.',
+          'C20: Exposición a arte y creatividad genuina, aventuras feéricas.',
+          'Wr20: Resolver el Lazo que ata al wraith, actos de empatía genuina.',
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 'experience-advancement',
+    module: 'experience-advancement',
+    eyebrow: 'EXPERIENCIA Y AVANCE',
+    title: 'Puntos de Experiencia y Avance',
+    summary: 'Los PX se ganan al final de cada sesión. El coste de mejora varía según el Rasgo y si el personaje lo tiene como primario.',
+    applicableTo: 'all',
+    content: [
+      {
+        type: 'table',
+        caption: 'Ganancia de PX por Sesión',
+        headers: ['Criterio', 'PX'],
+        rows: [
+          ['Participación en la sesión', '1'],
+          ['Aprendizaje / crecimiento personal', '1'],
+          ['Logro de objetivo personal', '1'],
+          ['Heroísmo o acción extraordinaria', '1'],
+          ['Bonus a discreción del Narrador', '0–1'],
+        ],
+      },
+      {
+        type: 'table',
+        caption: 'Coste de Mejora (Regla Base)',
+        headers: ['Rasgo a Mejorar', 'Coste en PX'],
+        rows: [
+          ['Nuevo Atributo (nivel 1)', '5 PX'],
+          ['Atributo existente', 'Nivel actual × 4'],
+          ['Nueva Habilidad (nivel 1)', '3 PX'],
+          ['Habilidad existente', 'Nivel actual × 2'],
+          ['Habilidad de clan/tribu existente', 'Nivel actual'],
+          ['Nuevo poder sobrenatural (nivel 1)', '10 PX (fuera de grupo: 15 PX)'],
+          ['Poder sobrenatural siguiente nivel', 'Nivel nuevo × 7 (fuera: × 10)'],
+          ['Humanidad / Moralidad', '5 PX por punto'],
+          ['Fuerza de Voluntad', '1 PX por punto'],
+        ],
+      },
+      {
+        type: 'list',
+        title: 'Notas por Juego',
+        items: [
+          'V20: Disciplinas fuera del clan cuestan un 50% más. Dominar Taumaturgia requiere mentor Tremere in-game.',
+          'W20: Dones tribales: nivel × 3 PX; no tribales nivel × 5 PX.',
+          'M20: Esferas primarias: nivel × 7 PX; no primarias nivel × 8 PX.',
+          'C20: Artes del kith: nivel × 3 PX; otros Artes nivel × 4 PX. Reinos siempre nivel × 3 PX.',
+          'Wr20: Arcanos del Gremio: nivel × 3 PX; otros nivel × 5 PX.',
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 'backgrounds',
+    module: 'backgrounds',
+    eyebrow: 'TRASFONDOS',
+    title: 'Trasfondos',
+    summary: 'Los Trasfondos representan recursos, conexiones y ventajas externas. Se compran durante la creación o con PX en juego.',
+    applicableTo: 'all',
+    content: [
+      {
+        type: 'text',
+        content: 'Los Trasfondos son rasgos que representan lo que el personaje tiene o a quién conoce, no lo que es. Cada Trasfondo tiene una puntuación de 1 a 5. Los comunes a todos los juegos incluyen Aliados, Contactos, Recursos, Mentor e Influencia; cada línea añade los propios.',
+      },
+      {
+        type: 'table',
+        caption: 'Trasfondos Universales',
+        headers: ['Trasfondo', 'Descripción'],
+        rows: [
+          ['Aliados', 'Personas que ayudarán activamente en situaciones peligrosas (1 = poco fiable; 5 = red leal y poderosa)'],
+          ['Contactos', 'Fuentes de información sin compromiso de ayuda activa (1 = 1 contacto; 5 = red diversa de expertos)'],
+          ['Recursos', 'Acceso a bienes materiales y riqueza (1 = subsistencia; 5 = riqueza casi ilimitada)'],
+          ['Mentor', 'Ser más poderoso que guía al personaje (1 = consejero ocasional; 5 = maestro legendario)'],
+          ['Influencia', 'Poder en una esfera de la sociedad humana (1 = local menor; 5 = control de instituciones nacionales)'],
+        ],
+      },
+      {
+        type: 'comparison',
+        caption: 'Trasfondos Exclusivos por Juego',
+        rows: [
+          {
+            action: 'Trasfondo de linaje/poder',
+            v20: 'Generación (linaje vampírico)',
+            w20: 'Totem (espíritu guardián)',
+            m20: 'Nodo (fuente de Quintaesencia)',
+            c20: 'Título (rango feérico)',
+            wr20: 'Fetiche (reliquia espectral)',
+          },
+          {
+            action: 'Trasfondo de red social',
+            v20: 'Rebaño (fuente de sangre)',
+            w20: 'Manada (compañeros Garou)',
+            m20: 'Chantry (sede de Tradición)',
+            c20: 'Freeholds (territorio feérico)',
+            wr20: 'Contacts in Stygia (red umbral)',
+          },
+        ],
+      },
+    ],
+  },
 ]

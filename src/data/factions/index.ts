@@ -7,6 +7,7 @@ const V20_CLANS = [
   {
     id: 'brujah', name: 'Brujah', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Rebeldes',
+    politicalAffiliation: 'Camarilla (con fuerte presencia Anarquista)',
     lore: 'Antiguamente filósofos-reyes de la legendaria Cartago, los Brujah son ahora los anarquistas y punks del mundo vampírico. Luchan por causas que siempre pierden con una pasión que el Abismo no ha podido extinguir.',
     nativePowerIds: ['celeridad', 'potencia', 'presencia'],
     nativePowerLabel: 'Disciplinas de clan',
@@ -20,6 +21,7 @@ const V20_CLANS = [
   {
     id: 'gangrel', name: 'Gangrel', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Salvajes',
+    politicalAffiliation: 'Independiente (ex-Camarilla)',
     lore: 'Solitarios por naturaleza, los Gangrel son los más bestiales de los vampiros, más cómodos bajo las estrellas que en las intrigas de la Camará. Son los supervivientes definitivos del Mundo de Tinieblas.',
     nativePowerIds: ['animalismo', 'celeridad', 'fortitud'],
     nativePowerLabel: 'Disciplinas de clan',
@@ -33,6 +35,7 @@ const V20_CLANS = [
   {
     id: 'malkavian', name: 'Malkaviano', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Lunáticos',
+    politicalAffiliation: 'Camarilla',
     lore: 'Todos los Malkavianos están malditos con la locura de su fundador. Sin embargo, en su demencia ven verdades que los cuerdos jamás alcanzarán. Son los oráculos y los bufones del Sabbat y la Camará por igual.',
     nativePowerIds: ['auspex', 'dominacion', 'ofuscacion'],
     nativePowerLabel: 'Disciplinas de clan',
@@ -46,6 +49,7 @@ const V20_CLANS = [
   {
     id: 'nosferatu', name: 'Nosferatu', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Espías',
+    politicalAffiliation: 'Camarilla',
     lore: 'Monstruosos en apariencia, los Nosferatu compensan su repulsiva figura con una red de información que rival a la de cualquier agencia de espionaje. Conocen cada secreto de cada ciudad porque nadie mira a los que viven en las alcantarillas.',
     nativePowerIds: ['animalismo', 'ofuscacion', 'potencia'],
     nativePowerLabel: 'Disciplinas de clan',
@@ -59,6 +63,7 @@ const V20_CLANS = [
   {
     id: 'toreador', name: 'Toreador', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Estetas',
+    politicalAffiliation: 'Camarilla',
     lore: 'Los Toreador son los artistas, los connoisseurs y los seductores de la Camará. Su amor por la belleza puede paralizarlos literalmente, pero nadie maneja mejor las intrigas sociales de la Elísea.',
     nativePowerIds: ['auspex', 'celeridad', 'presencia'],
     nativePowerLabel: 'Disciplinas de clan',
@@ -72,6 +77,7 @@ const V20_CLANS = [
   {
     id: 'tremere', name: 'Tremere', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Hechiceros',
+    politicalAffiliation: 'Camarilla',
     lore: 'Jóvenes en términos vampíricos, los Tremere construyeron su lugar entre los clanes a través del poder de la Taumaturgia. Son la facción más organizada y temida de la Camará, con una jerarquía casi militar.',
     nativePowerIds: ['auspex', 'dominacion', 'taumaturgia-sangre'],
     nativePowerLabel: 'Disciplinas de clan',
@@ -85,6 +91,7 @@ const V20_CLANS = [
   {
     id: 'ventrue', name: 'Ventrue', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Aristócratas',
+    politicalAffiliation: 'Camarilla',
     lore: 'Los Ventrue son los reyes del mundo vampírico: políticos, magnates y nobles que han gobernado la Camará desde su fundación. Su código de honor es tan férreo como su ambición.',
     nativePowerIds: ['dominacion', 'fortitud', 'presencia'],
     nativePowerLabel: 'Disciplinas de clan',
@@ -98,6 +105,7 @@ const V20_CLANS = [
   {
     id: 'lasombra', name: 'Lasombra', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Señores de la Oscuridad',
+    politicalAffiliation: 'Sabbat',
     lore: 'Líderes espirituales y políticos del Sabbat, los Lasombra abrazan la Bestia con orgullo. Su poder sobre las sombras refleja su naturaleza: la oscuridad es su elemento natural y su arma preferida.',
     nativePowerIds: ['dominacion', 'potencia', 'obtenebración'],
     nativePowerLabel: 'Disciplinas de clan',
@@ -111,6 +119,7 @@ const V20_CLANS = [
   {
     id: 'tzimisce', name: 'Tzimisce', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Diablos Carnales',
+    politicalAffiliation: 'Sabbat',
     lore: 'Los Tzimisce son los maestros de la carne y el hueso. Sus conocimientos de Vicisitud les permiten remodelar cuerpos como arcilla, creando obras maestras de horror o belleza según su capricho.',
     nativePowerIds: ['animalismo', 'auspex', 'vicisitud'],
     nativePowerLabel: 'Disciplinas de clan',
@@ -124,6 +133,7 @@ const V20_CLANS = [
   {
     id: 'assamita', name: 'Assamita', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Asesinos',
+    politicalAffiliation: 'Independiente',
     lore: 'Desde sus fortalezas en Oriente Medio, los Assamitas han servido como asesinos de élite para vampiros de todos los clanes durante milenios. Obedecen un código estricto y buscan la perfección a través de la Sangre de los Ancianos.',
     nativePowerIds: ['celeridad', 'ofuscacion', 'quietud'],
     nativePowerLabel: 'Disciplinas de clan',
@@ -137,6 +147,7 @@ const V20_CLANS = [
   {
     id: 'giovanni', name: 'Giovanni', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Necromantes',
+    politicalAffiliation: 'Independiente',
     lore: 'Una familia de banqueros venecianos que secuestró el linaje de un Antediluviano y se convirtió en uno de los clanes más ricos y temidos. Su poder sobre los muertos es inigualable.',
     nativePowerIds: ['dominacion', 'potencia', 'nigromancia-sepulcro'],
     nativePowerLabel: 'Disciplinas de clan',
@@ -150,6 +161,7 @@ const V20_CLANS = [
   {
     id: 'ravnos', name: 'Ravnos', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Nómadas',
+    politicalAffiliation: 'Independiente',
     lore: 'Viajeros eternos e ilusionistas maestros, los Ravnos son el clan más difícil de atrapar y el más difícil de creer. Sus ilusiones son tan perfectas que pueden hacer creer casi cualquier cosa, y su Quimerismo único les distingue de cualquier otro linaje.',
     nativePowerIds: ['animalismo', 'celeridad', 'quimerismo'],
     nativePowerLabel: 'Disciplinas de clan',
@@ -163,6 +175,7 @@ const V20_CLANS = [
   {
     id: 'setita', name: 'Setita (Seguidores de Set)', gameSystem: 'V20' as const, factionType: 'clan' as const,
     archetype: 'Tentadores',
+    politicalAffiliation: 'Independiente',
     lore: 'Adoradores del dios serpiente Set, este clan busca corromper y debilitar a todos a su alrededor. Son los traficantes de adicciones, vicios y secretos del mundo vampírico.',
     nativePowerIds: ['ofuscacion', 'presencia', 'serpentis'],
     nativePowerLabel: 'Disciplinas de clan',
@@ -358,7 +371,7 @@ const M20_TRADITIONS = [
     id: 'akashic', name: 'Hermandad Akásica', gameSystem: 'M20' as const, factionType: 'tradition' as const,
     archetype: 'Guerreros-Filósofos',
     lore: 'Maestros del Do (el Camino), los Akásicos acceden a la Quintaesencia a través del movimiento perfecto, la meditación y las artes marciales. Conservan el registro akásico de toda experiencia humana.',
-    nativePowerIds: ['correspondencia', 'entropia'],
+    nativePowerIds: ['mente', 'correspondencia'],
     nativePowerLabel: 'Esferas predominantes',
     weakness: {
       name: 'Deuda Kármica',
@@ -371,7 +384,7 @@ const M20_TRADITIONS = [
     id: 'verbena', name: 'Verbena', gameSystem: 'M20' as const, factionType: 'tradition' as const,
     archetype: 'Brujas',
     lore: 'Las Verbena son las brujas y hechiceras que trabajan con la magia de la sangre, la tierra y los ciclos naturales. Son las más cercanas a las antiguas tradiciones chamánicas pre-consenso.',
-    nativePowerIds: ['correspondencia', 'entropia'],
+    nativePowerIds: ['vida', 'espiritu'],
     nativePowerLabel: 'Esferas predominantes',
     weakness: {
       name: 'Lazo Natural',
@@ -384,7 +397,7 @@ const M20_TRADITIONS = [
     id: 'orden-hermes', name: 'Orden de Hermes', gameSystem: 'M20' as const, factionType: 'tradition' as const,
     archetype: 'Magos Ceremoniales',
     lore: 'La más formal de todas las tradiciones, el Orden practica una magia ritual altamente estructurada basada en el conocimiento acumulado de siglos de práctica hermética y alquímica.',
-    nativePowerIds: ['correspondencia', 'entropia'],
+    nativePowerIds: ['correspondencia', 'fuerzas'],
     nativePowerLabel: 'Esferas predominantes',
     weakness: {
       name: 'Ritualismo Estricto',
@@ -397,7 +410,7 @@ const M20_TRADITIONS = [
     id: 'adeptos-virtuales', name: 'Adeptos Virtuales', gameSystem: 'M20' as const, factionType: 'tradition' as const,
     archetype: 'Hackers',
     lore: 'Los Adeptos Virtuales ven el mundo como código y la magia como programación avanzada. Son los miembros más jóvenes del Consejo y los más cómodos en el mundo digital.',
-    nativePowerIds: ['correspondencia', 'entropia'],
+    nativePowerIds: ['correspondencia', 'fuerzas', 'primo'],
     nativePowerLabel: 'Esferas predominantes',
     weakness: {
       name: 'Dependencia Digital',
@@ -410,7 +423,7 @@ const M20_TRADITIONS = [
     id: 'cult-ecstasy', name: 'Culto del Éxtasis', gameSystem: 'M20' as const, factionType: 'tradition' as const,
     archetype: 'Chamanes del Placer',
     lore: 'A través del placer extremo, el dolor, las drogas o la danza, los del Culto del Éxtasis alcanzan estados alterados que les dan acceso a verdades sobre el tiempo y la percepción que otros no pueden ver.',
-    nativePowerIds: ['correspondencia', 'entropia'],
+    nativePowerIds: ['tiempo', 'mente', 'vida'],
     nativePowerLabel: 'Esferas predominantes',
     weakness: {
       name: 'Adicción al Estado Alterado',
@@ -423,7 +436,7 @@ const M20_TRADITIONS = [
     id: 'eutanatos', name: 'Eutanatos', gameSystem: 'M20' as const, factionType: 'tradition' as const,
     archetype: 'Mercaderes de la Muerte',
     lore: 'Aquellos que caminan con la muerte como compañera. Los Eutanatos son los encargados de acelerar el fin natural de lo que debe morir, y de proteger el ciclo de vida y muerte.',
-    nativePowerIds: ['correspondencia', 'entropia'],
+    nativePowerIds: ['entropia', 'mente'],
     nativePowerLabel: 'Esferas predominantes',
     weakness: {
       name: 'Peso de la Muerte',
@@ -436,7 +449,7 @@ const M20_TRADITIONS = [
     id: 'coro-celestial', name: 'Coro Celestial', gameSystem: 'M20' as const, factionType: 'tradition' as const,
     archetype: 'Místicos Sagrados',
     lore: 'Monjes, sacerdotes y místicos de todas las tradiciones religiosas que canalizan la magia a través de la fe en una fuerza divina unificada que llaman el Único.',
-    nativePowerIds: ['correspondencia', 'entropia'],
+    nativePowerIds: ['espiritu', 'vida'],
     nativePowerLabel: 'Esferas predominantes',
     weakness: {
       name: 'Fe Necesaria',
@@ -449,7 +462,7 @@ const M20_TRADITIONS = [
     id: 'cuentasuenos', name: 'Cuentasueños (Dreamspeakers)', gameSystem: 'M20' as const, factionType: 'tradition' as const,
     archetype: 'Chamanes',
     lore: 'Los Cuentasueños son los chamanes, hombres-medicina y narradores espirituales de culturas indígenas y chamánicas de todo el mundo. Su magia es instintiva, conectada a la tierra y los espíritus ancestrales que hablan a través de los sueños.',
-    nativePowerIds: ['correspondencia', 'entropia'],
+    nativePowerIds: ['espiritu', 'vida', 'mente'],
     nativePowerLabel: 'Esferas predominantes',
     weakness: {
       name: 'Lazo Espiritual',
@@ -462,7 +475,7 @@ const M20_TRADITIONS = [
     id: 'sons-of-ether', name: 'Hijos del Éter', gameSystem: 'M20' as const, factionType: 'tradition' as const,
     archetype: 'Científicos Locos',
     lore: 'Científicos que trabajan con una física alternativa que incluye el éter, los rayos theta y conceptos rechazados por la ciencia de consenso. Sus inventos hacen cosas imposibles... en teoría.',
-    nativePowerIds: ['correspondencia', 'entropia'],
+    nativePowerIds: ['materia', 'fuerzas'],
     nativePowerLabel: 'Esferas predominantes',
     weakness: {
       name: 'Paradigma Mecánico',
@@ -585,6 +598,58 @@ const C20_KITHS = [
       mechanical: 'Si prometen algo o dan su palabra, deben cumplirlo con Voluntad dif. 8 para incumplirlo incluso si hacerlo les pone en grave peligro. Romper una promesa reduce en 1 permanente su Glamour hasta que reparen el honor.',
     },
   },
+  {
+    id: 'clurichaun', name: 'Clurichaun', gameSystem: 'C20' as const, factionType: 'kith' as const,
+    archetype: 'Borrachos Iluminados',
+    lore: 'Primos oscuros de los Leprechaun, los Clurichaun son las criaturas feéricas del vino, la noche y los excesos deliciosos. Se dice que cada botella con vino verdaderamente magnífico fue tocada por un Clurichaun, y que las peores resacas del mundo tienen un origen feérico. Son caóticos, generosos e impredecibles, y su Glamour fluye más libremente cuando el mundo mortal celebra sin medida.',
+    nativePowerIds: ['llorona'],
+    nativePowerLabel: 'Artes preferidas',
+    weakness: {
+      name: 'Sed Insaciable',
+      description: 'Los Clurichaun necesitan indulgencia para mantener su vínculo con el Glamour.',
+      mechanical: 'Si pasan más de 24 horas sin consumir algo que consideren "placer genuino" (vino, fiesta, música de calidad), pierden 1 punto de Glamour. No pueden tener Autodisciplina superior a 3.',
+    },
+    notableMembers: ['Fionnuala Óg', 'Brennan the Stumbling'],
+  },
+  {
+    id: 'ghille-dhu', name: 'Ghille Dhu', gameSystem: 'C20' as const, factionType: 'kith' as const,
+    archetype: 'Guardianes del Bosque',
+    lore: 'Espíritus feéricos ligados a árboles y bosques específicos, los Ghille Dhu son los más silvestres de todos los Kithain. Son virtualmente indistinguibles del entorno natural cuando desean serlo, y su enojo cuando los bosques son dañados es algo que los mortales describían como "la ira del bosque". Son protectores celosos y no siempre comprenden las prioridades de los Kithain urbanos.',
+    nativePowerIds: ['metamorfosis'],
+    nativePowerLabel: 'Artes preferidas',
+    weakness: {
+      name: 'Arraigo al Bosque',
+      description: 'Los Ghille Dhu están espiritualmente ligados a un bosque o zona natural específica.',
+      mechanical: 'A más de 50 kilómetros de su bosque natal, pierden 1 punto de Glamour por día. Si el bosque natal es destruido, pierden inmediatamente la mitad de su Glamour máximo permanente hasta encontrar un nuevo lugar sagrado y realizar el ritual de Enlace (requiere 1 año y 1 mes).',
+    },
+    notableMembers: ['Birch-That-Sings', 'Mara of the Deep Wood'],
+  },
+  {
+    id: 'piskie', name: 'Piskie', gameSystem: 'C20' as const, factionType: 'kith' as const,
+    archetype: 'Trabajadores Infatigables',
+    lore: 'Los Piskies son los parientes más laboriosos de los Changelings: pequeños, rápidos y completamente incapaces de quedarse quietos si hay trabajo que hacer. Son artesanos por naturaleza pero su hiperactividad los hace tan difíciles de contratar como de ignorar. A diferencia de los Boggan, que trabajan por deber, los Piskies trabajan porque simplemente no pueden no hacerlo.',
+    nativePowerIds: ['chicaneria'],
+    nativePowerLabel: 'Artes preferidas',
+    weakness: {
+      name: 'Incapacidad para la Inactividad',
+      description: 'Los Piskies son físicamente incapaces de permanecer inactivos.',
+      mechanical: 'Si no realizan algún tipo de trabajo productivo (físico o creativo) durante más de una hora, deben superar Voluntad dif. 7 para no comenzar algún proyecto cercano aunque sea contraproducente o peligroso. Esto incluye situaciones de sigilo o espera.',
+    },
+    notableMembers: ['Trix the Tinker', 'Worrit Quickhands'],
+  },
+  {
+    id: 'selkie', name: 'Selkie', gameSystem: 'C20' as const, factionType: 'kith' as const,
+    archetype: 'Almas del Mar',
+    lore: 'Los Selkies son los Changelings del mar: mitad foca, mitad feérico, eternamente divididos entre el mundo terrestre y las profundidades marinas. Su piel de foca es su tesoro más sagrado —sin ella no pueden regresar al mar— y la leyenda de mortales que roban pieles de Selkie para encadenarlos a tierra tiene una dolorosa base real en las experiencias feéricas.',
+    nativePowerIds: ['metamorfosis'],
+    nativePowerLabel: 'Artes preferidas',
+    weakness: {
+      name: 'Llamada del Mar',
+      description: 'Los Selkies sienten una atracción irresistible hacia el océano.',
+      mechanical: 'Si pasan más de una semana sin contacto con el mar (o cualquier masa de agua salada de cierta magnitud), pierden 1 punto de Glamour por día. Deben superar Voluntad dif. 7 para ignorar deliberadamente el sonido del océano o el olor a sal cuando se encuentran cerca. Su piel de foca (como objeto) puede ser robada: sin ella no pueden transformarse en foca ni entrar al mar sin sufrir daño contuso por cada hora.',
+    },
+    notableMembers: ['Morvenna of the Ninth Wave', 'Cuan the Gray'],
+  },
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -655,7 +720,7 @@ const WR20_GUILDS = [
     id: 'artisans', name: 'Artesanos (Artisans)', gameSystem: 'Wr20' as const, factionType: 'guild' as const,
     archetype: 'Creadores de Belleza',
     lore: 'Los Artesanos son los artistas del Umbral: pintores, escultores y músicos cuya obra genera Pathos suficiente para mantener a los wraiths cuerdos. Su arte es literalmente vital en el Más Allá.',
-    nativePowerIds: ['keening'],
+    nativePowerIds: ['lamento'],
     nativePowerLabel: 'Arcanos del Gremio',
     weakness: {
       name: 'Perfeccionismo Obsesivo',
@@ -679,7 +744,7 @@ const WR20_GUILDS = [
     id: 'chanteurs', name: 'Cantores (Chanteurs)', gameSystem: 'Wr20' as const, factionType: 'guild' as const,
     archetype: 'Manipuladores',
     lore: 'Los Cantores son los bardos del Umbral, cuyos cantos pueden alterar las emociones, los recuerdos y hasta la Sombra de otros wraiths. Su música es un arma y una medicina a la vez.',
-    nativePowerIds: ['keening'],
+    nativePowerIds: ['lamento'],
     nativePowerLabel: 'Arcanos del Gremio',
     weakness: {
       name: 'Ecos de la Melodía',
@@ -703,7 +768,7 @@ const WR20_GUILDS = [
     id: 'masquers', name: 'Enmascarados (Masquers)', gameSystem: 'Wr20' as const, factionType: 'guild' as const,
     archetype: 'Transformadores',
     lore: 'Los Enmascarados dominan la apariencia espectral, alterando la forma de los wraiths y de la materia umbral. Son los espías perfectos, los impostores definitivos y los cirujanos del alma.',
-    nativePowerIds: ['moliate'],
+    nativePowerIds: ['moldeo'],
     nativePowerLabel: 'Arcanos del Gremio',
     weakness: {
       name: 'Pérdida de Identidad',
@@ -715,7 +780,7 @@ const WR20_GUILDS = [
     id: 'mnemoi', name: 'Mnemoi', gameSystem: 'Wr20' as const, factionType: 'guild' as const,
     archetype: 'Guardianes de la Memoria',
     lore: 'Los Mnemoi preservan y manipulan los recuerdos —tanto los propios como los de otros wraiths. Son los historiadores del Umbral y, a veces, los editores de la historia personal de los muertos.',
-    nativePowerIds: ['lifeweb'],
+    nativePowerIds: ['red-de-vida'],
     nativePowerLabel: 'Arcanos del Gremio',
     weakness: {
       name: 'Carga de los Recuerdos Ajenos',
@@ -727,7 +792,7 @@ const WR20_GUILDS = [
     id: 'puppeteers', name: 'Titiriteros (Puppeteers)', gameSystem: 'Wr20' as const, factionType: 'guild' as const,
     archetype: 'Posesores',
     lore: 'Los Titiriteros practican el arte de poseer y controlar cuerpos vivos. Son los más temidos por los mortales (aunque no saben por qué su vecino actúa "extraño") y los más sospechosos entre los propios wraiths.',
-    nativePowerIds: ['inhabit'],
+    nativePowerIds: ['habitar'],
     nativePowerLabel: 'Arcanos del Gremio',
     weakness: {
       name: 'Contaminación del Huésped',
@@ -739,7 +804,7 @@ const WR20_GUILDS = [
     id: 'sandmen', name: 'Areneros (Sandmen)', gameSystem: 'Wr20' as const, factionType: 'guild' as const,
     archetype: 'Señores de los Sueños',
     lore: 'Los Areneros entran en los sueños de los vivos, nutriéndose del Pathos que generan los sueños y pesadillas. Son los responsables de los sueños más vívidos, los que a veces dejan una sensación de haber sido visitado.',
-    nativePowerIds: ['phantasm'],
+    nativePowerIds: ['fantasmagoria'],
     nativePowerLabel: 'Arcanos del Gremio',
     weakness: {
       name: 'Atrapado en el Sueño',
@@ -763,7 +828,7 @@ const WR20_GUILDS = [
     id: 'usurers', name: 'Usureros (Usurers)', gameSystem: 'Wr20' as const, factionType: 'guild' as const,
     archetype: 'Banqueros del Más Allá',
     lore: 'Los Usureros son los economistas del Umbral: prestan Pathos, comercian con Reliquias y gestionan las deudas de los muertos. Su poder reside en que todos necesitan algo y ellos saben exactamente cuánto cobrar.',
-    nativePowerIds: ['fatalism'],
+    nativePowerIds: ['usura'],
     nativePowerLabel: 'Arcanos del Gremio',
     weakness: {
       name: 'La Deuda Nunca Perdona',

@@ -14,11 +14,11 @@
 
 | ID | Juego | Acento | Facciones | Poderes | Estado |
 |----|-------|--------|-----------|---------|--------|
-| `V20` | Vampiro: La Mascarada | 🔴 `#FF3333` Blood Red | 13 clanes | 16 disciplinas (2 MultiPath) | ✅ Fase 3.5 |
+| `V20` | Vampiro: La Mascarada | 🔴 `#FF3333` Blood Red | 13 clanes + afiliación política | 19 disciplinas (2 MultiPath) | ✅ Fase 4 |
 | `W20` | Hombre Lobo: El Apocalipsis | 🟡 `#D4AF37` Dark Gold | 13 tribus | 21 categorías de dones | ✅ Fase 3.5 |
-| `M20` | Mago: La Ascensión | 🟣 `#8A2BE2` BlueViolet | 9 tradiciones | 9 esferas | ✅ Fase 3.5 |
-| `C20` | Changeling: El Ensueño | 🟢 `#00FF7F` Spring Green | 9 kiths | 9 artes | ✅ Fase 3.5 |
-| `Wr20` | Wraith: El Olvido | 🩶 `#708090` Slate Gray | 15 gremios | 15 arcanos | ✅ Fase 3.5 |
+| `M20` | Mago: La Ascensión | 🟣 `#8A2BE2` BlueViolet | 9 tradiciones (esferas correctas) | 9 esferas | ✅ Fase 4 |
+| `C20` | Changeling: El Ensueño | 🟢 `#00FF7F` Spring Green | 13 kiths | 9 artes | ✅ Fase 4 |
+| `Wr20` | Wraith: El Olvido | 🩶 `#708090` Slate Gray | 15 gremios (IDs corregidos) | 15 arcanos | ✅ Fase 4 |
 
 ---
 
@@ -275,17 +275,19 @@ Cada nivel incluye `realmRequired[]` con los Reinos canónicos. Recurso siempre 
   - [x] Bloque 12: Wr20 arcanos (Argos, Castigo, Habitar, Intimación, Red de Vida) — **+25 PL**
   - [x] Bloque 13: Wr20 arcanos (Ultraje, Pandemonium, Fantasmagoría, Ladrón del Velo, Usura) — **+25 PL**
   - [x] **Saneamiento QA**: eliminación de tipado ilegal (`as unknown as number`), resolución de 8 IDs huérfanos cross-game, corrección de `associatedWith.type` en W20
-- [x] **Fase 3.5** — Arquitectura de Reglas Agnósticas + Sincronización Completa de Datos:
+- [x] **Fase 3.5** — Arquitectura de Reglas Agnósticas + Sincronización Completa de Datos + UI MultiPath:
   - [x] `W20GiftAxis` + `W20_AXIS_LABELS` + `getW20Axis()` en `types/powers.ts`
   - [x] `GarouForm` / `GarouFormModifier` / `PowerPath` / `MultiPathDiscipline` en `types/powers.ts`
   - [x] `PowersIndex` actualizado a `Record<GameSystemId, (PowerCategory | MultiPathDiscipline)[]>`
   - [x] `w20Forms.ts` — 5 Formas Garou con modificadores exactos (pp.285-290 W20)
   - [x] `PowersView.tsx` — selector triple-eje RAZA/AUSPICIO/TRIBU para W20; breadcrumb de eje activo
+  - [x] **`PathSelector` component** — selector de senda para MultiPathDiscipline en `PowersView.tsx`; `isMultiPath()` type guard; memos `effectivePathId`, `activePath`, `levelsToShow`
   - [x] **V20**: Quimerismo (Ravnos, 5 niveles) + Taumaturgia MultiPath (3 sendas) + Nigromancia MultiPath (3 sendas)
   - [x] **W20**: 13 tribus canónicas en facciones + 8 nuevos conjuntos de dones de tribu (Fianna, Roedores de Huesos, Contemplaestrellas, Hijos de Gaia, Peregrinos Silenciosos, Colmillos de Plata, Uktena, Wendigo)
   - [x] **M20**: `effectType` verificado en 45/45 niveles; Dreamspeakers renombrados a `Cuentasueños`
   - [x] **C20**: 4 nuevas parentelas (Gorros Rojos, Sluagh, Sátiros, Trols) → 9 kiths completos
   - [x] **Wr20**: 10 nuevos gremios → 15 gremios completos
+  - [x] **TypeScript**: `npx tsc --noEmit` — 0 errores, 0 avisos (fix TS6133 en `PowerCard`)
 - [ ] **Fase 4** — Motor de Tiradas Interactivo y Ficha de Personaje:
   - [ ] `MultiPathDiscipline UI` — selector de senda en `PowersView` para Taumaturgia y Nigromancia
   - [ ] `AttributesView` — atributos + habilidades interactivos por juego
