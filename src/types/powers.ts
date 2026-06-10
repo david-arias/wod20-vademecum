@@ -87,3 +87,67 @@ export interface C20Realm {
   description: string
   levels: PowerLevel[]
 }
+
+// ─── W20: Triple Axis for Gift segmentation ───────────────────────────────────
+// Maps associatedWith.type to display axis in PowersView
+
+export type W20GiftAxis = 'raza' | 'auspicio' | 'tribu'
+
+export const W20_AXIS_LABELS: Record<W20GiftAxis, string> = {
+  raza:     'RAZA',
+  auspicio: 'AUSPICIO',
+  tribu:    'TRIBU',
+}
+
+// Maps associatedWith.type → axis
+export function getW20Axis(type: string): W20GiftAxis | null {
+  if (type === 'breed')   return 'raza'
+  if (type === 'auspice') return 'auspicio'
+  if (type === 'tribe')   return 'tribu'
+  return null
+}
+
+// ─── W20: Formas Garou ────────────────────────────────────────────────────────
+
+export interface GarouFormModifier {
+  attribute: string          // e.g. 'Fuerza', 'Destreza'
+  modifier?: number          // positive = bonus, negative = penalty. Omit when isSet:true
+  isSet?: boolean            // true = set to fixed value, not add/subtract
+  setValue?: number          // if isSet, the absolute value
+  notes?: string             // e.g. "no puede aumentarse con Gnosis"
+}
+
+export interface GarouForm {
+  id: 'homid' | 'glabro' | 'crinos' | 'hispo' | 'lupus'
+  name: string               // canonical English name
+  nameEs: string             // Spanish display name
+  description: string
+  attributeModifiers: GarouFormModifier[]
+  naturalWeapons?: {
+    claws?: string            // damage type description
+    bite?: string             // damage type description
+    notes?: string
+  }
+  delirium: boolean           // true = mortals must roll Delirium
+  difficultyToShift?: number  // difficulty to enter this form voluntarily
+  rageCostToShift?: number    // Rage points spent on shift
+  movementNotes?: string
+  socialRestrictions?: string
+  specialRules?: string[]
+}
+
+// ─── V20: Multi-Path Disciplines (Taumaturgia, Nigromancia) ──────────────────
+
+export interface PowerPath {
+  id: string
+  name: string
+  isPrimary: boolean          // true = primary/default path
+  description: string
+  levels: PowerLevel[]
+}
+
+export interface MultiPathDiscipline extends Omit<PowerCategory, 'levels'> {
+  isMultiPath: true
+  paths: PowerPath[]
+  levels: PowerLevel[]        // re-exported from primary path for type compatibility
+}

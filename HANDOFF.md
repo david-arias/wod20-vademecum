@@ -1,5 +1,5 @@
 # 📂 ARCHIVO DE MEMORIA: HANDOFF.md
-> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 3 — SANEAMIENTO CRUZADO COMPLETADO — Data layer auditado y consistente al 100%**
+> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 3.5 ABIERTA — Arquitectura de Reglas Agnósticas completada (W20 triple eje, Formas Garou, tipos MultiPath)**
 
 ---
 
@@ -10,7 +10,75 @@ Líneas de juego: V20 (Vampiro), W20 (Hombre Lobo), M20 (Mago), C20 (Changeling)
 
 ---
 
-## ✅ Estado Actual: ████████████████████ FASE 3 — EXPANSIÓN + SANEAMIENTO 100% COMPLETADA ████████████████████
+## 🔧 FASE 3.5 ABIERTA — Arquitectura de Reglas Agnósticas
+
+### ══════════════════════════════════════════════════════
+### FASE 3.5 — Refactorización del Motor de Reglas (agnostic rules engine)
+
+Objetivo: enriquecer el motor de tipos y la UI para soportar estructuras mecánicas avanzadas sin romper datos existentes.
+
+| Paso | Tarea | Archivos | Estado |
+|---|---|---|---|
+| **3.5-A** | Tipos nuevos en `powers.ts` | `src/types/powers.ts` | ✅ COMPLETO |
+| **3.5-B** | Formas Garou data object | `src/data/powers/w20Forms.ts` | ✅ COMPLETO |
+| **3.5-C** | W20 triple-eje UI (`PowersView.tsx`) | `src/components/powers/PowersView.tsx` | ✅ COMPLETO |
+| **3.5-D** | MultiPathDiscipline data (Taumaturgia sub-sendas) | `src/data/powers/v20Disciplines.ts` | 🔜 PENDIENTE |
+| **3.5-E** | Paradox/Coincidencia rigor en esferas M20 | `src/data/powers/m20Spheres.ts` | 🔜 PENDIENTE |
+| **3.5-F** | Roadmap de contenido W20 tribus completo (13 tribus × 5) | `src/data/powers/w20Gifts.ts` | 🔜 PENDIENTE |
+
+#### Paso 3.5-A — Nuevos tipos en `src/types/powers.ts`
+
+Añadidos al final del archivo (tras `C20Realm`):
+
+```typescript
+// W20 triple eje
+export type W20GiftAxis = 'raza' | 'auspicio' | 'tribu'
+export const W20_AXIS_LABELS: Record<W20GiftAxis, string>
+export function getW20Axis(type: string): W20GiftAxis | null  // breed→raza, auspice→auspicio, tribe→tribu
+
+// Formas Garou
+export interface GarouFormModifier { attribute, modifier?, isSet?, setValue?, notes? }
+export interface GarouForm { id:'homid'|'glabro'|'crinos'|'hispo'|'lupus', name, nameEs, description,
+  attributeModifiers, naturalWeapons?, delirium, difficultyToShift?, rageCostToShift?,
+  movementNotes?, socialRestrictions?, specialRules? }
+
+// Taumaturgia/Nigromancia multi-senda
+export interface PowerPath { id, name, isPrimary, description, levels: PowerLevel[] }
+export interface MultiPathDiscipline extends Omit<PowerCategory,'levels'> { isMultiPath: true, paths, levels }
+```
+
+> **Fix crítico**: `GarouFormModifier.modifier` es ahora `modifier?: number` (opcional) para que los entries con `isSet: true` no requieran el campo. Sin este fix el compilador lanza TS2741 en Crinos/Hispo/Lupus.
+
+#### Paso 3.5-B — `src/data/powers/w20Forms.ts` (archivo nuevo)
+
+```
+Exporta: W20_FORMS: GarouForm[]    (5 formas con modificadores exactos del manual W20 pp.285-290)
+         W20_FORMS_SUMMARY         (tabla comparativa para UI rápida)
+```
+
+| Forma | Str | Dex | Sta | Man | App | Delirio | Daño |
+|---|---|---|---|---|---|---|---|
+| Homínido | +0 | +0 | +0 | +0 | normal | — | Contuso |
+| Glabro | +2 | +0 | +2 | -1 | -1 | — | Letal |
+| Crinos | +4 | +1 | +3 | -3 | 0 (fijo) | Dif.7 | Agravado |
+| Hispo | +3 | +2 | +3 | -3 | 0 (fijo) | Dif.5 | Agravado |
+| Lupus | +1 | +2 | +2 | -3 | 0 (animal) | — | Letal |
+
+#### Paso 3.5-C — `PowersView.tsx` — W20 triple-eje
+
+Cambios en `src/components/powers/PowersView.tsx`:
+
+1. **Imports**: `useMemo` añadido; `W20GiftAxis`, `W20_AXIS_LABELS`, `getW20Axis` importados desde `@/types/powers`
+2. **`W20AxisSelector` component**: barra de 3 botones (RAZA / AUSPICIO / TRIBU) con highlight del eje activo
+3. **`w20Axis` state**: `useState<W20GiftAxis>('raza')` — eje activo por defecto: RAZA
+4. **`categories` memo**: cuando `gameSystem === 'W20'` filtra `allCategories` por `getW20Axis(cat.associatedWith?.type)`. Otros juegos ven `allCategories` completo sin filtro.
+5. **`handleAxisChange`**: al cambiar eje, resetea `activeCatId` a la primera categoría del nuevo eje y limpia `selectedPowerLevel`
+6. **Header breadcrumb**: cuando W20, muestra `RAZA/AUSPICIO/TRIBU › NombreCategoría` debajo del título
+7. **`W20AxisSelector` se renderiza** entre el header y los `CategoryTabs` solo cuando `gameSystem === 'W20'`
+
+---
+
+## ✅ Estado Anterior: ████████████████████ FASE 3 — EXPANSIÓN + SANEAMIENTO 100% COMPLETADA ████████████████████
 
 ### ══════════════════════════════════════════════════════
 ### FASE 2.5 — Llenado de Datos — CIERRE FORMAL
@@ -451,7 +519,8 @@ wod20 - Vademecum/
 ├── src/
 │   ├── types/
 │   │   ├── gameSystem.ts       # GameSystemId, GameSystemConfig, VirtueStat, NavSection...
-│   │   ├── powers.ts           # PowerCategory, PowerLevel, DicePool, ActionType...
+│   │   ├── powers.ts           # PowerCategory, PowerLevel, DicePool, ActionType, W20GiftAxis,
+│   │   │                       # GarouForm, GarouFormModifier, PowerPath, MultiPathDiscipline
 │   │   ├── factions.ts         # Faction, FactionType, FactionWeakness...
 │   │   └── coreSystem.ts       # CoreRule, CoreRuleBlock (union), EnergyResourceRow
 │   ├── data/
@@ -460,6 +529,7 @@ wod20 - Vademecum/
 │   │   ├── powers/
 │   │   │   ├── v20Disciplines.ts
 │   │   │   ├── w20Gifts.ts
+│   │   │   ├── w20Forms.ts     # ← NUEVO — W20_FORMS (5 formas Garou) + W20_FORMS_SUMMARY
 │   │   │   ├── m20Spheres.ts
 │   │   │   ├── c20Arts.ts
 │   │   │   ├── wr20Arcanos.ts
@@ -469,7 +539,7 @@ wod20 - Vademecum/
 │   ├── components/
 │   │   ├── Dashboard.tsx       # Orquestador principal + todos los sub-componentes del home
 │   │   ├── powers/
-│   │   │   └── PowersView.tsx  # Tabs + list + expanded card
+│   │   │   └── PowersView.tsx  # Tabs + list + expanded card + W20AxisSelector (RAZA/AUSPICIO/TRIBU)
 │   │   ├── factions/
 │   │   │   └── FactionsView.tsx # Grid + Drawer lateral
 │   │   └── core/

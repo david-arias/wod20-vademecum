@@ -256,6 +256,11 @@ Cada nivel incluye `realmRequired[]` con los Reinos canónicos. Recurso siempre 
   - [x] Bloque 12: Wr20 arcanos (Argos, Castigo, Habitar, Intimación, Red de Vida) — **+25 PL**
   - [x] Bloque 13: Wr20 arcanos (Ultraje, Pandemonium, Fantasmagoría, Ladrón del Velo, Usura) — **+25 PL**
   - [x] **Saneamiento QA**: eliminación de tipado ilegal (`as unknown as number`), resolución de 8 IDs huérfanos cross-game, corrección de `associatedWith.type` en W20
+- [x] **Fase 3.5** — Arquitectura de Reglas Agnósticas:
+  - [x] `W20GiftAxis` + `W20_AXIS_LABELS` + `getW20Axis()` en `types/powers.ts`
+  - [x] `GarouForm` / `GarouFormModifier` / `PowerPath` / `MultiPathDiscipline` en `types/powers.ts`
+  - [x] `w20Forms.ts` — 5 Formas Garou con modificadores exactos (pp.285-290 W20)
+  - [x] `PowersView.tsx` — selector triple-eje RAZA/AUSPICIO/TRIBU para W20; breadcrumb de eje activo
 - [ ] **Fase 4** — Motor de Tiradas Interactivo y Ficha de Personaje:
   - [ ] `AttributesView` — atributos + habilidades interactivos por juego
   - [ ] `DiceRoller` — simulador d10 con pool configurable, dificultad y lectura de resultados

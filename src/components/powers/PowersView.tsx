@@ -3,9 +3,10 @@
 // 💻 Arch: Dos paneles — lista scrollable izquierda + card expandida derecha
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import type { GameSystemId } from '@/types/gameSystem'
-import type { PowerCategory, PowerLevel, ActionType } from '@/types/powers'
+import type { PowerCategory, PowerLevel, ActionType, W20GiftAxis } from '@/types/powers'
+import { W20_AXIS_LABELS, getW20Axis } from '@/types/powers'
 import { ALL_POWERS } from '@/data/powers'
 
 // ─── Action type labels ──────────────────────────────────────────────────────
@@ -211,17 +212,66 @@ const CategoryTabs = ({
   </div>
 )
 
+// ─── W20 Axis Selector ────────────────────────────────────────────────────────
+const W20_AXES: W20GiftAxis[] = ['raza', 'auspicio', 'tribu']
+
+const W20AxisSelector = ({
+  activeAxis, onSelect,
+}: { activeAxis: W20GiftAxis; onSelect: (a: W20GiftAxis) => void }) => (
+  <div className="flex border-b-2 border-[#1E1E1E] flex-shrink-0 bg-[#0A0A0A]">
+    {W20_AXES.map(axis => (
+      <button
+        key={axis}
+        onClick={() => onSelect(axis)}
+        className="flex-1 py-3 font-mono text-[10px] tracking-[0.2em] uppercase transition-none border-b-2 -mb-[2px]"
+        style={{
+          color: axis === activeAxis ? 'var(--accent)' : '#6B7280',
+          borderColor: axis === activeAxis ? 'var(--accent)' : 'transparent',
+          backgroundColor: axis === activeAxis ? '#131313' : 'transparent',
+        }}
+      >
+        {W20_AXIS_LABELS[axis]}
+      </button>
+    ))}
+  </div>
+)
+
 // ─── MAIN POWERS VIEW ─────────────────────────────────────────────────────────
 interface PowersViewProps {
   gameSystem: GameSystemId
 }
 
 export default function PowersView({ gameSystem }: PowersViewProps) {
-  const categories = ALL_POWERS[gameSystem] ?? []
-  const [activeCatId, setActiveCatId] = useState(categories[0]?.id ?? '')
+  const allCategories = ALL_POWERS[gameSystem] ?? []
+
+  // W20 triple-axis state
+  const [w20Axis, setW20Axis] = useState<W20GiftAxis>('raza')
+
+  // Derive visible categories — W20 filters by axis, others show all
+  const categories = useMemo(() => {
+    if (gameSystem !== 'W20') return allCategories
+    return allCategories.filter(c => {
+      const axis = getW20Axis(c.associatedWith?.type ?? '')
+      return axis === w20Axis
+    })
+  }, [allCategories, gameSystem, w20Axis])
+
+  const [activeCatId, setActiveCatId] = useState(allCategories[0]?.id ?? '')
   const [selectedPowerLevel, setSelectedPowerLevel] = useState<number | null>(null)
 
+  // When axis changes, reset to first category of new axis
+  const handleAxisChange = (axis: W20GiftAxis) => {
+    setW20Axis(axis)
+    const first = allCategories.find(c => getW20Axis(c.associatedWith?.type ?? '') === axis)
+    if (first) {
+      setActiveCatId(first.id)
+      setSelectedPowerLevel(null)
+    }
+  }
+
   const activeCategory = categories.find(c => c.id === activeCatId)
+    ?? categories[0]
+
   const selectedPower = activeCategory?.levels.find(l => l.level === selectedPowerLevel)
     ?? activeCategory?.levels[0]
 
@@ -231,7 +281,7 @@ export default function PowersView({ gameSystem }: PowersViewProps) {
     setSelectedPowerLevel(null)
   }
 
-  if (!categories.length) {
+  if (!allCategories.length) {
     return (
       <div className="flex items-center justify-center h-64 text-[#6B7280] font-mono text-sm tracking-widest uppercase">
         Sin datos para este sistema de juego.
@@ -247,9 +297,7 @@ export default function PowersView({ gameSystem }: PowersViewProps) {
           {gameSystem} — PODERES SOBRENATURALES
         </p>
         <h1 className="font-garamond text-3xl font-semibold text-[#F5F5F0]">
-          {activeCategory
-            ? `${activeCategory.name}`
-            : 'Poderes'}
+          {activeCategory ? activeCategory.name : 'Poderes'}
         </h1>
         {activeCategory?.description && (
           <p className="font-inter text-[13px] text-[#6B7280] mt-2 max-w-2xl leading-relaxed">
@@ -262,12 +310,23 @@ export default function PowersView({ gameSystem }: PowersViewProps) {
             Concepto rector: {activeCategory.rulingConcept}
           </p>
         )}
+        {/* W20 axis + category label */}
+        {gameSystem === 'W20' && activeCategory?.associatedWith && (
+          <p className="font-mono text-[10px] tracking-widest mt-1 uppercase" style={{ color: '#6B7280' }}>
+            {W20_AXIS_LABELS[w20Axis]} › {activeCategory.associatedWith.name}
+          </p>
+        )}
       </div>
+
+      {/* W20: triple-axis selector */}
+      {gameSystem === 'W20' && (
+        <W20AxisSelector activeAxis={w20Axis} onSelect={handleAxisChange} />
+      )}
 
       {/* Category tabs */}
       <CategoryTabs
         categories={categories}
-        activeId={activeCatId}
+        activeId={activeCategory?.id ?? ''}
         onSelect={handleCatChange}
       />
 
@@ -275,15 +334,6 @@ export default function PowersView({ gameSystem }: PowersViewProps) {
       <div className="flex flex-1 min-h-0 overflow-hidden">
         {/* Left: Power list */}
         <div className="w-72 flex-shrink-0 border-r border-[#1E1E1E] overflow-y-auto bg-[#0A0A0A]">
-          {/* Association badge (W20) */}
-          {activeCategory?.associatedWith && (
-            <div
-              className="px-5 py-2 border-b border-[#1E1E1E] font-mono text-[9px] tracking-widest uppercase"
-              style={{ color: 'var(--accent)' }}
-            >
-              {activeCategory.associatedWith.type.toUpperCase()}: {activeCategory.associatedWith.name}
-            </div>
-          )}
           {activeCategory?.levels.map(power => (
             <PowerListItem
               key={`${power.level}-${power.name}`}
