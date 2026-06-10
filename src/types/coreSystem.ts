@@ -17,6 +17,11 @@ export type CoreModuleId =
   | 'virtues-morality'
   | 'experience-advancement'
   | 'backgrounds'
+  | 'difficulty-guide'     // Guía de dificultades base
+  | 'automatic-successes'  // Éxitos automáticos y dados de especialización
+  | 'aggravated-damage'    // Daño agravado: qué es y cómo funciona
+  | 'virtue-traits'        // Rasgos de Virtud transversales (Consciencia, Autocontrol, Valor)
+  | 'resonance'            // Resonancia: cómo el universo detecta el tipo de magia
 
 // ─── Energy Resource Comparison Row ──────────────────────────────────────────
 

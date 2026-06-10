@@ -1,5 +1,5 @@
 # 📂 ARCHIVO DE MEMORIA: HANDOFF.md
-> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 5 BLOQUE C — M20: m20Foci.ts (8 tradiciones), m20Paradox.ts (10 niveles), 5 convenciones Tecnocracia en factions/index.ts, 0 errores TypeScript**
+> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 5 BLOQUE D — C20: Arte Contratos, 4 kiths nuevos; Wr20: wr20Shadow.ts (Angustia/Catarsis/Pasiones/Espectros); CoreSystem: 5 reglas + 5 CoreModuleId; 0 errores TypeScript**
 
 ---
 
@@ -1294,4 +1294,70 @@ Exports: `PARADOX_LEVELS`, `PARADOX_SUMMARY_TABLE`, `PARADOX_ACCUMULATION_RULES`
 **M20 facciones: 14** (9 tradiciones + 5 convenciones Tecnocracia)
 **m20Foci.ts: 9 conjuntos** de focos × 9 Esferas cada uno + 5 reglas de focos
 **m20Paradox.ts: 10 niveles** + 6 reglas acumulación + 6 reducción + 3 espíritus Paradoja + 3 etapas Quietud
+
+---
+
+## ✅ FASE 5 BLOQUE D — C20 Contratos, Kiths, Wr20 Sombra, CoreSystem (10 Jun 2026)
+
+### C20 — Arte Contratos en `src/data/powers/c20Arts.ts`
+
+| Nivel | Nombre | Temática |
+|-------|--------|----------|
+| 1 | Llamada del Contrato | Establecer contacto con el elemento contractuado |
+| 2 | Favores del Contrato | Invocar un favor específico (viento, piedra, agua, criaturas) |
+| 3 | Voz del Contrato | Comunicación directa y negociación de favores extendidos |
+| 4 | Cuerpo del Contrato | Incorporar propiedades del elemento en el cuerpo propio |
+| 5 | Alma del Contrato | Fusión completa — el elemento obedece como extensión del ser |
+
+**Total artes C20: 10** (9 originales + Contratos)
+
+### C20 — 4 kiths nuevos en `src/data/factions/index.ts`
+
+| ID | Nombre | Archetype | Arte preferida |
+|----|--------|-----------|----------------|
+| `merrow` | Merrow | Sirenas de Agua Dulce | somniloquios, contratos |
+| `korred` | Korred | Danzantes de la Piedra | contratos, metamorfosis |
+| `aonide` | Aonide | Musas Inspiradoras | llorona, somniloquios |
+| `nixie` | Nixie | Espíritus del Agua | contratos, somniloquios |
+
+**Total kiths C20: 17** (13 originales + 4 nuevos)
+
+### Wr20 — `src/data/wr20Shadow.ts` (NUEVO)
+
+Interfaces: `AngustiaLevel`, `CatharsisResult`, `PassionType`, `SpectreType`, `ShadowPlayerRule`
+
+| Sección | Contenido |
+|---------|-----------|
+| Angustia | 10 niveles (Susurro → Espectro) con mecánicas y triggers de Catarsis |
+| Catarsis | 5 resultados (Lapso Menor → Transformación Espectral) |
+| Pasiones | 8 tipos (Amor, Culpa, Ira, Nostalgia, Miedo, Orgullo, Deber, Envidia) |
+| Espectros | 4 tiers (Lemur, Engendro del Nihil, Malfeo, Señor de la Oblivion) |
+| Reglas Sombra | 4 mecánicas (Jugador de Sombra, Pasiones Oscuras, Tratos, Catarsis) |
+
+Exports: `ANGUSTIA_LEVELS`, `CATHARSIS_RESULTS`, `PASSION_TYPES`, `SPECTRES`, `SHADOW_PLAYER_RULES`
+
+### CoreSystem — 5 nuevas reglas + extensión de `CoreModuleId`
+
+| ID | Título | Temática |
+|----|--------|----------|
+| `difficulty-guide` | Guía de Dificultades Base | Escala 3–10, modificadores comunes |
+| `automatic-successes` | Éxitos Automáticos y Especialización | Cuándo tirar vs cuándo no, doble-éxito en 10s |
+| `aggravated-damage` | Daño Agravado | Fuentes por sistema, curación, interacción con soak |
+| `virtue-traits` | Rasgos de Virtud | Consciencia/Autocontrol/Valor por sistema |
+| `resonance` | Resonancia | Firma sobrenatural, detección, persistencia, atracción |
+
+`CoreModuleId` ahora tiene 17 valores (12 originales + 5 nuevos)
+**Total CoreRules: 17** (12 anteriores + 5 nuevas)
+
+### 📊 Estado Final — Fase 5 Completa
+
+| Sistema | Facciones | Poderes | Datos adicionales | % Real |
+|---------|-----------|---------|-------------------|--------|
+| V20 | 16 (13+3 menores) | 23 disciplinas | — | ~80% |
+| W20 | 16 ✅ | 24 dones + 18 ritos | Renombre 6 rangos | ~90% |
+| M20 | 14 ✅ | 9 esferas | Focos 9 tradiciones + Paradoja 10 niveles | ~90% |
+| **C20** | **17/~20** (13+4 nuevos) | **10 Artes** (9+Contratos) | — | **~75%** |
+| **Wr20** | 15/15 ✅ | 15/15 ✅ | **Sombra completa** (10 niveles Angustia + Espectros) | **~90%** |
+
+**CoreSystem: 17 reglas** en 17 módulos (5 nuevas: Dificultades, Especialización, Agravado, Virtudes, Resonancia)
 

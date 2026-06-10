@@ -810,6 +810,60 @@ const C20_KITHS = [
     },
     notableMembers: ['Morvenna of the Ninth Wave', 'Cuan the Gray'],
   },
+
+  // ── KITHS ADICIONALES (Fase 5-D) ─────────────────────────────────────────────
+  {
+    id: 'merrow', name: 'Merrow', gameSystem: 'C20' as const, factionType: 'kith' as const,
+    archetype: 'Sirenas de Agua Dulce',
+    lore: 'Los Merrow son los Changelings del agua dulce: criaturas de ríos, lagos y pozas de montaña que poseen una belleza casi paralizante y una voz que puede hacer llorar a los mortales más duros. A diferencia de los Selkies del mar, los Merrow están vinculados a las aguas interiores y a las comunidades humanas que viven junto a ellas. Son mediadores entre los mundos, guardianes de secretos hundidos y custodios de las historias que el agua ha presenciado.',
+    nativePowerIds: ['somniloquios', 'contratos'],
+    nativePowerLabel: 'Artes preferidas',
+    weakness: {
+      name: 'Vínculo al Agua Dulce',
+      description: 'Los Merrow están espiritualmente atados a un cuerpo de agua dulce específico.',
+      mechanical: 'A más de 30 kilómetros de su cuerpo de agua natal, pierden 1 punto de Glamour por día. Fuera del agua (completamente secos) por más de 24 horas, también pierden 1 Glamour por día adicional. Si su cuerpo de agua natal es contaminado gravemente, pierden 2 puntos permanentes de Glamour hasta que el agua sea purificada. El sonido del agua corriente (río, lluvia fuerte) recupera 1 Glamour por escena de exposición, siempre que no estén ya en su máximo.',
+    },
+    notableMembers: ['Siobhán of the Amber Lake', 'Tidal-Voice'],
+  },
+  {
+    id: 'korred', name: 'Korred', gameSystem: 'C20' as const, factionType: 'kith' as const,
+    archetype: 'Danzantes de la Piedra',
+    lore: 'Los Korred son los feéricos de la roca y la danza: criaturas de aspecto tosco y pelo salvaje que habitan megalitos, cavernas y lugares de piedra antigua. A pesar de su apariencia poco agraciada, son danzantes extraordinarios —su danza sagrada tiene el poder de mover la piedra, despertar espíritus de la tierra y generar Glamour suficiente para iluminar lugares de poder durante semanas. Son guardianes de los círculos de piedra y saben secretos que la tierra ha guardado desde el principio del tiempo.',
+    nativePowerIds: ['contratos', 'metamorfosis'],
+    nativePowerLabel: 'Artes preferidas',
+    weakness: {
+      name: 'Compulsión de la Danza',
+      description: 'Los Korred no pueden resistir unirse a cualquier danza o música de calidad.',
+      mechanical: 'Ante cualquier forma de música con ritmo (desde un tambor hasta una orquesta) o ante una danza en progreso, los Korred deben superar Voluntad dif. 7 para no unirse inmediatamente. Una vez dentro de la danza, necesitan Voluntad dif. 8 para detenerse antes de que la música termine. Esto puede hacerles abandonar compromisos, revelarse en momentos inapropiados, o simplemente desaparecer en lo mejor de una reunión importante.',
+    },
+    notableMembers: ['Boulder-Song', 'Maura the Stamping'],
+  },
+  {
+    id: 'aonide', name: 'Aonide', gameSystem: 'C20' as const, factionType: 'kith' as const,
+    archetype: 'Musas Inspiradoras',
+    lore: 'Las Aonide —las Musas— son los Changelings de la inspiración creativa pura. Donde otros Kithain generan Glamour, las Aonide lo catalizan en otros: su presencia hace que artistas ordinarios alcancen la obra de su vida, que poetas mediocres compongan versos inmortales, que músicos sin talento toquen con gracia sobrehumana. Son el origen de las grandes obras de arte de la humanidad, aunque los mortales nunca lo sepan. Su naturaleza generosa a veces las lleva a dar demasiado de sí mismas.',
+    nativePowerIds: ['llorona', 'somniloquios'],
+    nativePowerLabel: 'Artes preferidas',
+    weakness: {
+      name: 'Vaciamiento Creativo',
+      description: 'Cada vez que una Aonide inspira a un mortal a crear algo extraordinario, pierde parte de su propia esencia creativa.',
+      mechanical: 'Cuando una Aonide usa cualquier Arte para amplificar o inspirar la creatividad de un mortal, pierde 1 punto temporal de Glamour adicional al coste normal. Si su Glamour llega a 0 por este efecto, cae en "Bloqueo de Musa": no puede usar Artes de inspiración durante 24 horas (otras Artes funcionan normalmente). Sin embargo, la creatividad que generan en el mundo les devuelve Glamour: cada obra de arte notable creada por alguien a quien inspiraron les devuelve 1 Glamour al ser completada (incluso semanas después).',
+    },
+    notableMembers: ['Calliope Rising', 'Erinna the Pale'],
+  },
+  {
+    id: 'nixie', name: 'Nixie', gameSystem: 'C20' as const, factionType: 'kith' as const,
+    archetype: 'Espíritus del Agua',
+    lore: 'Las Nixies son los feéricos del agua en su aspecto más misterioso y peligroso: no las amables Selkies ni las comunales Merrow, sino los espíritus caprichosos que habitan en aguas profundas y oscuras. Pueden ser benevolentes o letales según su estado de ánimo, y su relación con los mortales siempre tiene un filo de peligro no declarado. Son custodias de secretos ahogados, coleccionistas de recuerdos de los muertos que cayeron en sus aguas, y las últimas guardianas de ciertos tipos de sabiduría muy antigua.',
+    nativePowerIds: ['contratos', 'somniloquios'],
+    nativePowerLabel: 'Artes preferidas',
+    weakness: {
+      name: 'Capricho Acuático',
+      description: 'Las Nixies están sujetas a cambios de humor repentinos e incontrolables, como la superficie del agua.',
+      mechanical: 'Al inicio de cada escena, el Narrador lanza en secreto 1d10. Con resultado 1-3: la Nixie está de humor oscuro y caprichoso (dificultad +1 en todas las interacciones sociales, inclinación a causar problemas). Con 4-7: humor neutro, normal. Con 8-10: humor afable y generoso (dificultad -1 en interacciones sociales). Este estado de humor no puede ser controlado por la Nixie, aunque puede racionalizarlo post-hoc. En su propio cuerpo de agua, el estado oscuro es imposible (las aguas propias la pacifican).',
+    },
+    notableMembers: ['Deep-Mirror', 'Rusalka of the Black Pool'],
+  },
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────

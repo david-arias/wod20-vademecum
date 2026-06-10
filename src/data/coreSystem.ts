@@ -446,4 +446,208 @@ export const CORE_RULES: CoreRule[] = [
       },
     ],
   },
+
+  // ── NUEVA COREULE: GUÍA DE DIFICULTADES ──────────────────────────────────────
+  {
+    id: 'difficulty-guide',
+    module: 'difficulty-guide',
+    eyebrow: 'DIFICULTADES',
+    title: 'Guía de Dificultades Base',
+    summary: 'La dificultad estándar es 6. El rango efectivo va de 3 (trivial) a 9 (casi imposible). La dificultad 10 solo se usa como penalización adicional.',
+    applicableTo: 'all',
+    content: [
+      {
+        type: 'text',
+        content: 'La dificultad de una tirada refleja cuán difícil es la tarea en condiciones normales. El Narrador ajusta la dificultad según el contexto: el entorno, la presión, las herramientas disponibles y el estado del personaje. La dificultad nunca puede ser menor de 2 (siempre hay alguna posibilidad de fallo) ni mayor de 10.',
+      },
+      {
+        type: 'table',
+        caption: 'Escala de Dificultades',
+        headers: ['Dificultad', 'Descripción', 'Ejemplo'],
+        rows: [
+          ['3', 'Trivial — casi cualquiera lo lograría', 'Escalar una escalera; recordar tu propio nombre'],
+          ['4', 'Fácil — un profesional lo haría sin pensar', 'Conducir en autopista tranquila; cocinar un plato básico'],
+          ['5', 'Moderada-fácil — requiere atención', 'Negociar un precio justo; escalar una pared baja'],
+          ['6', 'Estándar (por defecto)', 'La mayoría de acciones competentes en condiciones normales'],
+          ['7', 'Difícil — requiere habilidad y concentración', 'Cirugía de urgencia; hackear un sistema con seguridad media'],
+          ['8', 'Muy difícil — solo expertos tienen buenas posibilidades', 'Detectar una trampa muy bien oculta; engañar a un experto en mentiras'],
+          ['9', 'Extremo — la élite mundial puede fallar', 'Escalar el Everest sin equipo; engañar a un Methuselah'],
+          ['10', 'Solo como penalización adicional', 'Se usa sumando a otras penalizaciones, no como dificultad base'],
+        ],
+      },
+      {
+        type: 'list',
+        title: 'Modificadores Comunes de Dificultad',
+        items: [
+          '-1 dificultad: Herramientas superiores, condiciones óptimas, preparación previa, ayuda de especialista',
+          '-2 dificultad: Ventaja masiva (más de 10 aliados ayudando, tecnología muy superior)',
+          '+1 dificultad: Condiciones adversas, tiempo limitado, distracción activa, herramientas inferiores',
+          '+2 dificultad: Condiciones muy adversas, heridas graves, dos desventajas simultáneas',
+          '+3 dificultad: Condiciones catastróficas — normalmente el Narrador puede simplemente declarar el fallo',
+        ],
+      },
+    ],
+  },
+
+  // ── NUEVA COREULE: ÉXITOS AUTOMÁTICOS ────────────────────────────────────────
+  {
+    id: 'automatic-successes',
+    module: 'automatic-successes',
+    eyebrow: 'ESPECIALIZACIÓN',
+    title: 'Éxitos Automáticos y Especialización',
+    summary: 'Una especialización en una habilidad convierte todos los 10s en 2 éxitos. Los éxitos automáticos se conceden sin tirada cuando la tarea es muy por debajo de la competencia del personaje.',
+    applicableTo: 'all',
+    content: [
+      {
+        type: 'text',
+        content: 'El sistema World of Darkness tiene dos mecanismos para representar maestría: la Especialización y los Éxitos Automáticos. Ambos reducen la necesidad de tirar dados cuando un personaje es claramente superior a la tarea.',
+      },
+      {
+        type: 'list',
+        title: 'Especialización',
+        items: [
+          'Cada habilidad puede tener una Especialización: un área específica de enfoque (ej. Atletismo: Natación, Armas de Fuego: Pistolas).',
+          'Cuando la especialización aplica directamente a la tarea: cada resultado de 10 en los dados cuenta como 2 éxitos en lugar de 1.',
+          'Las especializaciones se compran durante la creación de personaje o con PX (normalmente 1 PX).',
+          'Un personaje puede tener múltiples especializaciones en una misma habilidad (en diferentes sub-áreas).',
+          'En niveles de habilidad 4 y 5, los personajes normalmente ya tienen especializaciones automáticas según la habilidad y el trasfondo del personaje.',
+        ],
+      },
+      {
+        type: 'list',
+        title: 'Éxitos Automáticos',
+        items: [
+          'Para tareas rutinarias muy por debajo del nivel de la habilidad del personaje: el Narrador puede conceder 1 éxito automático sin tirada.',
+          'Regla estricta (opcional): si el valor de Atributo + Habilidad supera la dificultad en 5 o más puntos, el Narrador puede conceder éxito automático con 1 éxito.',
+          'Los éxitos automáticos se usan para fluir narrativamente sin interrumpir la ficción con tiradas innecesarias.',
+          'Un personaje con Habilidad 5 (maestría máxima) puede realizar tareas de dificultad 6 o menos automáticamente según el Narrador.',
+        ],
+      },
+      {
+        type: 'table',
+        caption: 'Cuándo Tirar vs Cuándo No',
+        headers: ['Situación', 'Decisión', 'Nota'],
+        rows: [
+          ['Tarea trivial, sin presión, sin consecuencias por fallo', 'No tirar', 'El Narrador narra el éxito directamente'],
+          ['Tarea moderada, el personaje tiene habilidad alta, sin presión', 'Opcional', 'Tirar solo si el fallo sería interesante narrativamente'],
+          ['Tarea difícil, o hay consecuencias significativas por fallo', 'Siempre tirar', 'El fallo debe ser posible para que la tirada sea significativa'],
+          ['Combate, magia activa, acciones opuestas', 'Siempre tirar', 'La oposición hace que el fallo siempre sea posible'],
+        ],
+      },
+    ],
+  },
+
+  // ── NUEVA COREULE: DAÑO AGRAVADO ─────────────────────────────────────────────
+  {
+    id: 'aggravated-damage',
+    module: 'aggravated-damage',
+    eyebrow: 'DAÑO AGRAVADO',
+    title: 'Daño Agravado: Heridas que No Cierran',
+    summary: 'El daño agravado es el más severo del sistema WoD: no puede ser curado por medios sobrenaturales normales y tarda mucho más en sanar. Cada tipo de criatura tiene sus propias fuentes de daño agravado.',
+    applicableTo: 'all',
+    content: [
+      {
+        type: 'text',
+        content: 'El daño agravado representa heridas que afectan la esencia misma de la criatura sobrenatural, no solo su cuerpo físico. Para un vampiro, el fuego y la luz solar dañan su naturaleza muerta; para un Garou, la plata disrumpe su vínculo con Gaia. El daño agravado se registra con una cruz (✖) en la hoja de personaje, separado del daño letal (/) y contuso (X).',
+      },
+      {
+        type: 'table',
+        caption: 'Tipos de Daño por Sistema',
+        headers: ['Tipo de Daño', 'V20 (Vampiro)', 'W20 (Garou)', 'M20 (Mago)', 'C20 (Changeling)', 'Wr20 (Wraith)'],
+        rows: [
+          ['Fuentes de daño agravado', 'Fuego, luz solar, garras de Garou', 'Plata, Gnosis canalizada como daño', 'Paradoja grave, armas especialmente forjadas', 'Hierro frío, Banalidad', 'Oblivion, ataques de Espectros'],
+          ['Puede ser soakeado con', 'Fortitud (solo fuego; no luz solar)', 'Resistencia + rollo de soak normal', 'Solo con poderes específicos', 'Solo con Glamour activo en circunstancias especiales', 'Arcano: Patetismo en algunos casos'],
+          ['Curación natural (inactivo)', '5 días por nivel', '3 días por nivel', '3 días por nivel', '2 días por nivel', 'No aplica (cuerpo espectral)'],
+          ['Curación sobrenatural', 'No puede curarse con sangre', 'No puede curarse con Gnosis directamente', 'No puede curarse con Quintaesencia', 'Requiere Glamour especial de Nodo', 'Requiere Patetismo 4+'],
+        ],
+      },
+      {
+        type: 'list',
+        title: 'Reglas Universales del Daño Agravado',
+        items: [
+          'El daño agravado siempre se coloca a la derecha de las casillas de herida, desplazando daño letal y contuso hacia la izquierda.',
+          'Si un nivel de daño ya ocupado por daño contuso recibe daño agravado, el contuso se convierte en letal primero.',
+          'Si un nivel de daño ya ocupado por daño letal recibe daño agravado, el letal simplemente se convierte en agravado.',
+          'La muerte (o incapacitación en criaturas sobrenaturales) ocurre igual que con otros tipos de daño cuando todas las casillas están ocupadas.',
+          'El daño agravado NO puede ser convertido en daño de menor grado por poderes sobrenaturales que "reducen" el daño recibido —esos poderes lo evitan o lo absorben, no lo convierten.',
+        ],
+      },
+    ],
+  },
+
+  // ── NUEVA COREULE: RASGOS DE VIRTUD ──────────────────────────────────────────
+  {
+    id: 'virtue-traits',
+    module: 'virtue-traits',
+    eyebrow: 'VIRTUDES',
+    title: 'Rasgos de Virtud: Consciencia, Autocontrol y Valor',
+    summary: 'Las Virtudes representan la fortaleza moral y emocional del personaje. Se usan para resistir impulsos destructivos, el miedo y la pérdida de humanidad.',
+    applicableTo: 'all',
+    content: [
+      {
+        type: 'text',
+        content: 'Las Virtudes son rasgos que van de 1 a 5 y representan la estabilidad interior del personaje. Aunque sus nombres y aplicaciones varían ligeramente entre los juegos del Mundo de Oscuridad, su función es universal: actuar como ancla cuando el personaje está en riesgo de perder el control de sí mismo.',
+      },
+      {
+        type: 'table',
+        caption: 'Las Tres Virtudes por Sistema',
+        headers: ['Virtud', 'V20', 'W20', 'M20', 'C20', 'Wr20'],
+        rows: [
+          ['Consciencia / Conciencia moral', 'Consciencia (Conscience) — resistir actos contrarios a la Humanidad', 'Honor (Honor) — actuar según el código tribal', 'Consciencia — resistir la corrupción de la Sombra', 'Glamour / ética feérica', 'Consciencia — resistir la Oblivion'],
+          ['Autocontrol', 'Autocontrol (Self-Control) — resistir el frenesí vampírico', 'Autocontrol (Gnosis roll) — resistir la rabia animal', 'Autocontrol — resistir la compulsión a lanzar magia vulgar', 'Autocontrol — resistir impulsos Quiméricos', 'Autocontrol — resistir las Pasiones Oscuras'],
+          ['Valor / Coraje', 'Valor (Courage) — actuar contra el miedo a la muerte o el daño', 'Gloria (Glory) — afrontar desafíos directos sin retroceder', 'Valor — afrontar lo desconocido y lo sobrenatural', 'Valor — afrontar lo Banal y lo aterrador', 'Valor — afrontar la Oblivion sin sucumbir'],
+        ],
+      },
+      {
+        type: 'list',
+        title: 'Usos Comunes de las Virtudes',
+        items: [
+          'Consciencia: tirada cuando el personaje comete un acto contrario a su moral (mata inocentes, traiciona a aliados, toma decisiones crueles). Fallo = pérdida de puntuación en la virtud o en la escala de moralidad (Humanidad, Sendas, etc.).',
+          'Autocontrol: tirada cuando el personaje está en riesgo de ceder a su naturaleza instintiva más oscura (frenesí vampírico, Catarsis del Wraith, rabia del Garou). Fallo = el personaje pierde el control momentáneamente.',
+          'Valor: tirada cuando el personaje enfrenta algo que genera miedo real y debe actuar a pesar de él. Fallo = el personaje no puede actuar en esa dirección durante esa escena.',
+          'Las tiradas de Virtud son siempre dificultad variable (5–9) según la gravedad de la situación.',
+          'Perder puntos en Virtudes puede reducir también la puntuación de la escala moral asociada (Humanidad, Renombre, etc.). El Narrador determina cuándo aplica.',
+        ],
+      },
+    ],
+  },
+
+  // ── NUEVA COREULE: RESONANCIA ─────────────────────────────────────────────────
+  {
+    id: 'resonance',
+    module: 'resonance',
+    eyebrow: 'RESONANCIA',
+    title: 'Resonancia: La Huella del Poder Sobrenatural',
+    summary: 'La magia, los poderes sobrenaturales y las entidades dejan una "resonancia" —una firma detectible por quienes saben buscarla. La resonancia refleja la naturaleza del poder usado y puede atraer o repeler a otras entidades.',
+    applicableTo: 'all',
+    content: [
+      {
+        type: 'text',
+        content: 'La Resonancia es el concepto unificador de cómo los poderes sobrenaturales "huelen" para las entidades que pueden detectarlos. No es solo una mecánica de detección —es la afirmación de que la magia y los poderes sobrenaturales tienen carácter, intención e historia, y esas propiedades son detectibles por quienes saben buscarlas. En el Mundo de Oscuridad, nada sobrenatural es completamente invisible para todos.',
+      },
+      {
+        type: 'table',
+        caption: 'Resonancia por Sistema',
+        headers: ['Sistema', 'Nombre de la Resonancia', 'Quién la detecta', 'Qué revela'],
+        rows: [
+          ['V20', 'Aura / Resonancia de Sangre', 'Auspex 1+ (Sentir el Aura), otros vampiros', 'Emoción dominante, si es vampiro/ghoul, Generación aproximada'],
+          ['W20', 'Firma espiritual / Resonancia de Gnosis', 'Sexto Sentido, espíritus con Percepción', 'Auspicio del Garou, Tribu, actos de Wyrm/Wyld/Weaver recientes'],
+          ['M20', 'Resonancia Mágica', 'Auspex M20, otros Magos, espíritus sensibles', 'Tradición/Paradigma, tipo de Esfera usada, si hay Paradoja acumulada'],
+          ['C20', 'Glamour residual / Resonancia Quimérica', 'Kenning (percepción feérica), espíritus del Ensueño', 'Kith del lanzador, tipo de Arte, nivel de Banalidad del área'],
+          ['Wr20', 'Resonancia de Pathos / Angustia', 'Percepción espiritual, Espectros, Perdonadores', 'Pasiones dominantes del Wraith, nivel de Angustia, si hay Espectros activos'],
+        ],
+      },
+      {
+        type: 'list',
+        title: 'Principios Universales de la Resonancia',
+        items: [
+          'La resonancia persiste: los efectos sobrenaturales dejan huella durante horas o días según la potencia del poder (1 hora por nivel de poder aproximadamente).',
+          'La resonancia se acumula: lugares donde se usa poder sobrenatural frecuentemente desarrollan una resonancia ambiental que afecta a las tiradas locales.',
+          'La resonancia atrae: entidades que resuenan de forma similar se sienten atraídas entre sí (vampiros poderosos atraen ghouls, lugares de Gnosis alta atraen espíritus, Paradoja acumulada atrae espíritus de Paradoja).',
+          'La resonancia puede ser enmascarada: algunos poderes (Sigilo de Obfuscate vampírico, magia coincidental, Contratos C20 de nivel alto) ocultan la resonancia específica aunque no puedan eliminarla completamente.',
+          'La resonancia tiene historia: un Mago con Correspondencia 3+ puede "leer" la resonancia residual de un lugar para reconstruir qué tipos de poder sobrenatural fueron usados allí recientemente.',
+        ],
+      },
+    ],
+  },
 ]
