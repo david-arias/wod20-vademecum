@@ -23,7 +23,7 @@ const V20_CLANS = [
     archetype: 'Salvajes',
     politicalAffiliation: 'Independiente (ex-Camarilla)',
     lore: 'Solitarios por naturaleza, los Gangrel son los más bestiales de los vampiros, más cómodos bajo las estrellas que en las intrigas de la Camará. Son los supervivientes definitivos del Mundo de Tinieblas.',
-    nativePowerIds: ['animalismo', 'celeridad', 'fortitud'],
+    nativePowerIds: ['animalismo', 'fortitud', 'proteanismo'],
     nativePowerLabel: 'Disciplinas de clan',
     weakness: {
       name: 'La Bestia Emerge',

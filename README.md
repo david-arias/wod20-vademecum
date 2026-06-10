@@ -14,7 +14,7 @@
 
 | ID | Juego | Acento | Facciones | Poderes | Estado |
 |----|-------|--------|-----------|---------|--------|
-| `V20` | Vampiro: La Mascarada | 🔴 `#FF3333` Blood Red | 13 clanes + afiliación política | 19 disciplinas (2 MultiPath) | ✅ Fase 4 |
+| `V20` | Vampiro: La Mascarada | 🔴 `#FF3333` Blood Red | 13 clanes + afiliación política | 20 disciplinas (2 MultiPath) | ✅ Fase 4.1 |
 | `W20` | Hombre Lobo: El Apocalipsis | 🟡 `#D4AF37` Dark Gold | 13 tribus | 21 categorías de dones | ✅ Fase 3.5 |
 | `M20` | Mago: La Ascensión | 🟣 `#8A2BE2` BlueViolet | 9 tradiciones (esferas correctas) | 9 esferas | ✅ Fase 4 |
 | `C20` | Changeling: El Ensueño | 🟢 `#00FF7F` Spring Green | 13 kiths | 9 artes | ✅ Fase 4 |

@@ -1,5 +1,5 @@
 # 📂 ARCHIVO DE MEMORIA: HANDOFF.md
-> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 4 CERRADA — Auditoría completa de datos: errores P1 corregidos, 5 módulos Core nuevos, 13 kiths C20, 19 disciplinas V20, afiliaciones políticas V20, 0 errores TypeScript**
+> Guardián del Handoff — Agente Documentador | Última actualización: **FASE 4.1 — Corrección canónica Gangrel (celeridad→proteanismo) + disciplina Proteanismo (5 niveles), 20 disciplinas V20, 0 errores TypeScript**
 
 ---
 
@@ -941,4 +941,49 @@ Inventario completo y exhaustivo del estado de `src/data/` para identificar todo
 5. **Auspicio recomendado** en W20 tribus
 
 ### 🏗️ Estado actual del proyecto: 3 archivos modificados en Fase 4, 0 errores TypeScript
+
+---
+
+## ✅ FASE 4.1 — Corrección Canónica Gangrel + Proteanismo (10 Jun 2026)
+
+### Correcciones aplicadas
+
+#### 🔴 Error canónico corregido — Gangrel
+
+`factions/index.ts` — Gangrel `nativePowerIds`:
+- **Antes (incorrecto):** `['animalismo', 'celeridad', 'fortitud']`
+- **Ahora (correcto V20 p.68–71):** `['animalismo', 'fortitud', 'proteanismo']`
+- Celeridad pertenece a Brujah/Assamita/Ravnos. Los Gangrel nunca tuvieron Celeridad como disciplina de clan.
+
+#### 🆕 Nueva disciplina — Proteanismo
+
+`v20Disciplines.ts` — Añadida `PowerCategory` completa:
+
+| Nivel | Nombre | Coste | Efecto |
+|-------|--------|-------|--------|
+| 1 | Ojos de la Bestia | 1 Sangre | Visión perfecta en oscuridad total; ojos de animal |
+| 2 | Garras de la Bestia | 1 Sangre | Garras de daño agravado + escalar superficies |
+| 3 | Piel de la Bestia | 1 Sangre | +1–3 Stamina + 1–3 Absorción + rasgos animales |
+| 4 | Forma de Bestia | 1 Sangre | Transformación completa en lobo/murciélago/rata |
+| 5 | Forma de Niebla | 1 Sangre | Intangible, invulnerable a físico, atraviesa grietas |
+
+**Total disciplinas V20:** 20 (Proteanismo es la disciplina #20)
+
+### 📊 Estado Post-Fase 4.1
+
+| Sistema | Facciones | Poderes | Core Rules | % Real |
+|---------|-----------|---------|------------|--------|
+| V20 | 13/13 ✅ canónicas | 20 disciplinas (~77%) | 10/13 (77%) | ~75% |
+| W20 | 13/13 ✅ | 21 categorías ✅ | 10/13 (77%) | ~80% |
+| M20 | 9/9 ✅ | 9/9 Esferas ✅ | 10/13 (77%) | ~75% |
+| C20 | 13/~18 (72%) | 9/16 Artes | 10/13 (77%) | ~65% |
+| Wr20 | 15/15 ✅ | 15/15 ✅ | 10/13 (77%) | ~80% |
+
+### 🔜 Siguientes Pasos
+
+1. **Disciplinas V20 pendientes**: Daimonion (Baali), Thanatosis (Samedi), Valeren (Salubri anciano), Visceratika (Gargoyle), Ogham (Lhiannan), Sanguinus (Blood Brothers)
+2. **C20 Artes**: Wayfare, Legerdemain, Naming, Primal, Dragon's Ire, Chronos (completar Artes existentes con todos los niveles)
+3. **C20 kiths restantes**: Merfolk, Nunnehi, Inanimae y otros kith regionales
+4. **Rituales**: sistema de Rituales de Taumaturgia y Nigromancia (paralelo a disciplinas)
+5. **W20**: auspicio recomendado por tribu
 
