@@ -1,5 +1,5 @@
 # 📂 ARCHIVO DE MEMORIA: HANDOFF.md
-> Guardián del Handoff — Agente Documentador | Última actualización: **SANEAMIENTO TERMINOLÓGICO V20 — Clanes/Sectas refactorizados: slugs canónicos, V20_FACTIONS exportado, 0 errores TypeScript**
+> Guardián del Handoff — Agente Documentador | Última actualización: **V20 100% COMPLETADO — Sub-Fase D: 9 disciplinas exóticas inyectadas (Bardo, Mythercería, Valeren, Ogham, Sanguinus, Spiritus, Tanatosis, Viscerátika, Vuelo) — 0 errores TypeScript ✅ — PRÓXIMO OBJETIVO: W20**
 
 ---
 
@@ -1412,3 +1412,223 @@ npx tsc --noEmit → 0 errores, 0 warnings ✅
   - `V20_FACTIONS` exportado como `export const` con tipo explícito `Faction[]`
   - Alias `V20_CLANS = V20_FACTIONS` mantiene compatibilidad con consumidores existentes
 
+
+---
+
+## 🧛 FASE 4 — Expansión de Poderes de Antiguo y Rituales (V20)
+
+### Objetivo
+Inyectar el 100% del Capítulo 4 (Disciplinas) del manual V20: niveles 6–9 (Poderes de Antiguo), rituales de Magia de Sangre completos, y disciplinas de líneas de sangre exóticas.
+
+### Cambios de arquitectura aplicados (`src/types/powers.ts`)
+
+| Campo | Dónde | Cambio |
+|-------|-------|--------|
+| `level: number` | `PowerLevel` | Comentario actualizado: soporta 1–9+ (sin cap real en TypeScript) |
+| `isAlternatePower?: boolean` | `PowerLevel` | **NUEVO** — flag para Poderes de Antiguo alternativos del mismo nivel. Ej: Auspex 6 tiene "Predicción" y "Comunicación Telepática" — ambos marcados `isAlternatePower: true` |
+| `rituals?: PowerLevel[]` | `PowerCategory` | **NUEVO** — array separado de rituales para Taumaturgia/Nigromancia/Koldunismo. `level` = nivel del ritual (1–5); reutiliza `PowerLevel` completo |
+
+**TypeScript:** `npx tsc --noEmit` → 0 errores ✅
+
+### Roadmap Sub-Fases
+
+| Sub-Fase | Contenido | Estado |
+|----------|-----------|--------|
+| **A** | Animalismo, Auspex, Celeridad, Dominación, Fortaleza, Ofuscación, Potencia, Presencia — niveles 1–9 | ✅ COMPLETADA |
+| **B** | Protean, Obtenebración, Vicisitud, Quimerismo, Serpentis, Extinción (ex-Quietud) — niveles 1–9 | ✅ COMPLETADA |
+| **C** | Taumaturgia + Rituales (niveles 1–5), Nigromancia + Rituales, Hechicería Koldúnica | ✅ COMPLETADA |
+| **D** | Bardo, Mythercería, Valeren, Ogham, Sanguinus, Spiritus, Tanatosis, Viscerátika, Vuelo | ✅ COMPLETADA |
+
+### Sub-Fase A — Detalles técnicos
+
+**Archivo:** `src/data/powers/v20Disciplines.ts` — líneas 1–1023 reescritas vía script Python
+
+**Estrategia de escritura:** script Python preservó líneas 529–2185 originales (Obtenebración → Koldunismo) y prepend el nuevo bloque de 8 disciplinas. Resultado: 2680 líneas totales.
+
+**Regla `isAlternatePower`:**
+- `true` SOLO en niveles con múltiples opciones canónicas (Animalismo 6×3, Auspex 6×3 + 7×2, Dominación 6×3 + 7×2, Ofuscación 6×3 + 7×2, Presencia 6×3)
+- Poderes únicos en niveles 7–9 de Celeridad, Fortaleza, Potencia: SIN flag
+- Poderes únicos en niveles finales de Animalismo 7–9, Auspex 8–9, Dominación 8–9, Ofuscación 8–9, Presencia 7–9: SIN flag
+
+**Tabla de contenidos Sub-Fase A:**
+
+| Disciplina | ID | N1–5 | N6 | N7 | N8 | N9 | Líneas aprox. |
+|------------|----|------|----|----|----|----|---------------|
+| Animalismo | `animalismo` | ✅ | ×3 alt | 1 | 1 | 1 | 5–140 |
+| Auspex | `auspex` | ✅ | ×3 alt | ×2 alt | 1 | 1 | 141–289 |
+| Celeridad | `celeridad` | ✅ | 1 | 1 | 1 | — | 290–389 |
+| Dominación | `dominacion` | ✅ | ×3 alt | ×2 alt | 1 | 1 | 390–538 |
+| Fortaleza | `fortitud` | ✅ | 1 | 1 | 1 | — | 539–638 |
+| Ofuscación | `ofuscacion` | ✅ | ×3 alt | ×2 alt | 1 | 1 | 639–787 |
+| Potencia | `potencia` | ✅ | 1 | 1 | 1 | — | 788–887 |
+| Presencia | `presencia` | ✅ | ×3 alt | 1 | 1 | 1 | 888–1023 |
+
+**Verificación TypeScript:** `npx tsc --noEmit` → **0 errores, 0 warnings ✅**
+
+**Nota id Fortaleza:** `id: 'fortitud'`, `name: 'Fortaleza'` — el ID se mantiene en inglés para compatibilidad con `nativePowerIds` de las facciones existentes.
+
+
+---
+
+## ✅ FASE 4 SUB-FASE C — Magia de Sangre y Rituales V20 (11 Jun 2026)
+
+### Objetivo
+
+Completar el 100% de los sistemas de magia de sangre V20: sendas adicionales de Taumaturgia y Nigromancia + rituales completos Niveles 1–5 para ambas disciplinas + conversión del Koldunismo de `PowerCategory` simple a `MultiPathDiscipline` con las 4 Vías elementales canónicas.
+
+### Estrategia técnica
+
+Inyección mediante script Python (`inject_subfase_c.py`) con reemplazos de cadena exactos en `v20Disciplines.ts`. Tres puntos de inserción identificados por anclas únicas:
+- `TAUM_ANCHOR` en línea 2385 original: `"    ],\n    // Re-exported primary path levels..."`
+- `NECRO_ANCHOR` en línea 1775 original: `"    ],\n    levels: [],\n  } as unknown as MultiPathDiscipline,\n\n  // ── QUIMERISMO"`
+- `KOLDUN_START` en línea 3030 original: `"  {\n    id: 'koldunismo',"`
+
+### Cambios en `src/data/powers/v20Disciplines.ts`
+
+#### Taumaturgia — 10 sendas adicionales inyectadas
+
+| ID | Nombre | Temática |
+|----|--------|----------|
+| `contramagia-taumaturgica` | Contramagia Taumatúrgica | Detectar/contrarrestar/absorber magia, crear vacíos antimagia |
+| `control-del-clima` | Control del Clima | Tiempo meteorológico — viento, lluvia, tormentas, niebla |
+| `senda-corrupcion` | Senda de la Corrupción | Corromper auras, vínculos mágicos, Humanidad, objetos sagrados |
+| `dominio-elemental` | Dominio Elemental | 4 elementos clásicos; sentir/controlar/proyectar/conjurar/devastar |
+| `encanto-llamas` | Encanto de las Llamas | Fuego sobrenatural: encarnar llamas, escudo ardiente, forma ígnea |
+| `manos-destruccion` | Manos de Destrucción | Daño físico directo mediante contacto/toque — letal hasta agravado en área |
+| `senda-marte` | Senda de Marte | Guerra ritual: bendecir armas, maldecir a enemigos, desatar berserkers |
+| `poder-neptuno` | Poder de Neptuno | Dominio sobre agua/mar: respirar bajo el agua, convocar mareas, tormentas marinas |
+| `senda-tecnomancia` | Senda de la Tecnomancia | Controlar/poseer/manipular tecnología; apagar sistemas, hackear con mente |
+| `senda-venganza-padre` | Senda de la Venganza del Padre | Disciplina de castigo divino: marcar, anatematizar, ejecutar |
+
+**Taumaturgia paths totales después de Sub-Fase C: 17** (Sangre [primaria] + 6 de Fases 4.2/5A + 10 nuevas)
+
+#### Taumaturgia — 31 rituales (`rituals: PowerLevel[]`) Niveles 1–5
+
+| Nivel | Rituales |
+|-------|----------|
+| **Nivel 1** (8) | Lazo de Sangre Arcano, Comunicación Arcana, Sangre Purificada, El Ojo del Padre, Apotropaico de Sangre, Detectar Magia, Sal de Sangre, Amuleto de Sangre |
+| **Nivel 2** (7) | Lazo del Interrogador, Sello de Sangre, Sangre del Espejo, Análisis del Limo, Despertar del Arma, Círculo de Protección, Invocación del Nombre |
+| **Nivel 3** (7) | Lazo de Sangre del Judas, El Sacrificio Eterno, Ventana al Pasado, Escudo del Clan, Marca del Diablo, Creación del Familiar, Portal de la Hemomancia |
+| **Nivel 4** (5) | Cadena de Sangre, El Gran Sueño, Llave de Sangre, Sustitución de Sangre, El Guardián Eterno |
+| **Nivel 5** (4) | Sangre Incendiaria, El Gran Ritual del Clan, Fusión de Almas, La Maldición de Caine |
+
+Colocados en `rituals: [...]` del bloque `taumaturgia-sangre` (antes de `    levels: [],`).
+
+#### Nigromancia — 5 sendas adicionales inyectadas
+
+| ID | Nombre | Temática |
+|----|--------|----------|
+| `cadaver-dentro-monstruo` | Cadáver dentro del Monstruo | Carne muerta como herramienta: animar, esculpir, armadura de cadáver, El Coloso |
+| `senda-cenotafio` | Senda del Cenotafio | Lazos entre vivos y muertos, anclas emocionales, luto como poder |
+| `senda-cuatro-humores` | Senda de los Cuatro Humores | Medicina galénica sobrenatural: diagnosticar, envenenar, curar, plaga |
+| `podredumbre-tumba` | Podredumbre de la Tumba | Entropía como arma: marchitar, necrosar, desintegrar vampiros |
+| `senda-vitrea` | Senda Vítrea | El velo vida/muerte como cristal: ver espíritus, intangibilidad, fragmentos, espejo del velo |
+
+**Nigromancia paths totales después de Sub-Fase C: 10** (Sepulcro [primaria] + Osario + Cenizas + Alma + Testigo + 5 nuevas)
+
+#### Nigromancia — 18 rituales (`rituals: PowerLevel[]`) Niveles 1–5
+
+| Nivel | Rituales |
+|-------|----------|
+| **Nivel 1** (5) | Llamada del Muerto, Último Suspiro, Señal del Más Allá, Talismán de Hueso, Moneda del Barquero |
+| **Nivel 2** (4) | Tumba de Sombras, Lazo del Espíritu, Puerta de los Muertos, Vestido del Muerto |
+| **Nivel 3** (4) | El Juicio de los Muertos, Atar al Espectro, Transmitir al Sepulcro, Invocar al Espectro Violento |
+| **Nivel 4** (2) | Cámara de los Ecos, Sello de la Tumba |
+| **Nivel 5** (3) | La Gran Resurrección, Ejército de los Muertos, Invocar al Espectro Antiguo |
+
+Colocados en `rituals: [...]` del bloque `nigromancia-sepulcro`.
+
+#### Koldunismo — convertido a `MultiPathDiscipline`
+
+**Antes:** `PowerCategory` simple con 5 niveles planos (Dominio del Viento → Gran Koldun)
+
+**Después:** `MultiPathDiscipline` con `isMultiPath: true`, 4 Vías elementales (5 niveles cada una), `levels: []`:
+
+| ID | Nombre | isPrimary | Espíritu invocado |
+|----|--------|-----------|-------------------|
+| `via-del-agua` | Vía del Agua | **true** | Rusalki y Vodyanoi |
+| `via-del-fuego` | Vía del Fuego | false | Zhar-Ptica y Perun |
+| `via-de-la-tierra` | Vía de la Tierra | false | Domovoi y Dvorovoi |
+| `via-del-viento` | Vía del Viento | false | Vily y Stribog |
+
+Cada Vía tiene 5 niveles con systemText completo (tiradas de Manipulación/Inteligencia + Naturaleza/Ocultismo, costes en Sangre, duraciones, efectos mecánicos canónicos).
+
+### Métricas finales Sub-Fase C
+
+| Recurso | Antes | Después |
+|---------|-------|---------|
+| `v20Disciplines.ts` líneas | 3095 | ~4813 |
+| `v20Disciplines.ts` chars | 281,942 | 432,570 |
+| Taumaturgia sendas | 7 | **17** |
+| Taumaturgia rituales | 0 | **31** |
+| Nigromancia sendas | 5 | **10** |
+| Nigromancia rituales | 0 | **18** |
+| Koldunismo estructura | `PowerCategory` plana | `MultiPathDiscipline` 4 Vías |
+| Errores TypeScript | 0 | **0** ✅ |
+
+### 📊 Estado Post-Sub-Fase C
+
+| Sistema | Facciones | Poderes | Estado |
+|---------|-----------|---------|--------|
+| **V20** | 14 ✅ | 23 disciplinas — Tau **17 sendas** + **31 rituales**, Nigro **10 sendas** + **18 rituales**, Koldun **4 Vías** | **~90%** |
+| W20 | 16 ✅ | 24 dones + 18 ritos | ~90% |
+| M20 | 14 ✅ | 9 esferas + focos + paradoja | ~90% |
+| C20 | 17 | 10 Artes | ~75% |
+| Wr20 | 15 ✅ | 15 Arcanos + Sombra | ~90% |
+
+---
+
+## ✅ FASE 4 SUB-FASE D — Disciplinas Exóticas de Linajes de Sangre V20 (11 Jun 2026)
+
+### Objetivo
+
+Completar el data layer V20 inyectando las disciplinas de linajes de sangre menores y exóticos no presentes en el manual base. Todas con 5 niveles completos y `systemText` exhaustivo (mecánicas de tirada, costes, duraciones, efectos exactos).
+
+### Cambios en `src/data/powers/v20Disciplines.ts`
+
+9 nuevas `PowerCategory` añadidas al final del array `V20_DISCIPLINES`:
+
+| ID | Nombre | Linaje | Mecánica central |
+|----|--------|--------|-----------------|
+| `bardo` | Bardo | Hijos de Osiris | Canto sagrado: calmar frenesí, curar Ka, purificar Dominación, restaurar Humanidad, actuar como mortal 1 noche |
+| `mytherceria` | Mythercería | Kiasyd | Percepción feérica: ver glamours, atravesar sólidos, acertijo vinculante, forma terrorífica, laberinto mental |
+| `valeren` | Valeren | Salubri Antitribu | Curación en combate (propio), detectar mal, purificar corrompidos (agravado sagrado), bendición de batalla, Juicio del Ángel |
+| `ogham` | Ogham | Lhiannan | Leer tierra/genius loci, marcas rúnicas (Algiz/Thurisaz/Raido/Tiwaz), convocar espíritus, lazo de tierra, Gran Árbol |
+| `sanguinus` | Sanguinus | Hermanos de Sangre | Sentidos compartidos, curar a distancia, préstamo de Disciplina, absorber hermano, Colmena de Sangre |
+| `spiritus` | Spiritus | Ahrimanes | Hablar con bestias, espíritu guía animal, poseer bestia, llamada al tótem (Rango 4), Avatar de la Bestia Primordial |
+| `tanatosis` | Tanatosis | Samedi | Hedor de tumba, simular muerte, toque putrefacto (agravado), drenar vida (envejecimiento), Invocar la Muerte (aura mortal) |
+| `visceratica` | Viscerátika | Gárgolas | Piel de piedra (+Absorción), garras de mármol (agravado), mimetismo pétreo, cuerpo de roca viva (inmune fuego/sol), tormenta de piedra |
+| `vuelo` | Vuelo | Gárgolas | Alas desplegadas, picado demoledor, viento de piedra (×3 velocidad), dominio del cielo (radar aéreo), Guardián Eterno (patrulla nocturna) |
+
+### Métricas finales Sub-Fase D
+
+| Recurso | Antes | Después |
+|---------|-------|---------|
+| `v20Disciplines.ts` líneas | ~4811 | ~5405 |
+| `v20Disciplines.ts` chars | 432,570 | ~501,890 |
+| Disciplinas V20 totales | 23 | **32** |
+| Disciplinas exóticas nuevas | 0 | **9** |
+| Errores TypeScript | 0 | **0** ✅ |
+
+### 📊 Estado Post-Sub-Fase D — ██████████ V20 100% COMPLETO ██████████
+
+| Sistema | Facciones | Poderes | Estado |
+|---------|-----------|---------|--------|
+| **V20** | 14 ✅ | **32 disciplinas** — Tau 17 sendas+31 rituales, Nigro 10 sendas+18 rituales, Koldun 4 Vías, **9 exóticas Sub-D** | **✅ 100%** |
+| W20 | 16 ✅ | 24 dones + 18 ritos + renombre | ~90% |
+| M20 | 14 ✅ | 9 esferas + focos + paradoja | ~90% |
+| C20 | 17 | 10 Artes | ~75% |
+| Wr20 | 15 ✅ | 15 Arcanos + Sombra | ~90% |
+
+### 🔜 PRÓXIMO OBJETIVO: W20 — Expansión hasta 100%
+
+**W20 gaps identificados:**
+1. Dones faltantes: Theurge (solo 3 rangos), Señores de la Sombra (solo 3 rangos) → completar a 5
+2. Dones Hakken (solo rangos 1 y 3) → completar a 5
+3. Dones Ratkin (solo rangos 1–3) → completar a 5
+4. Dones Nuwisha (completo ✅)
+5. **Mecánicas del Umbra**: Gnosis activo, cruzar el Velo, Barreras — falta módulo CoreRule
+6. **Frenzy/Delirio**: mecánica completa como CoreRule W20
+7. **Fetiches**: sistema de creación y catálogo básico
+8. **Gifts de raza Metis**: ampliar a 5 niveles desde 5 actuales ✅
+9. **W20 Forms**: ya completo ✅

@@ -24,7 +24,7 @@ export interface PowerCost {
 // ─── Individual Power (a single level / rank entry) ──────────────────────────
 
 export interface PowerLevel {
-  level: number             // 1–5 (level in discipline, rank in gift, sphere dot, etc.)
+  level: number             // 1–9+ (Niveles 6–9 = Poderes de Antiguo; pueden tener múltiples alternativas)
   name: string              // "Atisbo de la Bestia", "Trueno de la Luna", etc.
   summary: string           // One-line summary for list view
   systemText: string        // Full mechanical description
@@ -32,6 +32,10 @@ export interface PowerLevel {
   cost?: PowerCost
   actionType?: ActionType
   duration?: string         // "escena", "instantáneo", "permanente", etc.
+
+  // V20 Elder Powers (niveles 6+): flag para poderes alternativos del mismo nivel.
+  // Ej: Auspex 6 tiene "Predicción" Y "Comunicación Telepática" — ambos con isAlternatePower: true
+  isAlternatePower?: boolean
 
   // M20-specific: type of magic effect
   effectType?: 'coincidental' | 'vulgar' | 'instrumental'
@@ -72,7 +76,12 @@ export interface PowerCategory {
   rulingConcept?: string        // "Distancia y Localización", "Caos y Orden", etc.
 
   icon?: string                 // Icon key for UI
-  levels: PowerLevel[]          // Ordered by level ASC
+  levels: PowerLevel[]          // Ordered by level ASC; niveles 6–9 usarán isAlternatePower para múltiples poderes por nivel
+
+  // V20 Blood Magic: rituales separados de las sendas/niveles principales.
+  // Cada entrada reutiliza PowerLevel donde `level` = nivel del ritual (1–5).
+  // Presente en: Taumaturgia, Nigromancia, Hechicería Koldúnica.
+  rituals?: PowerLevel[]
 }
 
 // ─── Powers Index (all categories by game system) ────────────────────────────
